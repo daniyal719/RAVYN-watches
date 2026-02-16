@@ -116,6 +116,7 @@ i{
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
 }
 .product-image{
   width: 100%;
@@ -150,13 +151,11 @@ i{
   font-family: arial;
   position: relative;
 }
-.parice-button-container{
-  border: 1px solid;
+.price-button-container{
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -10px;
 }
 .product-bottom i{
   font-size: 20px;

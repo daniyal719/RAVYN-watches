@@ -81,7 +81,7 @@ function renderProducts(category, limit, containerSelector, customList = null) {
                 <div class="product-bottom">
                     <p class="product-owner">RAVYN Watch</p>
                     <div class="product-name-container"><h2 class="product-name">${product.name}</h2></div>
-                    <div class="parice-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
             </div>`;
     });

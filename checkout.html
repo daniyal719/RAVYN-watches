@@ -192,7 +192,7 @@
         </div>
         <div class="form-group">
           <label>Email <span>*</span></label>
-          <input id="phone" required>
+          <input type="email" id="email" required> 
         </div>
         <div class="form-group">
           <label>Phone Number <span>*</span></label>
@@ -224,7 +224,7 @@
           <div id="codInfo" class="payment-info active">
             <p><strong>Thank you for your order!</strong></p>
             <p>Order confirm krny ky liye ap ko <strong>300 advance</strong> send krny hoo, jo kay Total payment main sy minus kr diay jay gy.</p>
-            <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>0336 8150506</p></strong> (WhatsApp only)</p>
+            <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>03354562580</p></strong> (WhatsApp only)</p>
             
             <h4>Payment Details for Advance:</h4>
             <div class="bank-info">
@@ -239,7 +239,7 @@
                 IBAN: PK69UNIL0109000317761362<br>
             </div>
             <div class="note-box">
-                Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>0336 8150506</p> (WhatsApp only)
+                Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>03354562580</p> (WhatsApp only)
             </div>
           </div>
         </div>
@@ -251,7 +251,7 @@
           </label>
           <div id="advanceInfo" class="payment-info">
             <p><strong>Thank you for your order!</strong></p>
-            <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>0336 8150506</p></strong> (WhatsApp only)</p>
+            <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>03354562580</p></strong> (WhatsApp only)</p>
             
             <h4>Payment Details:</h4>
             <div class="bank-info">
@@ -266,7 +266,7 @@
                 IBAN: PK69UNIL0109000317761362
             </div>
             <div class="note-box">
-                Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>0336 8150506</p> (WhatsApp only)
+                Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>03354562580</p> (WhatsApp only)
             </div>
           </div>
         </div>
@@ -301,7 +301,7 @@
     <a href="checkout.html" class="mobile-nav-item"><i class="fa-solid fa-credit-card"></i><span class="label">Checkout</span></a>
   </div>
 
-  <a href="https://wa.me/923368150506" class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/923354562580" class="whatsapp-float" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
   <script src="./Script/common.js"></script>
@@ -388,21 +388,22 @@
         }
 
         const fName = document.getElementById('fName').value;
+        const email = document.getElementById('email').value; // NEW
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
         const city = document.getElementById('city').value;
         const method = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-        if(!fName || !phone || !address || !city) {
+        if(!fName || !phone || !address || !city) { // You can add !email here if you want to enforce it
             alert("Please fill in all required fields.");
             return;
         }
 
         let message = `*New Order - RAVYN Luxury Store*\n\n`;
-        message += `*Customer:* ${fName}\n*Phone:* ${phone}\n*Address:* ${address}, ${city}\n`;
+        message += `*Customer:* ${fName}\n*Email:* ${email}\n*Phone:* ${phone}\n*Address:* ${address}, ${city}\n`; 
         message += `*Payment Method:* ${method}\n\n`;
         message += `*Items Ordered:* \n`;
-        
+
         let finalTotal = 0;
         cart.forEach(item => {
             message += `- ${item.name} (x${item.quantity}) - Rs ${item.price * item.quantity}\n`;
@@ -414,7 +415,7 @@
             message += `*Note:* Sending Rs 300 Advance to confirm COD.`;
         }
 
-        const url = `https://wa.me/923107715463?text=${encodeURIComponent(message)}`;
+        const url = `https://wa.me/923354562580?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     }
 
