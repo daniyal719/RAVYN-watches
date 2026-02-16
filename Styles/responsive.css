@@ -454,7 +454,7 @@
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 430px) {
     .header {
         height: 50px;
         width: 100%;
@@ -468,7 +468,7 @@
     .hero-section {
         border-radius: 0px;
         width: 100%;
-        height: 380px;
+        height: 300px;
         margin: 0px 0px;
         background-position-x: 78%;
         background-size: cover;
@@ -888,5 +888,8 @@
 
     .products-grid {
         column-gap: -5px;
+    }
+    .products{
+        width: 150px;
     }
 }
