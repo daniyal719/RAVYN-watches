@@ -502,6 +502,8 @@
 
     .products-grid {
         grid-template-columns: 1fr 1fr;
+        /* FIXED: Added large padding to bottom of grid to clear the fixed nav */
+        padding-bottom: 120px !important;
     }
 
     .products {
@@ -584,8 +586,14 @@
         display: none !important;
     }
 
+    /* Fixed: Ensure footer remains hidden on very small screens */
     .footer {
         display: none !important;
+    }
+    
+    /* Fixed: Ensure product grid has enough clearance for Nav + WhatsApp */
+    .products-grid {
+        padding-bottom: 150px !important;
     }
 
     .mobile-navbar {
@@ -803,68 +811,6 @@
 
     .product-bottom button i {
         font-size: 12px;
-    }
-
-    .footer {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 30px;
-        box-shadow: 10px 10px 50px rgb(37, 37, 37);
-        font-family: arial;
-        width: 100%;
-        background-color: rgb(192, 192, 192);
-        bottom: 0;
-    }
-
-    .footer-left-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 130px;
-        margin-left: 20px;
-    }
-
-    .footer-left-section h1 {
-        font-size: 30px;
-        margin-top: 90px;
-        font-family: 'Times New Roman', Times, serif;
-    }
-
-    .footer-left-section p {
-        width: 140px;
-        color: gray;
-    }
-
-    .footer-right-section h2 {
-        font-size: 24px;
-    }
-
-    .footer-right-section {
-        margin-left: 30px;
-    }
-
-    .footer-right-section p {
-        font-size: 16px;
-        margin-left: 10px;
-        cursor: pointer;
-        margin-bottom: 0px;
-    }
-
-    .footer-right-section i {
-        margin-left: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        transition: color .15s linear;
-        margin: 0px;
-    }
-
-    .footer-right-section i:hover {
-        color: gray;
-    }
-
-    .footer-right-section .social-icon {
-        margin: 20px 30px;
     }
 
     a {
