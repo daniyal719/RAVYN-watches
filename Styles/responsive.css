@@ -33,7 +33,7 @@
 .side-search-panel {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -500%;
     width: 300px;
     height: 100%;
     background: white;

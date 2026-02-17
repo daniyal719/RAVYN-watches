@@ -19,7 +19,7 @@ i{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 490px;
+  height: 80vh;
   margin: 20px 30px;
   border-radius: 10px;
   box-shadow: 20px 20px 60px black;
@@ -86,6 +86,7 @@ i{
 }
 .products-grid {
   display: grid;
+  place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Automatically adjusts columns */
   justify-content: center; /* Centers the columns within the container */
   padding: 40px 60px;
@@ -147,11 +148,12 @@ i{
 
 .product-bottom{
   width: 80%;
-  margin: 0px 20px;
+  margin: 0px 10px;
   font-family: arial;
   position: relative;
 }
 .price-button-container{
+  margin-top: 0px;
   height: 60px;
   display: flex;
   justify-content: space-between;
