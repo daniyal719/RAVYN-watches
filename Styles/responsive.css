@@ -941,15 +941,24 @@
     body {
         padding-bottom: 70px;
     }
+    .hero-section{
+        margin: 10px 0px;
+        box-shadow: none;
+    }
+    .hero-section button{
+        font-size: 14px;
+        padding: 10px 15px;
+    }
     .hero-left {
-        width: 260px;
+        width: 240px;
         line-height: 20px;
     }
-
-    .products-grid {
-        column-gap: -5px;
+    .products-grid{
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 0px;
     }
     .products{
-        width: 150px;
+        width: auto;
     }
 }
