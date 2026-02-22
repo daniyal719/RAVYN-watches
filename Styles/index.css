@@ -406,3 +406,56 @@ i{
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     margin-bottom: 80px;
 }
+/* =========================================
+   ANTI-COPY PROTECTION (OVERLAY & SELECTION)
+   ========================================= */
+
+/* 1. Prevent text selection on all product cards, sliders, and details */
+.products, 
+.prodetails, 
+.slide,
+.carousel-wrapper {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+/* 2. Prevent images from being dragged to the desktop */
+.product-image, 
+.main-img, 
+.small-img-col img, 
+.slide img {
+    -webkit-user-drag: none; 
+    -khtml-user-drag: none; 
+    -moz-user-drag: none; 
+    -o-user-drag: none; 
+}
+
+/* 3. Invisible Transparent Overlay over Grid & Slider Images */
+.products-top, 
+.slide {
+    position: relative;
+}
+
+/* Creates a transparent shield over the image to block "Save Image As" */
+.products-top::after, 
+.slide::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 5;
+    background: transparent; 
+}
+
+/* 4. IMPORTANT: Keep Buttons Clickable Above the Protection */
+.button-container, 
+.product-bottom button, 
+.nav-btn, 
+.see-button,
+.small-img-col,
+.qty-btn {
+    position: relative;
+    z-index: 20; 
+    /* Ensures buttons and galleries can still be clicked! */
+}

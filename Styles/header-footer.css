@@ -9,6 +9,7 @@
   box-sizing: border-box;
   padding: 0 50px;
   z-index: 999;
+  position: sticky;
 }
 
 .logo-container h1 {

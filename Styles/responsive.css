@@ -270,15 +270,15 @@
 
     .center-nav a {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         border-bottom: 1px solid #eee;
     }
 
     .center-nav .menu {
         color: black; 
-        font-size: 20px;
+        font-size: 18px;
         display: block;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
     }
 
     #close {
@@ -290,7 +290,7 @@
         font-size: 25px;
         cursor: pointer;
     }
-
+    
     /* --- General Responsive Fixes --- */
     .hero-section {
         margin: 10px 0;
@@ -370,6 +370,7 @@
   .hero-section{
     margin: 10px;
     box-shadow: 0px 0px 40px black;
+    height: 80vh;
   }
     .whatsapp-float {
         width: 50px;
