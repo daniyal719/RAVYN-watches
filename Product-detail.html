@@ -288,21 +288,6 @@
           // No discount, just show normal price
           document.querySelector('.pro-price').innerText = "Rs " + product.price + "/-";
       }
-
-      // --- B. Render Gallery Images ---
-      const galleryContainer = document.getElementById('gallery-container');
-      if (product.images && product.images.length > 0) {
-          let galleryHTML = '';
-          product.images.slice(0, 8).forEach((imgSrc) => {
-              galleryHTML += `
-                  <div class="small-img-col">
-                      <img src="${imgSrc}" onclick="changeMainImage('${imgSrc}')" alt="Variation">
-                  </div>
-              `;
-          });
-          galleryContainer.innerHTML = galleryHTML;
-      }
-
       // --- C. Quantity Button Logic ---
       const qtyInput = document.getElementById('qty-input');
       const plusBtn = document.getElementById('qty-plus');
