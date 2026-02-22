@@ -15,6 +15,109 @@ a{
 i{
   border: none;
 }
+
+/* =========================
+   PRELOADER STYLES
+========================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000000; /* Deep black background */
+  z-index: 99999; /* Ensure it stays on top of everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+}
+
+.watch-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The outer dial */
+.watch-face {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* The center pin */
+.watch-face::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Base style for both hands */
+.watch-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  background: #ffffff;
+  transform-origin: bottom center;
+  border-radius: 10px;
+}
+
+/* The hour hand (shorter, slower) */
+.hour-hand {
+  width: 2px;
+  height: 15px;
+  margin-left: -1px;
+  animation: spin 12s linear infinite;
+}
+
+/* The minute hand (longer, faster) */
+.minute-hand {
+  width: 2px;
+  height: 25px;
+  margin-left: -1px;
+  animation: spin 1s linear infinite;
+}
+
+/* Pulsing text */
+.watch-loader p {
+  color: #ffffff;
+  font-family: 'Bodoni Moda', serif;
+  letter-spacing: 6px;
+  font-size: 16px;
+  margin: 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Utility class applied by JS to hide the preloader */
+.preloader-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+
 .hero-section{
   display: flex;
   justify-content: space-between;

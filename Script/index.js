@@ -5,7 +5,16 @@ const close = document.getElementById('close');
 
 if (bar) bar.addEventListener('click', () => nav.classList.add('active'));
 if (close) close.addEventListener('click', () => nav.classList.remove('active'));
-
+// --- Preloader Logic ---
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Adding a slight 500ms delay so the animation can be appreciated
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+        }, 500);
+    }
+});
 // --- 2. Mobile Side Search Logic ---
 const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
 const sideSearchPanel = document.getElementById('sideSearchPanel');
