@@ -1,6 +1,6 @@
 /* --- Global Reset & Body --- */
 * {
-  box-sizing: border-box; /* Ensures padding doesn't break layout */
+  box-sizing: border-box; 
 }
 
 body {
@@ -14,7 +14,7 @@ body {
 .prodetails {
   width: 100%;
   display: flex;
-  padding: 40px 60px  ;
+  padding: 40px 60px;
   background-color: #fff;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
@@ -35,33 +35,6 @@ body {
   margin-bottom: 10px;
   object-fit: cover;
   border: 1px solid #ddd;
-}
-
-/* Gallery Grid */
-.small-img-group {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* Allows multiple rows of images */
-  gap: 10px; /* Space between thumbnails */
-  width: 100%;
-}
-
-.small-img-col {
-  flex-basis: 15%; /* Fits ~4 images per row */
-  cursor: pointer;
-}
-
-.small-img-col img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: transform 0.2s ease;
-}
-
-.small-img-col img:hover {
-  transform: scale(1.05);
-  border-color: black;
 }
 
 /* --- Right Side: Details --- */
@@ -86,20 +59,20 @@ body {
 .pro-price {
   font-size: 26px;
   font-weight: bold;
-  color: red; /* Theme color */
+  color: red; 
   margin-bottom: 20px;
 }
-/* --- Add these to your existing CSS --- */
+
 .old-price {
     text-decoration: line-through;
     color: gray;
-    font-size: 0.7em; /* Makes it smaller than the main price */
+    font-size: 0.7em; 
     margin-right: 15px;
     font-weight: normal;
 }
 
 .new-price {
-    color: red; /* Highlights the discounted price */
+    color: red; 
 }
 
 .discount-badge {
@@ -113,6 +86,47 @@ body {
     font-weight: normal;
     letter-spacing: 1px;
 }
+
+/* --- NEW: Color Variation Styles --- */
+.product-colors {
+    margin-bottom: 20px;
+}
+
+.product-colors h4 {
+    font-size: 16px;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+    color: #333;
+}
+
+.color-circles-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.color-circle:hover {
+    transform: scale(1.1);
+}
+
+.color-circle.active {
+    border: 2px solid #000;
+    transform: scale(1.15);
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- Buttons & Inputs --- */
 .button-container-detail{
   display: flex;
   width: 100%;
@@ -120,15 +134,14 @@ body {
 .quantity-container {
   display: flex;
   align-items: center;
-  border: 1.5px solid #000; /* Made slightly thicker to match your theme */
-  border-radius: 50px;       /* This creates the "Pill" shape */
+  border: 1.5px solid #000; 
+  border-radius: 50px;      
   width: 130px; 
   margin-bottom: 20px;
   background-color: #fff;
   margin-right: 15px;
 }
 
-/* The Input Field (Center) */
 .quantity-input {
   width: 40px;
   text-align: center;
@@ -140,10 +153,9 @@ body {
   pointer-events: none;
 }
 
-/* The Buttons (+ and -) */
 .qty-btn {
   flex: 1;
-  background-color: transparent; /* Changed to transparent for a cleaner look */
+  background-color: transparent; 
   border: none;
   height: 40px;
   cursor: pointer;
@@ -156,7 +168,6 @@ body {
   margin-right: 10px;
 }
 
-/* Hover effect for buttons */
 .qty-btn:hover {
   background-color: #f0f0f0;
 }
@@ -165,7 +176,6 @@ body {
   background-color: #e0e0e0;
 }
 
-/* Buttons */
 .add-cart-btn { 
   background: #fff;
   color: black;
@@ -180,7 +190,7 @@ body {
   margin-top: 0px;
   margin-right: 10px;
   margin-left: 0px;
-  margin-bottom: 20px; /* Adds space if they stack */
+  margin-bottom: 20px; 
 }
 
 .buy-now-btn {
@@ -209,6 +219,8 @@ body {
   font-size: 16px;
   display: block;
 }
+
+/* --- Widgets & Tables --- */
 .delivery-status-widget {
   display: flex;
   flex-direction: row;
@@ -280,7 +292,8 @@ body {
 .check,.cross{
   font-size: 24px;
 }
-/* Styling for the new p title */
+
+/* --- FAQ Styles --- */
 .faq-title {
     text-align: center;
     font-size: 26px;
@@ -294,7 +307,7 @@ body {
     width: 100%;
     background-color: #fff;
     max-width: 1000px;
-    margin: 10px auto 30px auto; /* Added 30px bottom margin */
+    margin: 10px auto 30px auto; 
     border-radius: 10px;
 }
 
@@ -319,7 +332,6 @@ body {
     border-radius: 20px;
 }
 
-/* Smooth transition for the icon rotation */
 .faq-question i {
     transition: transform 0.5s ease-in-out;
 }
@@ -328,17 +340,15 @@ body {
     padding: 0 15px;
     max-height: 0;
     overflow: hidden;
-    /* Added transition time for smooth dropdown */
     transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
     color: #555;
 }
 
-/* State when active */
 .faq-item.active .faq-answer {
-    max-height: 300px; /* High enough to fit content */
+    max-height: 300px; 
     padding: 15px;
 }
 
 .faq-item.active .faq-question i {
     transform: rotate(180deg);
-}
+} 

@@ -52,9 +52,6 @@
   <section class="prodetails">
     <div class="single-pro-image">
         <img src="" width="100%" class="main-img" id="MainImg" alt="Product Image">
-        
-        <div class="small-img-group" id="gallery-container">
-          </div>
     </div>
     
     <div class="single-pro-details">
@@ -64,11 +61,15 @@
       <h2 class="pro-price">Loading...</h2>
       <div class="properties">
         <p>🚚 Free Delivery Across Pakistan</p>
-
         <p>🎁 Free RAVYN STORE Premium Packing</p>
-
         <p>✅ 100% Authentic Guaranteed!</p>
       </div>
+
+      <div class="product-colors" id="product-colors" style="display: none;">
+        <h4>Available Colors:</h4>
+        <div class="color-circles-container" id="color-circles-container"></div>
+      </div>
+
       <div class="button-container-detail">
         <div class="quantity-container">
           <button class="qty-btn" id="qty-minus"><i class="fa-solid fa-minus"></i></button>
@@ -271,23 +272,47 @@
       document.querySelector('.pro-name').innerText = product.name;
       document.querySelector('.pro-desc').innerText = product.description || product.des || "No description available.";
 
-      // --- 1. NEW PRICE CALCULATION LOGIC ---
+      // --- 1. PRICE CALCULATION LOGIC ---
       let finalPrice = product.price; // Default to normal price
       
-      // If there is a discount, calculate the new price
       if (product.dis > 0) {
           finalPrice = Math.floor(product.price - (product.price * (product.dis / 100)));
-          
-          // Inject HTML for Stacked Prices (Old crossed out + New Red)
           document.querySelector('.pro-price').innerHTML = `
             <span class="old-price">Rs ${product.price}</span>
             <span class="new-price">Rs ${finalPrice}/-</span>
             <span class="discount-badge">-${product.dis}%</span>
           `;
       } else {
-          // No discount, just show normal price
           document.querySelector('.pro-price').innerText = "Rs " + product.price + "/-";
       }
+
+      // --- NEW: COLOR VARIATION LOGIC ---
+      const colorContainer = document.getElementById('product-colors');
+      const colorCirclesContainer = document.getElementById('color-circles-container');
+
+      if (product.variations && product.variations.length > 0) {
+        colorContainer.style.display = 'block'; 
+        
+        product.variations.forEach((varObj, index) => {
+          const circle = document.createElement('div');
+          circle.classList.add('color-circle');
+          
+          // NEW: Use the merged 'color' property for both styling and tooltip
+          circle.style.backgroundColor = varObj.color;
+          circle.title = varObj.color; 
+
+          if (index === 0) circle.classList.add('active');
+
+          circle.addEventListener('click', () => {
+              mainImg.src = varObj.image;
+              document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('active'));
+              circle.classList.add('active');
+          });
+
+          colorCirclesContainer.appendChild(circle);
+        });
+      }
+
       // --- C. Quantity Button Logic ---
       const qtyInput = document.getElementById('qty-input');
       const plusBtn = document.getElementById('qty-plus');
@@ -311,12 +336,10 @@
       const addCartBtn = document.querySelector('.add-cart-btn');
       const buyNowBtn = document.querySelector('.buy-now-btn');
 
-      // Helper function to add item to cart
       function addToCart(redirect = false) {
         let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
         const quantity = parseInt(qtyInput.value);
 
-        // 1. Add item to cart
         const existingItem = cart.find(item => item.id === product.id);
         if (existingItem) {
           existingItem.quantity += quantity;
@@ -324,21 +347,18 @@
           cart.push({
             id: product.id,
             name: product.name,
-            price: finalPrice, // Uses the calculated discounted price
+            price: finalPrice, 
             image: product.image,
             quantity: quantity
           });
         }
 
-        // 2. Save to storage
         localStorage.setItem('ravyn_cart', JSON.stringify(cart));
         updateCartCount();
 
-        // 3. Handle redirect or feedback
         if (redirect) {
             window.location.href = 'checkout.html';
         } else {
-            // Visual Feedback for "Add to Cart"
             const originalText = addCartBtn.innerText;
             addCartBtn.innerText = "Added!";
             addCartBtn.style.backgroundColor = "black";
@@ -351,14 +371,12 @@
         }
       }
 
-      // EVENT LISTENER: Add to Cart Button
       addCartBtn.addEventListener('click', () => {
-        addToCart(false); // False means do NOT redirect
+        addToCart(false); 
       });
 
-      // EVENT LISTENER: Buy Now Button
       buyNowBtn.addEventListener('click', () => {
-        addToCart(true); // True means redirect to checkout
+        addToCart(true); 
       });
 
       updateShippingDates();
@@ -369,10 +387,6 @@
     }
 
     // --- Helper Functions ---
-    function changeMainImage(src) {
-      document.getElementById('MainImg').src = src;
-    }
-
     function updateCartCount() {
       const cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
       const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -404,7 +418,6 @@
     
     updateCartCount(); 
 
-
     // --- 1. Mobile Side Search Panel Toggle ---
     const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
     const sideSearchPanel = document.getElementById('sideSearchPanel');
@@ -412,15 +425,14 @@
 
     if (mobileSearchTrigger && sideSearchPanel) {
         mobileSearchTrigger.addEventListener('click', () => {
-            sideSearchPanel.classList.add('active'); // Slides the panel in
-            // Focus the input field after a short delay for smooth animation
+            sideSearchPanel.classList.add('active'); 
             setTimeout(() => document.getElementById('sideSearchInput').focus(), 300);
         });
     }
 
     if (closeSideSearch && sideSearchPanel) {
         closeSideSearch.addEventListener('click', () => {
-            sideSearchPanel.classList.remove('active'); // Slides the panel out
+            sideSearchPanel.classList.remove('active'); 
         });
     }
 
@@ -432,7 +444,6 @@
 
         if (!input || !suggestionsBox) return;
 
-        // A. Handle instant suggestions as the user types
         input.addEventListener('input', function() {
             const query = this.value.toLowerCase().trim();
             suggestionsBox.innerHTML = '';
@@ -442,7 +453,6 @@
                 return;
             }
 
-            // Filter products from your global products array (data.js)
             const matches = products.filter(p => p.name.toLowerCase().includes(query));
 
             if (matches.length > 0) {
@@ -467,7 +477,6 @@
             }
         });
 
-        // B. Execute full search redirect on Enter key or Button Click
         const execute = () => {
             const query = input.value.trim();
             if (query) {
@@ -480,7 +489,6 @@
             if (e.key === 'Enter') execute();
         });
 
-        // C. Close suggestions if clicking outside the search area
         document.addEventListener('click', (e) => {
             if (!input.contains(e.target) && !suggestionsBox.contains(e.target)) {
                 suggestionsBox.style.display = 'none';
@@ -488,11 +496,7 @@
         });
     }
 
-    // --- 3. Initialize Search for Different UI Elements ---
-    // Desktop Search Bar
     setupSearch('searchInput', 'searchBtn', 'searchSuggestions');
-
-    // Mobile Side Panel Search Bar
     setupSearch('sideSearchInput', 'sideSearchBtn', 'sideSearchSuggestions');
 
     document.querySelectorAll('.faq-question').forEach(button => {
@@ -501,7 +505,6 @@
           const icon = button.querySelector('i');
           const isOpen = faqItem.classList.contains('active');
 
-          // 1. Close all other FAQ items first
           document.querySelectorAll('.faq-item').forEach(item => {
               item.classList.remove('active');
               const otherIcon = item.querySelector('.faq-question i');
@@ -510,12 +513,10 @@
               }
           });
 
-          // 2. If the clicked item was NOT already open, open it
           if (!isOpen) {
               faqItem.classList.add('active');
               icon.classList.replace('fa-plus', 'fa-minus');
           }
-          // If it was already open, it remains closed (standard accordion behavior)
       });
     });
   </script>

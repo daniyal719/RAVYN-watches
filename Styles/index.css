@@ -30,15 +30,17 @@ i{
   background-size: cover;
 }
 .hero-left{
-  width: 600px;
+  width: 70%;
   margin-left: 70px;
   font-style: italic;
 }
 .hero-left h2{
   font-size: 40px;
+  font-family: 'Bodoni Moda', serif;
 }
 .hero-left h4{
   color: gray;
+  font-family: 'Montserrat';
 }
 .hero-left button{
   padding: 15px 30px;
