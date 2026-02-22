@@ -1,6 +1,5 @@
 // --- 1. Mobile Menu Logic ---
 const bar = document.getElementById('bar');
-// UPDATED: Target .center-nav instead of .header-right-section
 const nav = document.querySelector('.center-nav'); 
 const close = document.getElementById('close');
 
@@ -93,7 +92,7 @@ const homeContainer = document.querySelector('.js-product-grid'); // Home page g
 // If we are on the Shop (Collection) page
 if (collectionContainer) {
     const urlParams = new URLSearchParams(window.location.search);
-    const categoryParam = urlParams.get('category') || 'all'; // Get category from URL or default to 'all'
+    const categoryParam = urlParams.get('category') || 'all'; 
     const searchParam = urlParams.get('search');
 
     if (searchParam) {
@@ -129,7 +128,6 @@ const sliderTrack = document.querySelector('.slider-track');
 const slidesList = document.querySelectorAll('.slide');
 let autoPlayInterval;
 
-// UPDATED: Keys here MUST match the <p> text in your HTML exactly
 const sectionMapping = {
     'Men Watch': '.js-product-grid-men',
     'Women Watch': '.js-product-grid-women',
@@ -181,7 +179,6 @@ if (sliderContainer) {
         });
     });
 
-    // Handle Manual Interaction to prevent lag during transition
     sliderContainer.addEventListener('mousedown', stopAutoPlay);
     sliderContainer.addEventListener('touchstart', stopAutoPlay);
 }
@@ -203,4 +200,84 @@ if (exploreBtn) {
     exploreBtn.addEventListener('click', () => {
         document.querySelector('.fe-products').scrollIntoView({ behavior: 'smooth' });
     });
+}
+
+// --- 8. Ramadan Exclusive Deal Interactivity ---
+const qtyMinus = document.getElementById('qty-minus');
+const qtyPlus = document.getElementById('qty-plus');
+const qtyInput = document.getElementById('qty-input');
+const addCartBtn = document.querySelector('.add-cart-btn');
+const buyNowBtn = document.querySelector('.buy-now-btn');
+
+const ramadanProduct = {
+    id: 'ramadan-bugatti-001',
+    name: 'Bugatti Luxury Watch',
+    price: 19000,
+    image: './Images/product/product-6.jpeg'
+};
+
+// Handle Quantity Plus and Minus
+if (qtyMinus && qtyPlus && qtyInput) {
+    qtyPlus.addEventListener('click', () => {
+        let currentValue = parseInt(qtyInput.value);
+        qtyInput.value = currentValue + 1;
+    });
+
+    qtyMinus.addEventListener('click', () => {
+        let currentValue = parseInt(qtyInput.value);
+        if (currentValue > 1) {
+            qtyInput.value = currentValue - 1;
+        }
+    });
+}
+
+// Add to Cart Function
+function addRamadanDealToCart(redirect = false) {
+    if (!qtyInput) return;
+    const quantity = parseInt(qtyInput.value);
+    
+    let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
+    const existingItemIndex = cart.findIndex(item => item.id === ramadanProduct.id);
+    
+    if (existingItemIndex > -1) {
+        cart[existingItemIndex].quantity += quantity;
+    } else {
+        cart.push({ 
+            id: ramadanProduct.id,
+            name: ramadanProduct.name,
+            price: ramadanProduct.price,
+            image: ramadanProduct.image,
+            quantity: quantity 
+        });
+    }
+    
+    localStorage.setItem('ravyn_cart', JSON.stringify(cart));
+    
+    if (typeof updateCartCount === 'function') {
+        updateCartCount();
+    }
+
+    if (redirect) {
+        window.location.href = 'checkout.html';
+    } else {
+        if (addCartBtn) {
+            addCartBtn.style.backgroundColor = 'black';
+            addCartBtn.style.color = 'white';
+            addCartBtn.innerHTML = 'Added!';
+            
+            setTimeout(() => {
+                addCartBtn.style.backgroundColor = ''; 
+                addCartBtn.style.color = '';
+                addCartBtn.innerHTML = 'Add To Cart';
+            }, 2000);
+        }
+    }
+}
+
+// Attach Event Listeners to the Buttons
+if (addCartBtn) {
+    addCartBtn.addEventListener('click', () => addRamadanDealToCart(false));
+}
+if (buyNowBtn) {
+    buyNowBtn.addEventListener('click', () => addRamadanDealToCart(true));
 }
