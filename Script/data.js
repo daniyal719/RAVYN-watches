@@ -16,7 +16,6 @@ const products = [
     ],
     name: 'Bugatti Luxury Watch',
     price: 19000,
-    dis: 0,
     description: 'A masterpiece of precision and style...'
   },
   {
@@ -27,7 +26,6 @@ const products = [
     images: [],
     name: 'Classic Leather Square Watch',
     price: 19000,
-    dis: 10,
     description: 'Premium leather strap, square case design, vintage style, lightweight and stylish daily wear.'
   },
   {
@@ -38,7 +36,6 @@ const products = [
     images: [],
     name: 'Luxury Green Dial Watch',
     price: 19000,
-    dis: 10,
     description: 'Stainless steel strap with premium finish, elegant green dial, scratch-resistant glass, daily wear luxury style.'
   },
   {
@@ -49,7 +46,6 @@ const products = [
     images: [],
     name: 'Gold Classic Date Watch',
     price: 11000,
-    dis: 10,
     description: 'Two-tone steel & gold body, smooth movement, crystal markers, perfect for formal and casual look.'
   },
   {
@@ -62,7 +58,6 @@ const products = [
     ],
     name: 'Ice Blue Silver Watch',
     price: 19000,
-    dis: 10,
     description: 'Silver stainless steel strap, ice blue dial, clean elegant look, long-lasting comfort fit.'
   },
   {
@@ -75,7 +70,6 @@ const products = [
     ],
     name: 'Rose Brown Executive Watch',
     price: 19000,
-    dis: 10,
     description: 'Rose Brown Executive Watch.'
   },
   {
@@ -88,7 +82,6 @@ const products = [
     ],
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
-    dis: 10,
     description: 'A masterpiece of precision and style...'
   },
   {
@@ -101,7 +94,6 @@ const products = [
     ],
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
-    dis: 10,
     description: 'A masterpiece of precision and style...'
   },
   {
@@ -112,7 +104,6 @@ const products = [
     images: [],
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
-    dis: 10,
     description: 'A masterpiece of precision and style...'
   },
   {
@@ -123,7 +114,6 @@ const products = [
     images: [],
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
-    dis: 10,
     description: 'A masterpiece of precision and style...'
   },
   {
@@ -134,7 +124,6 @@ const products = [
     images: [],
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
-    dis: 10,
     description: 'A masterpiece of precision and style...'
   },
   {
@@ -145,7 +134,6 @@ const products = [
     images: [],
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
-    dis: 10,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt modi saepe culpa molestiae nobis reiciendis, neque quam expedita nisi possimus minus corporis, tempore unde dicta totam aut corrupti? Sit, ratione.'
   },
 ];

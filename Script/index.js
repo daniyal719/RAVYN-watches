@@ -75,11 +75,9 @@ function renderProducts(category, limit, containerSelector, customList = null) {
         html += `
             <div class="products" onclick="window.location.href='Product-detail.html?id=${product.id}'">
                 <div class="products-top">
-                    ${hasDiscount ? `<div class="dis-container"><p class="discount">${product.dis}% OFF</p></div>` : ''}
                     <img class="product-image" src="${product.image}">
                 </div>
                 <div class="product-bottom">
-                    <p class="product-owner">RAVYN Watch</p>
                     <div class="product-name-container"><h2 class="product-name">${product.name}</h2></div>
                     <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
