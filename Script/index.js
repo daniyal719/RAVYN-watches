@@ -86,7 +86,9 @@ function renderProducts(category, limit, containerSelector, customList = null) {
                     <img class="product-image" src="${product.image}">
                 </div>
                 <div class="product-bottom">
-                    <div class="product-name-container"><h2 class="product-name">${product.name}</h2></div>
+                    <div class="product-name-container">
+                        <h2 class="product-name">${product.name}</h2>
+                    </div>
                     <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
             </div>`;

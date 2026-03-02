@@ -277,10 +277,28 @@
       <div class="order-box">
         <h3 class="section-title">Order Summary</h3>
         <div id="orderItems"></div>
-        <div class="summary-product" style="border-top: 1px solid black; margin-top: 10px; border-bottom: none;">
+        
+        <div style="margin-top: 15px; display: flex; gap: 10px; align-items: flex-start;">
+          <div style="flex: 1; position: relative;">
+            <input type="text" id="voucherInput" placeholder="Click to select a voucher" readonly onclick="toggleVoucherDropdown()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; cursor: pointer; background-color: #fff;">
+            
+            <div id="voucherDropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; z-index: 10; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 200px; overflow-y: auto;">
+                </div>
+          </div>
+
+          <button onclick="applyVoucher()" style="padding: 10px 15px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; height: 42px;">Apply</button>
+        </div>
+        <p id="voucherMessage" style="font-size: 13px; margin-top: 8px; font-weight: bold;"></p>
+        <div class="summary-product" style="border-top: 1px solid black; margin-top: 15px; border-bottom: none;">
           <span>Subtotal</span>
           <span id="subtotalPrice">Rs 0</span>
         </div>
+        
+        <div class="summary-product" id="discountRow" style="display: none; border-bottom: none; color: green;">
+          <span id="discountLabel">Discount</span>
+          <span id="discountPrice">- Rs 0</span>
+        </div>
+
         <div class="summary-product" style="border-bottom: none;">
           <span>Shipping</span>
           <span style="color: green;">Free</span>
@@ -291,7 +309,6 @@
         </div>
         <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
       </div>
-    </div>
   </section>
 
   <div class="mobile-navbar">
@@ -307,6 +324,17 @@
   <script src="./Script/common.js"></script>
   <script>
     let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
+    let currentSubtotal = 0; 
+    
+    // Add all your available vouchers here
+    const validVouchers = {
+        'RAVYN10': 0.10,
+        'NEWYEAR20': 0.20,
+        'RAVYNVIP': 0.15
+    };
+
+    let activeVoucherCode = null; 
+    let activeDiscountRate = 0;   
 
     function togglePaymentInfo() {
         const method = document.querySelector('input[name="paymentMethod"]:checked').value;
@@ -322,15 +350,143 @@
         }
     }
 
+    // NEW: Toggles the dropdown menu
+    function toggleVoucherDropdown() {
+        const dropdown = document.getElementById('voucherDropdown');
+        if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+            populateVouchers(); // Refresh list to check used ones
+            dropdown.style.display = 'block';
+        } else {
+            dropdown.style.display = 'none';
+        }
+    }
+
+    // NEW: Builds the list of vouchers inside the div
+    function populateVouchers() {
+        const dropdown = document.getElementById('voucherDropdown');
+        dropdown.innerHTML = ''; 
+        
+        let usedVouchers = JSON.parse(localStorage.getItem('ravyn_used_vouchers')) || [];
+        let hasAvailable = false;
+
+        for (const [code, discount] of Object.entries(validVouchers)) {
+            const percent = discount * 100;
+            const isUsed = usedVouchers.includes(code);
+            
+            const item = document.createElement('div');
+            item.style.padding = '12px 15px';
+            item.style.borderBottom = '1px solid #eee';
+            item.style.display = 'flex';
+            item.style.justifyContent = 'space-between';
+            item.style.transition = 'background 0.2s ease';
+            
+            if (isUsed) {
+                // Style for already used vouchers
+                item.style.cursor = 'not-allowed';
+                item.style.color = '#aaa';
+                item.style.backgroundColor = '#f9f9f9';
+                item.innerHTML = `<span><del>${code}</del></span> <span style="font-size: 12px; color: red;">Used</span>`;
+            } else {
+                // Style for available vouchers
+                hasAvailable = true;
+                item.style.cursor = 'pointer';
+                item.style.color = '#000';
+                item.innerHTML = `<span><strong>${code}</strong></span> <span style="color: green; font-weight: bold;">${percent}% OFF</span>`;
+                
+                // Hover effects
+                item.onmouseover = () => item.style.backgroundColor = '#f0f0f0';
+                item.onmouseout = () => item.style.backgroundColor = '#fff';
+                
+                // Click to select
+                item.onclick = function() {
+                    document.getElementById('voucherInput').value = code;
+                    dropdown.style.display = 'none';
+                };
+            }
+            dropdown.appendChild(item);
+        }
+
+        if (!hasAvailable && Object.keys(validVouchers).length > 0) {
+            const msg = document.createElement('div');
+            msg.style.padding = '15px';
+            msg.style.textAlign = 'center';
+            msg.style.color = '#888';
+            msg.innerText = 'No more vouchers available';
+            dropdown.appendChild(msg);
+        }
+    }
+
+    // NEW: Close dropdown if user clicks anywhere else on the page
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('voucherDropdown');
+        const input = document.getElementById('voucherInput');
+        if (event.target !== input && !dropdown.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function applyVoucher() {
+        const inputCode = document.getElementById('voucherInput').value.trim().toUpperCase();
+        const messageEl = document.getElementById('voucherMessage');
+
+        if(cart.length === 0) {
+            messageEl.innerText = "Add items to cart first!";
+            messageEl.style.color = "red";
+            return;
+        }
+
+        if (!inputCode) {
+            messageEl.innerText = "Please select a voucher first.";
+            messageEl.style.color = "red";
+            return;
+        }
+
+        if (validVouchers.hasOwnProperty(inputCode)) {
+            let usedVouchers = JSON.parse(localStorage.getItem('ravyn_used_vouchers')) || [];
+
+            if (usedVouchers.includes(inputCode)) {
+                messageEl.innerText = `Voucher '${inputCode}' has already been used on this device.`;
+                messageEl.style.color = "red";
+                activeVoucherCode = null;
+                activeDiscountRate = 0;
+                loadOrderSummary();
+                return;
+            }
+
+            if (activeVoucherCode === inputCode) {
+                messageEl.innerText = "Voucher already applied!";
+                messageEl.style.color = "#856404"; 
+                return;
+            }
+            
+            activeVoucherCode = inputCode;
+            activeDiscountRate = validVouchers[inputCode];
+            let percentText = (activeDiscountRate * 100) + "%";
+            
+            messageEl.innerText = `Voucher '${inputCode}' applied successfully! (${percentText} OFF)`;
+            messageEl.style.color = "green";
+            loadOrderSummary(); 
+            
+        } else {
+            messageEl.innerText = "Invalid voucher code.";
+            messageEl.style.color = "red";
+            activeVoucherCode = null;
+            activeDiscountRate = 0;
+            loadOrderSummary(); 
+        }
+    }
+
     function loadOrderSummary() {
         const container = document.getElementById('orderItems');
         const placeOrderBtn = document.querySelector('.place-order-btn');
+        const discountRow = document.getElementById('discountRow');
         
-        // BUG FIX: If cart is empty, reset display and disable button
         if(cart.length === 0) {
             container.innerHTML = `<p style="text-align:center; padding: 20px; color: gray;">Your cart is empty.</p>`;
             document.getElementById('subtotalPrice').innerText = "Rs 0";
             document.getElementById('totalPrice').innerText = "Rs 0";
+            discountRow.style.display = "none";
+            currentSubtotal = 0;
             
             if(placeOrderBtn) {
                 placeOrderBtn.style.opacity = "0.5";
@@ -340,7 +496,6 @@
             return;
         }
 
-        // Reset button if items are present
         if(placeOrderBtn) {
             placeOrderBtn.style.opacity = "1";
             placeOrderBtn.style.cursor = "pointer";
@@ -348,10 +503,10 @@
         }
 
         let html = '';
-        let total = 0;
+        currentSubtotal = 0;
         cart.forEach((item, index) => {
             let lineTotal = item.price * item.quantity;
-            total += lineTotal;
+            currentSubtotal += lineTotal;
             html += `
             <div class="summary-product">
                 <span>
@@ -362,17 +517,36 @@
             </div>`;
         });
 
+        let discountAmount = currentSubtotal * activeDiscountRate;
+        let finalTotal = currentSubtotal - discountAmount;
+
         container.innerHTML = html;
-        document.getElementById('subtotalPrice').innerText = "Rs " + total.toLocaleString();
-        document.getElementById('totalPrice').innerText = "Rs " + total.toLocaleString();
+        document.getElementById('subtotalPrice').innerText = "Rs " + currentSubtotal.toLocaleString();
+        
+        if (activeDiscountRate > 0) {
+            discountRow.style.display = "flex";
+            document.getElementById('discountLabel').innerText = `Discount (${activeVoucherCode})`;
+            document.getElementById('discountPrice').innerText = "- Rs " + discountAmount.toLocaleString();
+        } else {
+            discountRow.style.display = "none";
+        }
+
+        document.getElementById('totalPrice').innerText = "Rs " + finalTotal.toLocaleString();
     }
 
     function removeFromCart(index) {
         cart.splice(index, 1);
         localStorage.setItem('ravyn_cart', JSON.stringify(cart));
+        
+        if(cart.length === 0) {
+            activeVoucherCode = null;
+            activeDiscountRate = 0;
+            document.getElementById('voucherMessage').innerText = "";
+            document.getElementById('voucherInput').value = "";
+        }
+        
         loadOrderSummary();
         
-        // Update header cart count if visible
         const cartCount = document.querySelector('.cart-button span');
         if(cartCount) {
             const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -381,42 +555,62 @@
     }
 
     function placeOrder() {
-        // BUG FIX: Stop execution if cart is empty
         if(cart.length === 0) {
             alert("Your cart is empty. Please add items before placing an order.");
             return;
         }
 
         const fName = document.getElementById('fName').value;
-        const email = document.getElementById('email').value; // NEW
+        const lName = document.getElementById('lName').value;
+        const email = document.getElementById('email').value; 
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
         const city = document.getElementById('city').value;
         const method = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-        if(!fName || !phone || !address || !city) { // You can add !email here if you want to enforce it
+        if(!fName || !phone || !address || !city) { 
             alert("Please fill in all required fields.");
             return;
         }
 
         let message = `*New Order - RAVYN Luxury Store*\n\n`;
-        message += `*Customer:* ${fName}\n*Email:* ${email}\n*Phone:* ${phone}\n*Address:* ${address}, ${city}\n`; 
+        message += `*Customer:* ${fName} ${lName}\n*Email:* ${email}\n*Phone:* ${phone}\n*Address:* ${address}, ${city}\n`; 
         message += `*Payment Method:* ${method}\n\n`;
         message += `*Items Ordered:* \n`;
 
-        let finalTotal = 0;
         cart.forEach(item => {
             message += `- ${item.name} (x${item.quantity}) - Rs ${item.price * item.quantity}\n`;
-            finalTotal += item.price * item.quantity;
         });
         
-        message += `\n*Total Bill:* Rs ${finalTotal}\n`;
+        let discountAmount = currentSubtotal * activeDiscountRate;
+        let finalTotal = currentSubtotal - discountAmount;
+
+        message += `\n*Subtotal:* Rs ${currentSubtotal}\n`;
+        
+        if (activeVoucherCode) {
+            message += `*Voucher Applied (${activeVoucherCode}):* - Rs ${discountAmount}\n`;
+            
+            let usedVouchers = JSON.parse(localStorage.getItem('ravyn_used_vouchers')) || [];
+            if (!usedVouchers.includes(activeVoucherCode)) {
+                usedVouchers.push(activeVoucherCode);
+                localStorage.setItem('ravyn_used_vouchers', JSON.stringify(usedVouchers));
+            }
+        }
+        message += `*Final Total Bill:* Rs ${finalTotal}\n`;
+        
         if(method === "Cash on Delivery") {
-            message += `*Note:* Sending Rs 300 Advance to confirm COD.`;
+            message += `\n*Note:* Sending Rs 300 Advance to confirm COD.`;
         }
 
         const url = `https://wa.me/923354562580?text=${encodeURIComponent(message)}`;
+        
+        localStorage.removeItem('ravyn_cart');
+        
         window.open(url, '_blank');
+        
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
     }
 
     loadOrderSummary();
