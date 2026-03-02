@@ -34,6 +34,20 @@
       gap: 40px;
     }
 
+    /* SUCCESS MESSAGE STYLING */
+    #orderSuccess {
+      display: none;
+      text-align: center;
+      width: 100%;
+      padding: 50px 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    #orderSuccess i { color: #28a745; font-size: 70px; margin-bottom: 20px; }
+    #orderSuccess h2 { color: #333; margin-bottom: 10px; }
+    #orderSuccess p { color: #666; font-size: 16px; margin-bottom: 5px; }
+
     .billing-col { flex: 1.5; min-width: 300px; }
     .order-col { flex: 1; min-width: 300px; }
 
@@ -127,6 +141,7 @@
       cursor: pointer;
       margin-top: 20px;
     }
+    .place-order-btn:disabled { background-color: #555; cursor: not-allowed; }
 
     @media (max-width: 768px) {
       .checkout-container { flex-direction: column; }
@@ -148,9 +163,7 @@
         <a href="collection.html?category=men-watch"><p class="menu">Men Watches</p></a>
         <a href="collection.html?category=women-watch"><p class="menu">Women Watches</p></a>
         <a href="collection.html?category=rolex-watch"><p class="menu">Rolex</p></a>
-        
         <a href="cart.html" class="nav-cart-link"><p class="menu">Cart</p></a>
-        
         <i class="fa fa-window-close" id="close" aria-hidden="true"></i>
     </div>
 
@@ -177,164 +190,136 @@
   </section>
 
   <section class="checkout-container">
-    <div class="billing-col">
-      <h3 class="section-title">Billing Details</h3>
-      <form id="checkoutForm">
-        <div class="two-col-input">
-          <div class="form-group" style="flex:1;">
-            <label>First Name <span>*</span></label>
-            <input type="text" id="fName" required>
-          </div>
-          <div class="form-group" style="flex:1; margin-left: 10px;">
-            <label>Last Name <span>*</span></label>
-            <input type="text" id="lName" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email <span>*</span></label>
-          <input type="email" id="email" required> 
-        </div>
-        <div class="form-group">
-          <label>Phone Number <span>*</span></label>
-          <input type="tel" id="phone" placeholder="03xx xxxxxxx" required>
-        </div>
-        <div class="form-group">
-          <label>City <span>*</span></label>
-          <input type="text" id="city" required>
-        </div>
-        <div class="form-group">
-          <label>Street Address <span>*</span></label>
-          <input type="text" id="address" required>
-        </div>
-        
-        <div class="form-group">
-          <label>Order Notes (Optional)</label>
-          <textarea id="notes" rows="3"></textarea>
-        </div>
-      </form>
-
-      <div class="payment-details-box">
-        <h3 class="section-title" style="border:none; font-size: 16px;">Payment Method</h3>
-        
-        <div class="payment-option-container">
-          <label class="radio-label">
-              <input type="radio" name="paymentMethod" value="Cash on Delivery" checked onchange="togglePaymentInfo()">
-              Cash on Delivery (COD)
-          </label>
-          <div id="codInfo" class="payment-info active">
-            <p><strong>Thank you for your order!</strong></p>
-            <p>Order confirm krny ky liye ap ko <strong>300 advance</strong> send krny hoo, jo kay Total payment main sy minus kr diay jay gy.</p>
-            <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>03354562580</p></strong> (WhatsApp only)</p>
-            
-            <h4>Payment Details for Advance:</h4>
-            <div class="bank-info">
-                <strong>Easypaisa / Jazzcash / SadaPay / NayaPay:</strong><br>
-                Name: Muhammad Atif<br>
-                Number: 03368150506
-            </div>
-            <div class="bank-info">
-                <strong>Bank Transfer (UNITED BANK LIMITED):</strong><br>
-                Account Title: Muhammad Atif<br>
-                Account Number: 0207317761362<br>
-                IBAN: PK69UNIL0109000317761362<br>
-            </div>
-            <div class="note-box">
-                Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>03354562580</p> (WhatsApp only)
-            </div>
-          </div>
-        </div>
-
-        <div class="payment-option-container">
-          <label class="radio-label">
-              <input type="radio" name="paymentMethod" value="Advance Payment" onchange="togglePaymentInfo()">
-              Full Advance Payment
-          </label>
-          <div id="advanceInfo" class="payment-info">
-            <p><strong>Thank you for your order!</strong></p>
-            <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>03354562580</p></strong> (WhatsApp only)</p>
-            
-            <h4>Payment Details:</h4>
-            <div class="bank-info">
-                <strong>Easypaisa / Jazzcash SadaPay / NayaPay:</strong><br>
-                Name: Muhammad Atif<br>
-                Number: 03368150506
-            </div>
-            <div class="bank-info">
-                <strong>Bank Transfer (UNITED BANK LIMITED):</strong><br>
-                Account Title: Muhammad Atif<br>
-                Account Number: 0207317761362<br>
-                IBAN: PK69UNIL0109000317761362
-            </div>
-            <div class="note-box">
-                Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>03354562580</p> (WhatsApp only)
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="orderSuccess">
+        <i class="fa-solid fa-circle-check"></i>
+        <h2>Order Placed Successfully!</h2>
+        <p>Thank you for shopping with RAVYN Luxury Store.</p>
+        <p>We have received your order details and will contact you shortly on your provided phone number for confirmation.</p>
+        <button class="place-order-btn" style="max-width: 300px; margin-top: 20px;" onclick="window.location.href='index.html'">Continue Shopping</button>
     </div>
 
-    <div class="order-col">
-      <div class="order-box">
-        <h3 class="section-title">Order Summary</h3>
-        <div id="orderItems"></div>
-        
-        <div style="margin-top: 15px; display: flex; gap: 10px; align-items: flex-start;">
-          <div style="flex: 1; position: relative;">
-            <input type="text" id="voucherInput" placeholder="Click to select a voucher" readonly onclick="toggleVoucherDropdown()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; cursor: pointer; background-color: #fff;">
+    <div id="checkoutContent" style="display: flex; flex-wrap: wrap; gap: 40px; width: 100%;">
+        <div class="billing-col">
+          <h3 class="section-title">Billing Details</h3>
+          <form id="checkoutForm">
+            <div class="two-col-input">
+              <div class="form-group" style="flex:1;">
+                <label>First Name <span>*</span></label>
+                <input type="text" id="fName" required>
+              </div>
+              <div class="form-group" style="flex:1; margin-left: 10px;">
+                <label>Last Name <span>*</span></label>
+                <input type="text" id="lName" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email <span>*</span></label>
+              <input type="email" id="email" required> 
+            </div>
+            <div class="form-group">
+              <label>Phone Number <span>*</span></label>
+              <input type="tel" id="phone" placeholder="03xx xxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label>City <span>*</span></label>
+              <input type="text" id="city" required>
+            </div>
+            <div class="form-group">
+              <label>Street Address <span>*</span></label>
+              <input type="text" id="address" required>
+            </div>
             
-            <div id="voucherDropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; z-index: 10; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 200px; overflow-y: auto;">
+            <div class="form-group">
+              <label>Order Notes (Optional)</label>
+              <textarea id="notes" rows="3"></textarea>
+            </div>
+          </form>
+
+          <div class="payment-details-box">
+            <h3 class="section-title" style="border:none; font-size: 16px;">Payment Method</h3>
+            
+            <div class="payment-option-container">
+              <label class="radio-label">
+                  <input type="radio" name="paymentMethod" value="Cash on Delivery" checked onchange="togglePaymentInfo()">
+                  Cash on Delivery (COD)
+              </label>
+              <div id="codInfo" class="payment-info active">
+                <p><strong>Thank you for your order!</strong></p>
+                <p>Order confirm krny ky liye ap ko <strong>300 advance</strong> send krny hoo, jo kay Total payment main sy minus kr diay jay gy.</p>
+                <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>03354562580</p></strong> (WhatsApp only)</p>
+                
+                <h4>Payment Details for Advance:</h4>
+                <div class="bank-info">
+                    <strong>Easypaisa / Jazzcash / SadaPay / NayaPay:</strong><br>
+                    Name: Muhammad Atif<br>
+                    Number: 03368150506
                 </div>
+                <div class="bank-info">
+                    <strong>Bank Transfer (UNITED BANK LIMITED):</strong><br>
+                    Account Title: Muhammad Atif<br>
+                    Account Number: 0207317761362<br>
+                    IBAN: PK69UNIL0109000317761362<br>
+                </div>
+                <div class="note-box">
+                    Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>03354562580</p> (WhatsApp only)
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-option-container">
+              <label class="radio-label">
+                  <input type="radio" name="paymentMethod" value="Advance Payment" onchange="togglePaymentInfo()">
+                  Full Advance Payment
+              </label>
+              <div id="advanceInfo" class="payment-info">
+                <p><strong>Thank you for your order!</strong></p>
+                <p>Payment send krny ky bad screenshot bhejna na bholiyay ga is WhatsApp number par: <strong><p>03354562580</p></strong> (WhatsApp only)</p>
+                
+                <h4>Payment Details:</h4>
+                <div class="bank-info">
+                    <strong>Easypaisa / Jazzcash SadaPay / NayaPay:</strong><br>
+                    Name: Muhammad Atif<br>
+                    Number: 03368150506
+                </div>
+                <div class="bank-info">
+                    <strong>Bank Transfer (UNITED BANK LIMITED):</strong><br>
+                    Account Title: Muhammad Atif<br>
+                    Account Number: 0207317761362<br>
+                    IBAN: PK69UNIL0109000317761362
+                </div>
+                <div class="note-box">
+                    Note: Payment k baad screenshot bhejna na bhoolna is WhatsApp number par: <p>03354562580</p> (WhatsApp only)
+                </div>
+              </div>
+            </div>
           </div>
-
-          <button onclick="applyVoucher()" style="padding: 10px 15px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; height: 42px;">Apply</button>
-        </div>
-        <p id="voucherMessage" style="font-size: 13px; margin-top: 8px; font-weight: bold;"></p>
-        <div class="summary-product" style="border-top: 1px solid black; margin-top: 15px; border-bottom: none;">
-          <span>Subtotal</span>
-          <span id="subtotalPrice">Rs 0</span>
-        </div>
-        
-        <div class="summary-product" id="discountRow" style="display: none; border-bottom: none; color: green;">
-          <span id="discountLabel">Discount</span>
-          <span id="discountPrice">- Rs 0</span>
         </div>
 
-        <div class="summary-product" style="border-bottom: none;">
-          <span>Shipping</span>
-          <span style="color: green;">Free</span>
+        <div class="order-col">
+          <div class="order-box">
+            <h3 class="section-title">Order Summary</h3>
+            <div id="orderItems"></div>
+            <div class="summary-product" style="border-top: 1px solid black; margin-top: 10px; border-bottom: none;">
+              <span>Subtotal</span>
+              <span id="subtotalPrice">Rs 0</span>
+            </div>
+            <div class="summary-product" style="border-bottom: none;">
+              <span>Shipping</span>
+              <span style="color: green;">Free</span>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <span id="totalPrice" style="color: red;">Rs 0</span>
+            </div>
+            <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+          </div>
         </div>
-        <div class="summary-total">
-          <span>Total</span>
-          <span id="totalPrice" style="color: red;">Rs 0</span>
-        </div>
-        <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
-      </div>
+    </div>
   </section>
 
-  <div class="mobile-navbar">
-    <a href="index.html" class="mobile-nav-item"><i class="fa-solid fa-house"></i><span class="label">Home</span></a>
-    <a href="collection.html" class="mobile-nav-item"><i class="fa-solid fa-shop"></i><span class="label">Shop</span></a>
-    <a href="cart.html" class="mobile-nav-item"><i class="fa-solid fa-cart-shopping"></i><span class="label">Cart</span></a>
-    <a href="checkout.html" class="mobile-nav-item"><i class="fa-solid fa-credit-card"></i><span class="label">Checkout</span></a>
-  </div>
-
-  <a href="https://wa.me/923354562580" class="whatsapp-float" target="_blank">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
   <script src="./Script/common.js"></script>
   <script>
     let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
-    let currentSubtotal = 0; 
-    
-    // Add all your available vouchers here
-    const validVouchers = {
-        'RAVYN10': 0.10,
-        'NEWYEAR20': 0.20,
-        'RAVYNVIP': 0.15
-    };
-
-    let activeVoucherCode = null; 
-    let activeDiscountRate = 0;   
 
     function togglePaymentInfo() {
         const method = document.querySelector('input[name="paymentMethod"]:checked').value;
@@ -350,143 +335,14 @@
         }
     }
 
-    // NEW: Toggles the dropdown menu
-    function toggleVoucherDropdown() {
-        const dropdown = document.getElementById('voucherDropdown');
-        if (dropdown.style.display === 'none' || dropdown.style.display === '') {
-            populateVouchers(); // Refresh list to check used ones
-            dropdown.style.display = 'block';
-        } else {
-            dropdown.style.display = 'none';
-        }
-    }
-
-    // NEW: Builds the list of vouchers inside the div
-    function populateVouchers() {
-        const dropdown = document.getElementById('voucherDropdown');
-        dropdown.innerHTML = ''; 
-        
-        let usedVouchers = JSON.parse(localStorage.getItem('ravyn_used_vouchers')) || [];
-        let hasAvailable = false;
-
-        for (const [code, discount] of Object.entries(validVouchers)) {
-            const percent = discount * 100;
-            const isUsed = usedVouchers.includes(code);
-            
-            const item = document.createElement('div');
-            item.style.padding = '12px 15px';
-            item.style.borderBottom = '1px solid #eee';
-            item.style.display = 'flex';
-            item.style.justifyContent = 'space-between';
-            item.style.transition = 'background 0.2s ease';
-            
-            if (isUsed) {
-                // Style for already used vouchers
-                item.style.cursor = 'not-allowed';
-                item.style.color = '#aaa';
-                item.style.backgroundColor = '#f9f9f9';
-                item.innerHTML = `<span><del>${code}</del></span> <span style="font-size: 12px; color: red;">Used</span>`;
-            } else {
-                // Style for available vouchers
-                hasAvailable = true;
-                item.style.cursor = 'pointer';
-                item.style.color = '#000';
-                item.innerHTML = `<span><strong>${code}</strong></span> <span style="color: green; font-weight: bold;">${percent}% OFF</span>`;
-                
-                // Hover effects
-                item.onmouseover = () => item.style.backgroundColor = '#f0f0f0';
-                item.onmouseout = () => item.style.backgroundColor = '#fff';
-                
-                // Click to select
-                item.onclick = function() {
-                    document.getElementById('voucherInput').value = code;
-                    dropdown.style.display = 'none';
-                };
-            }
-            dropdown.appendChild(item);
-        }
-
-        if (!hasAvailable && Object.keys(validVouchers).length > 0) {
-            const msg = document.createElement('div');
-            msg.style.padding = '15px';
-            msg.style.textAlign = 'center';
-            msg.style.color = '#888';
-            msg.innerText = 'No more vouchers available';
-            dropdown.appendChild(msg);
-        }
-    }
-
-    // NEW: Close dropdown if user clicks anywhere else on the page
-    document.addEventListener('click', function(event) {
-        const dropdown = document.getElementById('voucherDropdown');
-        const input = document.getElementById('voucherInput');
-        if (event.target !== input && !dropdown.contains(event.target)) {
-            dropdown.style.display = 'none';
-        }
-    });
-
-    function applyVoucher() {
-        const inputCode = document.getElementById('voucherInput').value.trim().toUpperCase();
-        const messageEl = document.getElementById('voucherMessage');
-
-        if(cart.length === 0) {
-            messageEl.innerText = "Add items to cart first!";
-            messageEl.style.color = "red";
-            return;
-        }
-
-        if (!inputCode) {
-            messageEl.innerText = "Please select a voucher first.";
-            messageEl.style.color = "red";
-            return;
-        }
-
-        if (validVouchers.hasOwnProperty(inputCode)) {
-            let usedVouchers = JSON.parse(localStorage.getItem('ravyn_used_vouchers')) || [];
-
-            if (usedVouchers.includes(inputCode)) {
-                messageEl.innerText = `Voucher '${inputCode}' has already been used on this device.`;
-                messageEl.style.color = "red";
-                activeVoucherCode = null;
-                activeDiscountRate = 0;
-                loadOrderSummary();
-                return;
-            }
-
-            if (activeVoucherCode === inputCode) {
-                messageEl.innerText = "Voucher already applied!";
-                messageEl.style.color = "#856404"; 
-                return;
-            }
-            
-            activeVoucherCode = inputCode;
-            activeDiscountRate = validVouchers[inputCode];
-            let percentText = (activeDiscountRate * 100) + "%";
-            
-            messageEl.innerText = `Voucher '${inputCode}' applied successfully! (${percentText} OFF)`;
-            messageEl.style.color = "green";
-            loadOrderSummary(); 
-            
-        } else {
-            messageEl.innerText = "Invalid voucher code.";
-            messageEl.style.color = "red";
-            activeVoucherCode = null;
-            activeDiscountRate = 0;
-            loadOrderSummary(); 
-        }
-    }
-
     function loadOrderSummary() {
         const container = document.getElementById('orderItems');
         const placeOrderBtn = document.querySelector('.place-order-btn');
-        const discountRow = document.getElementById('discountRow');
         
         if(cart.length === 0) {
             container.innerHTML = `<p style="text-align:center; padding: 20px; color: gray;">Your cart is empty.</p>`;
             document.getElementById('subtotalPrice').innerText = "Rs 0";
             document.getElementById('totalPrice').innerText = "Rs 0";
-            discountRow.style.display = "none";
-            currentSubtotal = 0;
             
             if(placeOrderBtn) {
                 placeOrderBtn.style.opacity = "0.5";
@@ -503,10 +359,10 @@
         }
 
         let html = '';
-        currentSubtotal = 0;
+        let total = 0;
         cart.forEach((item, index) => {
             let lineTotal = item.price * item.quantity;
-            currentSubtotal += lineTotal;
+            total += lineTotal;
             html += `
             <div class="summary-product">
                 <span>
@@ -517,36 +373,15 @@
             </div>`;
         });
 
-        let discountAmount = currentSubtotal * activeDiscountRate;
-        let finalTotal = currentSubtotal - discountAmount;
-
         container.innerHTML = html;
-        document.getElementById('subtotalPrice').innerText = "Rs " + currentSubtotal.toLocaleString();
-        
-        if (activeDiscountRate > 0) {
-            discountRow.style.display = "flex";
-            document.getElementById('discountLabel').innerText = `Discount (${activeVoucherCode})`;
-            document.getElementById('discountPrice').innerText = "- Rs " + discountAmount.toLocaleString();
-        } else {
-            discountRow.style.display = "none";
-        }
-
-        document.getElementById('totalPrice').innerText = "Rs " + finalTotal.toLocaleString();
+        document.getElementById('subtotalPrice').innerText = "Rs " + total.toLocaleString();
+        document.getElementById('totalPrice').innerText = "Rs " + total.toLocaleString();
     }
 
     function removeFromCart(index) {
         cart.splice(index, 1);
         localStorage.setItem('ravyn_cart', JSON.stringify(cart));
-        
-        if(cart.length === 0) {
-            activeVoucherCode = null;
-            activeDiscountRate = 0;
-            document.getElementById('voucherMessage').innerText = "";
-            document.getElementById('voucherInput').value = "";
-        }
-        
         loadOrderSummary();
-        
         const cartCount = document.querySelector('.cart-button span');
         if(cartCount) {
             const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -554,63 +389,67 @@
         }
     }
 
-    function placeOrder() {
+    async function placeOrder() {
         if(cart.length === 0) {
-            alert("Your cart is empty. Please add items before placing an order.");
+            alert("Your cart is empty.");
             return;
         }
 
         const fName = document.getElementById('fName').value;
         const lName = document.getElementById('lName').value;
-        const email = document.getElementById('email').value; 
+        const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
         const city = document.getElementById('city').value;
         const method = document.querySelector('input[name="paymentMethod"]:checked').value;
+        const notes = document.getElementById('notes').value;
 
-        if(!fName || !phone || !address || !city) { 
+        if(!fName || !phone || !address || !city || !email) {
             alert("Please fill in all required fields.");
             return;
         }
 
-        let message = `*New Order - RAVYN Luxury Store*\n\n`;
-        message += `*Customer:* ${fName} ${lName}\n*Email:* ${email}\n*Phone:* ${phone}\n*Address:* ${address}, ${city}\n`; 
-        message += `*Payment Method:* ${method}\n\n`;
-        message += `*Items Ordered:* \n`;
+        const btn = document.querySelector('.place-order-btn');
+        btn.innerText = "Placing Order...";
+        btn.disabled = true;
 
-        cart.forEach(item => {
-            message += `- ${item.name} (x${item.quantity}) - Rs ${item.price * item.quantity}\n`;
-        });
-        
-        let discountAmount = currentSubtotal * activeDiscountRate;
-        let finalTotal = currentSubtotal - discountAmount;
+        let itemsList = cart.map(item => `${item.name} (x${item.quantity}) - Rs ${item.price * item.quantity}`).join('\n');
+        let finalTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-        message += `\n*Subtotal:* Rs ${currentSubtotal}\n`;
-        
-        if (activeVoucherCode) {
-            message += `*Voucher Applied (${activeVoucherCode}):* - Rs ${discountAmount}\n`;
-            
-            let usedVouchers = JSON.parse(localStorage.getItem('ravyn_used_vouchers')) || [];
-            if (!usedVouchers.includes(activeVoucherCode)) {
-                usedVouchers.push(activeVoucherCode);
-                localStorage.setItem('ravyn_used_vouchers', JSON.stringify(usedVouchers));
+        const formData = {
+            Customer: `${fName} ${lName}`,
+            Email: email,
+            Phone: phone,
+            Address: `${address}, ${city}`,
+            PaymentMethod: method,
+            Items: itemsList,
+            TotalBill: `Rs ${finalTotal}`,
+            Notes: notes
+        };
+
+        try {
+            // IMPORTANT: Replace 'YOUR_FORMSPREE_ID' with your real ID from formspree.io
+            const response = await fetch('https://formspree.io/f/mdalrkyd', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                localStorage.removeItem('ravyn_cart');
+                document.getElementById('checkoutContent').style.display = 'none';
+                document.getElementById('orderSuccess').style.display = 'block';
+                window.scrollTo(0, 0);
+            } else {
+                alert("There was an issue sending your order. Please try again.");
+                btn.disabled = false;
+                btn.innerText = "Place Order";
             }
+        } catch (error) {
+            alert("Connection error. Please check your internet.");
+            btn.disabled = false;
+            btn.innerText = "Place Order";
         }
-        message += `*Final Total Bill:* Rs ${finalTotal}\n`;
-        
-        if(method === "Cash on Delivery") {
-            message += `\n*Note:* Sending Rs 300 Advance to confirm COD.`;
-        }
-
-        const url = `https://wa.me/923354562580?text=${encodeURIComponent(message)}`;
-        
-        localStorage.removeItem('ravyn_cart');
-        
-        window.open(url, '_blank');
-        
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
     }
 
     loadOrderSummary();
