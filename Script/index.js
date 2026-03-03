@@ -87,7 +87,7 @@ function renderProducts(category, limit, containerSelector, customList = null) {
                 </div>
                 <div class="product-bottom">
                     <div class="product-name-container">
-                        <h2 class="product-name">${product.name}</h2>
+                        <p class="product-name">${product.name}</p>
                     </div>
                     <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
@@ -125,7 +125,7 @@ if (collectionContainer) {
 } 
 // If we are on the Home page
 else if (homeContainer) {
-    renderProducts('all', 8, '.js-product-grid');
+    renderProducts('all', 6, '.js-product-grid');
     renderProducts('men-watch', 4, '.js-product-grid-men');
     renderProducts('women-watch', 4, '.js-product-grid-women');
     renderProducts('rolex-watch', 4, '.js-product-grid-rolex');

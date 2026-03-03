@@ -608,7 +608,6 @@
 
     .products-grid {
         grid-template-columns: 1fr 1fr;
-        padding-bottom: 120px !important;
         padding: 0px 0px;
     }
 
@@ -868,7 +867,7 @@
 
     .products-grid {
         grid-template-columns: 1fr 1fr;
-        padding: 30px 0px;
+        padding: 0px 0px;
         column-gap: 5px;
     }
 
