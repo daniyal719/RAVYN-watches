@@ -77,8 +77,8 @@ function renderProducts(category, limit, containerSelector, customList = null) {
         const hasDiscount = product.dis > 0;
         const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (product.dis / 100))) : product.price;
         const priceDisplay = hasDiscount 
-            ? `<div class="price-stack"><p class="discount-price">Rs ${product.price}</p><h4 class="product-price">Rs ${finalPrice}/-</h4></div>`
-            : `<h4 class="product-price">Rs ${product.price}/-</h4>`;
+            ? `<div class="price-stack"><p class="discount-price">Rs ${product.price}</p><p class="product-price">Rs ${finalPrice}/-</p></div>`
+            : `<p class="product-price">Rs ${product.price}/-</p>`;
 
         html += `
             <div class="products" onclick="window.location.href='Product-detail.html?id=${product.id}'">

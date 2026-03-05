@@ -2,106 +2,46 @@ const products = [
   {
     id: 'men-watch-01',
     category: 'men-watch',
-    image: './Images/product/product-6.jpeg', 
+    image: './Images/product/Aura/Aura-1.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     variations: [
-      { color: 'Silver', image: './Images/product/product-6.jpeg' },
-      { color: 'Black', image: './Images/product/product-1.png' },
-      { color: 'RosyBrown', image: './Images/product/product-2.jpeg' }
+      { color: 'White', image: './Images/product/Aura/Aura-1.jpg' },
+      { color: 'Gray', image: './Images/product/Aura/Aura-3.jpg' },
+      { color: 'Black', image: './Images/product/Aura/Aura-2.jpg' },
     ]
   },
   {
-    id: 'men-watch-02',
+    id: 'men-watch-01',
     category: 'men-watch',
-    image: './Images/product/product-2.jpeg', // Main default image
-    // NEW: Add this array for your gallery images (Max 8)
-    name: 'Classic Leather Square Watch',
+    image: './Images/product/Aura/Aura-1.jpg', 
+    name: 'Bugatti Luxury Watch',
     price: 19000,
-    description: 'Premium leather strap, square case design, vintage style, lightweight and stylish daily wear.'
+    description: 'A masterpiece of precision and style...',
   },
   {
-    id: 'men-watch-03',
-    category: 'men-watch',
-    image: './Images/product/product-3.jpeg', // Main default image
-    // NEW: Add this array for your gallery images (Max 8)
-    name: 'Luxury Green Dial Watch',
-    price: 19000,
-    description: 'Stainless steel strap with premium finish, elegant green dial, scratch-resistant glass, daily wear luxury style.'
-  },
-  {
-    id: 'men-watch-04',
-    category: 'men-watch',
-    image: './Images/product/product-4.jpeg', // Main default image
-    // NEW: Add this array for your gallery images (Max 8)
-    name: 'Gold Classic Date Watch',
-    price: 11000,
-    description: 'Two-tone steel & gold body, smooth movement, crystal markers, perfect for formal and casual look.'
-  },
-  {
-    id: 'men-watch-05',
-    category: 'men-watch',
-    image: './Images/product/product-5.jpeg', // Main default image
-    // NEW: Add this array for your gallery images (Max 8)
-    name: 'Ice Blue Silver Watch',
-    price: 19000,
-    description: 'Silver stainless steel strap, ice blue dial, clean elegant look, long-lasting comfort fit.'
-  },
-  {
-    id: 'men-watch-06',
-    category: 'men-watch',
-    image: './Images/product/product-1.png', // Main default image
-    name: 'Rose Brown Executive Watch',
-    price: 19000,
-    description: 'Rose Brown Executive Watch.'
-  },
-  {
-    id: 'men-watch-07',
-    category: 'men-watch',
-    image: './Images/product/product-1.png', // Main default image
-    name: 'Bugatti Luxury Watch - Black Edition',
-    price: 19000,
-    description: 'A masterpiece of precision and style...'
-  },
-  {
-    id: 'men-watch-08',
-    category: 'men-watch',
-    image: './Images/product/product-1.png', // Main default image
-    name: 'Bugatti Luxury Watch - Black Edition',
-    price: 19000,
-    description: 'A masterpiece of precision and style...'
-  },
-  {
-    id: 'women-watch-01',
-    category: 'women-watch',
-    image: './Images/product/product-1.png', // Main default image
-    name: 'Bugatti Luxury Watch - Black Edition',
-    price: 19000,
-    description: 'A masterpiece of precision and style...'
-  },
-  {
-    id: 'women-watch-02',
-    category: 'women-watch',
-    image: './Images/product/product-1.png', // Main default image
-    name: 'Bugatti Luxury Watch - Black Edition',
-    price: 19000,
-    description: 'A masterpiece of precision and style...'
-  },
-  {
-    id: 'women-watch-03',
-    category: 'women-watch',
-    image: './Images/product/product-1.png', // Main default image
-    name: 'Bugatti Luxury Watch - Black Edition',
-    price: 19000,
-    description: 'A masterpiece of precision and style...'
-  },
-  {
-    id: 'women-watch-04',
-    category: 'women-watch',
-    image: './Images/product/product-1.png', // Main default image
+    id: 'rolex-watch-1',
+    category: 'rolex-watch',
+    image: './Images/product/Rolex/rolex-1.jpg', // Main default image
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt modi saepe culpa molestiae nobis reiciendis, neque quam expedita nisi possimus minus corporis, tempore unde dicta totam aut corrupti? Sit, ratione.'
   },
+  {
+    id: 'rolex-watch-2',
+    category: 'rolex-watch',
+    image: './Images/product/Rolex/rolex-2.jpg', // Main default image
+    name: 'Bugatti Luxury Watch - Black Edition',
+    price: 19000,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt modi saepe culpa molestiae nobis reiciendis, neque quam expedita nisi possimus minus corporis, tempore unde dicta totam aut corrupti? Sit, ratione.'
+  },
+  {
+    id: 'rolex-watch-3',
+    category: 'rolex-watch',
+    image: './Images/product/Rolex/rolex-3.jpg', // Main default image
+    name: 'Bugatti Luxury Watch - Black Edition',
+    price: 19000,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt modi saepe culpa molestiae nobis reiciendis, neque quam expedita nisi possimus minus corporis, tempore unde dicta totam aut corrupti? Sit, ratione.'
+  }
 ];

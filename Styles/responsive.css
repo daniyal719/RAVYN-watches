@@ -693,11 +693,6 @@
     .footer {
         display: none !important;
     }
-    
-    .products-grid {
-        padding-bottom: 150px !important;
-    }
-
     .mobile-navbar {
         display: flex;
         justify-content: space-around;
@@ -942,12 +937,18 @@
         line-height: 20px;
     }
     .products-grid{
-        column-gap: 10px;
-        row-gap: 10px;
+        column-gap: 5px;
+        row-gap: 5px;
         padding: 0px;
     }
     .products{
         height: auto;
         width: auto;
+    }
+    .product-price{
+        font-size: 14px;
+    }
+    .price-button-container i{
+        font-size: 22px;
     }
 }
