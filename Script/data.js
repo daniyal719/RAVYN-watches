@@ -1,11 +1,12 @@
 const products = [
   {
     id: 'men-watch-01',
-    category: 'men-watch',
+    categories: ['men-watch'],
     image: './Images/product/Aura/Aura-1.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
+    dis: 10,
     variations: [
       { color: 'White', image: './Images/product/Aura/Aura-1.jpg' },
       { color: 'Gray', image: './Images/product/Aura/Aura-3.jpg' },
@@ -15,14 +16,14 @@ const products = [
   {
     id: 'men-watch-01',
     category: 'men-watch',
-    image: './Images/product/Aura/Aura-1.jpg', 
+    image: './Images/product/Aura/Aura-2.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
   },
   {
     id: 'rolex-watch-1',
-    category: 'rolex-watch',
+    categories: ['rolex-watch' , 'men-watch'],
     image: './Images/product/Rolex/rolex-1.jpg', // Main default image
     name: 'Bugatti Luxury Watch - Black Edition',
     price: 19000,

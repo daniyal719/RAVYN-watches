@@ -5,16 +5,17 @@ const close = document.getElementById('close');
 
 if (bar) bar.addEventListener('click', () => nav.classList.add('active'));
 if (close) close.addEventListener('click', () => nav.classList.remove('active'));
+
 // --- Preloader Logic ---
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        // Adding a slight 500ms delay so the animation can be appreciated
         setTimeout(() => {
             preloader.classList.add('preloader-hidden');
         }, 500);
     }
 });
+
 // --- 2. Mobile Side Search Logic ---
 const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
 const sideSearchPanel = document.getElementById('sideSearchPanel');
@@ -63,8 +64,17 @@ setupSearch('sideSearchInput', 'sideSearchBtn', 'sideSearchSuggestions');
 function renderProducts(category, limit, containerSelector, customList = null) {
     const container = document.querySelector(containerSelector);
     if (!container) return; 
+    
     let filteredList = customList || products;
-    if (!customList && category !== 'all') filteredList = products.filter(p => p.category === category);
+
+    if (!customList && category !== 'all') {
+        filteredList = products.filter(p => {
+            const inArray = p.categories && p.categories.includes(category);
+            const isString = p.category === category;
+            return inArray || isString;
+        });
+    }
+
     if (limit) filteredList = filteredList.slice(0, limit);
     
     let html = '';
@@ -76,19 +86,41 @@ function renderProducts(category, limit, containerSelector, customList = null) {
     filteredList.forEach(product => {
         const hasDiscount = product.dis > 0;
         const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (product.dis / 100))) : product.price;
+        
+        // 1. Restore the Discount Badge HTML
+        const discountBadge = hasDiscount 
+            ? `<div class="dis-container">-${product.dis}% OFF</div>` 
+            : '';
+
         const priceDisplay = hasDiscount 
             ? `<div class="price-stack"><p class="discount-price">Rs ${product.price}</p><p class="product-price">Rs ${finalPrice}/-</p></div>`
             : `<p class="product-price">Rs ${product.price}/-</p>`;
 
+        let variationsHtml = '';
+        if (product.variations && product.variations.length > 0) {
+            variationsHtml = `<div class="product-variations">`;
+            product.variations.forEach(v => {
+                variationsHtml += `
+                    <span class="variation-dot" 
+                          style="background-color: ${v.color.toLowerCase()};" 
+                          title="${v.color}"
+                          onclick="event.stopPropagation(); changeProductImage(this, '${v.image}')">
+                    </span>`;
+            });
+            variationsHtml += `</div>`;
+        }
+
         html += `
             <div class="products" onclick="window.location.href='Product-detail.html?id=${product.id}'">
+                ${discountBadge} 
                 <div class="products-top">
-                    <img class="product-image" src="${product.image}">
+                    <img class="product-image" src="${product.image}" id="img-${product.id}">
                 </div>
                 <div class="product-bottom">
                     <div class="product-name-container">
                         <p class="product-name">${product.name}</p>
                     </div>
+                    ${variationsHtml}
                     <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
             </div>`;
@@ -96,22 +128,30 @@ function renderProducts(category, limit, containerSelector, customList = null) {
     container.innerHTML = html;
 }
 
-// --- 5. EXECUTION LOGIC (Decides what to render on which page) ---
-const collectionContainer = document.querySelector('.js-collection-grid'); // Shop page grid
-const homeContainer = document.querySelector('.js-product-grid'); // Home page grid
+// Helper function to change image on dot click
+function changeProductImage(dotElement, newImageUrl) {
+    const productCard = dotElement.closest('.products');
+    const mainImg = productCard.querySelector('.product-image');
+    if (mainImg) {
+        mainImg.src = newImageUrl;
+    }
+}
 
-// If we are on the Shop (Collection) page
+// --- 5. EXECUTION LOGIC ---
+const collectionContainer = document.querySelector('.js-collection-grid');
+const homeContainer = document.querySelector('.js-product-grid');
+
 if (collectionContainer) {
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('category') || 'all'; 
     const searchParam = urlParams.get('search');
 
     if (searchParam) {
-        // Handle Search Results
         const query = searchParam.toLowerCase();
         const searchResults = products.filter(p => 
             p.name.toLowerCase().includes(query) || 
-            p.category.toLowerCase().includes(query)
+            (p.categories && p.categories.some(cat => cat.toLowerCase().includes(query))) ||
+            (p.category && p.category.toLowerCase().includes(query))
         );
         
         const heading = document.querySelector('.product-heading');
@@ -119,11 +159,9 @@ if (collectionContainer) {
         
         renderProducts(null, null, '.js-collection-grid', searchResults);
     } else {
-        // Render regular collection
         renderProducts(categoryParam, null, '.js-collection-grid');
     }
 } 
-// If we are on the Home page
 else if (homeContainer) {
     renderProducts('all', 6, '.js-product-grid');
     renderProducts('men-watch', 4, '.js-product-grid-men');
@@ -133,7 +171,7 @@ else if (homeContainer) {
     renderProducts('automatic-watch', 4, '.js-product-grid-automatic');
 }
 
-// --- 6. Smooth Scroll-Back Carousel with Updated Mapping ---
+// --- 6. Smooth Scroll-Back Carousel ---
 const sliderContainer = document.querySelector('.slider-container');
 const sliderTrack = document.querySelector('.slider-track');
 const slidesList = document.querySelectorAll('.slide');
@@ -151,7 +189,6 @@ const sectionMapping = {
 
 function moveCarousel() {
     if (!sliderContainer || !sliderTrack) return;
-
     const scrollAmount = sliderContainer.clientWidth; 
     const maxScroll = sliderTrack.scrollWidth - sliderContainer.clientWidth;
 
@@ -170,26 +207,18 @@ function stopAutoPlay() { clearInterval(autoPlayInterval); }
 
 if (sliderContainer) {
     startAutoPlay();
-
-    // Attach Click Navigation to Sections
     slidesList.forEach(slide => {
         slide.addEventListener('click', (e) => {
             stopAutoPlay();
             const categoryName = slide.querySelector('p').innerText.trim();
             const targetSelector = sectionMapping[categoryName];
-            
             if (targetSelector) {
                 const targetEl = document.querySelector(targetSelector);
-                if (targetEl) {
-                    targetEl.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
             }
-            
-            // Resume autoplay after 5 seconds
             setTimeout(startAutoPlay, 5000); 
         });
     });
-
     sliderContainer.addEventListener('mousedown', stopAutoPlay);
     sliderContainer.addEventListener('touchstart', stopAutoPlay);
 }
@@ -213,7 +242,7 @@ if (exploreBtn) {
     });
 }
 
-// --- 8. Ramadan Exclusive Deal Interactivity ---
+// --- 8. Ramadan Exclusive Deal ---
 const qtyMinus = document.getElementById('qty-minus');
 const qtyPlus = document.getElementById('qty-plus');
 const qtyInput = document.getElementById('qty-input');
@@ -227,26 +256,19 @@ const ramadanProduct = {
     image: './Images/product/product-6.jpeg'
 };
 
-// Handle Quantity Plus and Minus
 if (qtyMinus && qtyPlus && qtyInput) {
     qtyPlus.addEventListener('click', () => {
-        let currentValue = parseInt(qtyInput.value);
-        qtyInput.value = currentValue + 1;
+        qtyInput.value = parseInt(qtyInput.value) + 1;
     });
-
     qtyMinus.addEventListener('click', () => {
-        let currentValue = parseInt(qtyInput.value);
-        if (currentValue > 1) {
-            qtyInput.value = currentValue - 1;
-        }
+        let val = parseInt(qtyInput.value);
+        if (val > 1) qtyInput.value = val - 1;
     });
 }
 
-// Add to Cart Function
 function addRamadanDealToCart(redirect = false) {
     if (!qtyInput) return;
     const quantity = parseInt(qtyInput.value);
-    
     let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
     const existingItemIndex = cart.findIndex(item => item.id === ramadanProduct.id);
     
@@ -263,32 +285,21 @@ function addRamadanDealToCart(redirect = false) {
     }
     
     localStorage.setItem('ravyn_cart', JSON.stringify(cart));
-    
-    if (typeof updateCartCount === 'function') {
-        updateCartCount();
-    }
+    updateCartCount();
 
     if (redirect) {
         window.location.href = 'checkout.html';
-    } else {
-        if (addCartBtn) {
-            addCartBtn.style.backgroundColor = 'black';
-            addCartBtn.style.color = 'white';
-            addCartBtn.innerHTML = 'Added!';
-            
-            setTimeout(() => {
-                addCartBtn.style.backgroundColor = ''; 
-                addCartBtn.style.color = '';
-                addCartBtn.innerHTML = 'Add To Cart';
-            }, 2000);
-        }
+    } else if (addCartBtn) {
+        addCartBtn.style.backgroundColor = 'black';
+        addCartBtn.style.color = 'white';
+        addCartBtn.innerHTML = 'Added!';
+        setTimeout(() => {
+            addCartBtn.style.backgroundColor = ''; 
+            addCartBtn.style.color = '';
+            addCartBtn.innerHTML = 'Add To Cart';
+        }, 2000);
     }
 }
 
-// Attach Event Listeners to the Buttons
-if (addCartBtn) {
-    addCartBtn.addEventListener('click', () => addRamadanDealToCart(false));
-}
-if (buyNowBtn) {
-    buyNowBtn.addEventListener('click', () => addRamadanDealToCart(true));
-}
+if (addCartBtn) addCartBtn.addEventListener('click', () => addRamadanDealToCart(false));
+if (buyNowBtn) buyNowBtn.addEventListener('click', () => addRamadanDealToCart(true));

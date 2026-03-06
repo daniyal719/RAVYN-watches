@@ -195,13 +195,13 @@ i{
 .products-grid {
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Automatically adjusts columns */
-  justify-content: center; /* Centers the columns within the container */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  justify-content: start; /* Aligns items to the left when there are few */
   padding: 10px 60px;
   column-gap: 20px;
   row-gap: 30px;
-  max-width: 1200px;       /* Keeps the grid from becoming too wide on large screens */
-  margin: 0 auto;          /* Centers the grid container itself */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .dis-container-display{
   display: none;
@@ -219,6 +219,27 @@ i{
   padding: 10px;
   height: auto;
   position: relative; 
+}
+/* Color Variation Styles */
+.product-variations {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0;
+    justify-content: flex-start;
+}
+
+.variation-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.variation-dot:hover {
+    transform: scale(1.2);
+    border-color: #000;
 }
 .products-top{
   height: auto;
@@ -240,19 +261,22 @@ i{
     text-decoration: underline;
   }
 }
-.dis-container{
+.dis-container {
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   background-color: red;
-  width: 80px;
-  height: 40px;
+  width: 60px; /* Adjusted size */
+  height: 30px;
   position: absolute;
   top: 0;
   left: 0;
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10; /* Ensures it stays above the image shield */
 }
 
 .product-bottom{
