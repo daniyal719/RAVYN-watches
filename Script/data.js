@@ -175,7 +175,7 @@ const products = [
   {
     id: 'transfomer-watch-01', 
     categories: ['men-watch' , 'transfomer-watch'],
-    image: './Images/product/Transfomer/transfomer.jpg', 
+    image: './Images/product/transfomer/transfomer.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
