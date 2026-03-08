@@ -58,20 +58,20 @@ const products = [
   {
     id: 'aura-watch-01', 
     categories: ['men-watch' , 'aura-watch'],
-    image: './Images/product/aura/aura-white.jpg', 
+    image: './Images/product/Aura/aura-white.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
     variations: [
-      { color: 'white', image: './Images/product/aura/aura-white.jpg'},
-      { color: 'black', image: './Images/product/aura/aura-black.jpg'}
+      { color: 'white', image: './Images/product/Aura/aura-white.jpg'},
+      { color: 'black', image: './Images/product/Aura/aura-black.jpg'}
     ]
   },
   {
     id: 'aura-watch-02', 
     categories: ['men-watch' , 'aura-watch'],
-    image: './Images/product/aura/aura-gray.jpg', 
+    image: './Images/product/Aura/aura-gray.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
@@ -81,7 +81,7 @@ const products = [
   {
     id: 'cartiner-watch-01', 
     categories: ['men-watch' , 'cartiner-watch'],
-    image: './Images/product/cartiner/cartiner-white.jpg', 
+    image: './Images/product/Cartiner/cartiner-white.jpg', 
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
