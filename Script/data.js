@@ -5,9 +5,9 @@ const products = [
     categories: ['men-watch', 'rolex-watch'],
     image: './Images/product/Rolex/rolex-black.jpg', 
     name: 'Bugatti Luxury Watch',
-    price: 19000,
+    price: 3499,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
   },
   {
     id: 'rolex-watch-02', 
