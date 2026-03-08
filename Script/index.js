@@ -87,7 +87,7 @@ function renderProducts(category, limit, containerSelector, customList = null) {
         const hasDiscount = product.dis > 0;
         const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (product.dis / 100))) : product.price;
         
-        // 1. Restore the Discount Badge HTML
+        // Restore the Discount Badge HTML
         const discountBadge = hasDiscount 
             ? `<div class="dis-container">-${product.dis}% OFF</div>` 
             : '';
@@ -163,12 +163,8 @@ if (collectionContainer) {
     }
 } 
 else if (homeContainer) {
-    renderProducts('all', 6, '.js-product-grid');
-    renderProducts('men-watch', 4, '.js-product-grid-men');
-    renderProducts('women-watch', 4, '.js-product-grid-women');
-    renderProducts('rolex-watch', 4, '.js-product-grid-rolex');
-    renderProducts('patek-watch', 4, '.js-product-grid-patek');
-    renderProducts('automatic-watch', 4, '.js-product-grid-automatic');
+    // Renders the single "All Products" section on the home page.
+    renderProducts('all', null, '.js-product-grid');
 }
 
 // --- 6. Smooth Scroll-Back Carousel ---
@@ -176,16 +172,6 @@ const sliderContainer = document.querySelector('.slider-container');
 const sliderTrack = document.querySelector('.slider-track');
 const slidesList = document.querySelectorAll('.slide');
 let autoPlayInterval;
-
-const sectionMapping = {
-    'Men Watch': '.js-product-grid-men',
-    'Women Watch': '.js-product-grid-women',
-    'Men Bracelet': '.fe-products',
-    'Women Bracelet': '.fe-products',
-    'Rolex Watches': '.js-product-grid-rolex',
-    'Patek Philippe': '.js-product-grid-patek',
-    'Automatic': '.js-product-grid-automatic'
-};
 
 function moveCarousel() {
     if (!sliderContainer || !sliderTrack) return;
@@ -210,12 +196,13 @@ if (sliderContainer) {
     slidesList.forEach(slide => {
         slide.addEventListener('click', (e) => {
             stopAutoPlay();
-            const categoryName = slide.querySelector('p').innerText.trim();
-            const targetSelector = sectionMapping[categoryName];
-            if (targetSelector) {
-                const targetEl = document.querySelector(targetSelector);
-                if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+            
+            // Redirects to collection page with the target category ID from HTML 'data-category'
+            const categoryId = slide.getAttribute('data-category');
+            if (categoryId) {
+                window.location.href = `collection.html?category=${categoryId}`;
             }
+            
             setTimeout(startAutoPlay, 5000); 
         });
     });

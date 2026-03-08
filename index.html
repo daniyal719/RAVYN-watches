@@ -35,9 +35,8 @@
     <div class="center-nav">
         <a href="index.html"><p class="menu">Home</p></a>
         <a href="collection.html"><p class="menu">Collection</p></a>
-        <a href="collection.html?category=men-watch"><p class="menu">Men Watches</p></a>
-        <a href="collection.html?category=women-watch"><p class="menu">Women Watches</p></a>
         <a href="collection.html?category=rolex-watch"><p class="menu">Rolex</p></a>
+        <a href="collection.html?category=aura-watch"><p class="menu">Aura</p></a>
         
         <a href="cart.html" class="nav-cart-link"><p class="menu">Cart</p></a>
         
@@ -85,9 +84,7 @@
       <h2 class="pro-price">Rs 19000/-</h2>
       <div class="properties">
         <p>🚚 Free Delivery Across Pakistan</p>
-
         <p>🎁 Free RAVYN STORE Premium Packing</p>
-
         <p>✅ 100% Authentic Guaranteed!</p>
       </div>
       <div class="button-container-detail">
@@ -106,34 +103,61 @@
     <h2 class="product-deal">Shop by Collection</h2>
     <div class="slider-container">
       <div class="slider-track">
-        <div class="slide active">
-          <img src="./Images/catagories/men-watch.webp" alt="Men">
-          <p>Men Watch</p>
+        
+        <div class="slide active" data-category="men-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Men Watches">
+          <p>Men Watches</p>
         </div>
-        <div class="slide">
-          <img src="./Images/catagories/women-watch.webp" alt="Women">
-          <p>Women Watch</p>
+        <div class="slide" data-category="women-watch">
+          <img src="./Images/catagories/women-watch.webp" alt="Women Watches">
+          <p>Women Watches</p>
         </div>
-        <div class="slide">
-          <img src="./Images/catagories/men-bracelet.webp" alt="Men Brace">
-          <p>Men Bracelet</p>
+
+        <div class="slide" data-category="aura-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Aura">
+          <p>Aura</p>
         </div>
-        <div class="slide">
-          <img src="./Images/catagories/women-bracelet.webp" alt="Women Brace">
-          <p>Women Bracelet</p>
-        </div>
-        <div class="slide">
-          <img src="./Images/catagories/men-watch.webp" alt="Extra">
-          <p>Rolex Watches</p>
-        </div>
-        <div class="slide">
-          <img src="./Images/catagories/men-watch.webp" alt="Extra">
-          <p>Patek Philippe</p>
-        </div>
-        <div class="slide">
-          <img src="./Images/catagories/men-watch.webp" alt="Extra">
+        <div class="slide" data-category="auto-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Automatic">
           <p>Automatic</p>
         </div>
+        <div class="slide" data-category="cartiner-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Cartiner">
+          <p>Cartiner</p>
+        </div>
+        <div class="slide" data-category="casio-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Casio">
+          <p>Casio</p>
+        </div>
+        <div class="slide" data-category="hublot-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Hublot">
+          <p>Hublot</p>
+        </div>
+        <div class="slide" data-category="forchs-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Forchs">
+          <p>Forchs</p>
+        </div>
+        <div class="slide" data-category="lambo-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Lamborghini">
+          <p>Lamborghini</p>
+        </div>
+        <div class="slide" data-category="moonston-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Moonston">
+          <p>Moonston</p>
+        </div>
+        <div class="slide" data-category="pate-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Patek Philippe">
+          <p>Patek</p>
+        </div>
+        <div class="slide" data-category="rolex-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Rolex">
+          <p>Rolex</p>
+        </div>
+        <div class="slide" data-category="transformer-watch">
+          <img src="./Images/catagories/men-watch.webp" alt="Transformer">
+          <p>Transformer</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -145,32 +169,6 @@
     <section class="products-grid js-product-grid"></section>
     <div class="button-container">
       <button class="see-button" onclick="window.location.href = 'collection.html'">View All &#8594;</button>
-    </div>
-
-    <div class="heading-container"><h1 class="product-heading">Men Watches</h1></div>
-    <section class="products-grid js-product-grid-men"></section>
-    <div class="button-container">
-      <button class="see-button" onclick="window.location.href = 'collection.html?category=men-watch'">View All &#8594;</button>
-    </div>
-
-    <div class="heading-container"><h1 class="product-heading">Women Watches</h1></div>
-    <section class="products-grid js-product-grid-women"></section> <div class="button-container">
-      <button class="see-button" onclick="window.location.href = 'collection.html?category=women-watch'">View All &#8594;</button>
-    </div>
-
-    <div class="heading-container"><h1 class="product-heading">Rolex Watches</h1></div>
-    <section class="products-grid js-product-grid-rolex"></section> <div class="button-container">
-      <button class="see-button" onclick="window.location.href = 'collection.html?category=rolex-watch'">View All &#8594;</button>
-    </div>
-
-    <div class="heading-container"><h1 class="product-heading">Patek Philippe</h1></div>
-    <section class="products-grid js-product-grid-patek"></section> <div class="button-container">
-      <button class="see-button" onclick="window.location.href = 'collection.html?category=patek-watch'">View All &#8594;</button>
-    </div>
-
-    <div class="heading-container"><h1 class="product-heading">Automatic Watches</h1></div>
-    <section class="products-grid js-product-grid-automatic"></section> <div class="button-container">
-      <button class="see-button" onclick="window.location.href = 'collection.html?category=automatic-watch'">View All &#8594;</button>
     </div>
   </section>
   
@@ -235,10 +233,7 @@
         <i class="fa-brands fa-instagram"></i>
         <i class="fa-brands fa-facebook"></i>
       </div>
-        
     </div>
-
-
   </footer>
 
   <div class="mobile-navbar">
