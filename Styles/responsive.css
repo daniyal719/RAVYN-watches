@@ -589,7 +589,7 @@
     }
 
     .hero-left {
-        width: 65%;
+        width: 75%;
         line-height: 30px;
     }
 
@@ -606,7 +606,7 @@
     }
 
     .hero-left button {
-        font-size: 12px;
+        font-size: 14px;
         margin: 10px 7px;
         padding: 8px 14px;
     }
