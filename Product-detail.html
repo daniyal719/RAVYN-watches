@@ -51,7 +51,15 @@
 
   <section class="prodetails">
     <div class="single-pro-image">
-        <img src="" width="100%" class="main-img" id="MainImg" alt="Product Image">
+        <div id="image-preloader" class="image-preloader">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="80" height="40">
+                <path d="M 25 25 a 15 15 0 1 0 30 0 a 15 15 0 1 1 30 0 a 15 15 0 1 1 -30 0 a 15 15 0 1 0 -30 0 z" 
+                      fill="none" stroke="#000" stroke-width="5" stroke-dasharray="160" stroke-dashoffset="0">
+                    <animate attributeName="stroke-dashoffset" from="160" to="0" dur="1.5s" repeatCount="indefinite" />
+                </path>
+            </svg>
+        </div>
+        <img src="" width="100%" class="main-img" id="MainImg" alt="Product Image" style="opacity: 0; transition: opacity 0.5s ease;">
     </div>
     
     <div class="single-pro-details">
@@ -267,8 +275,14 @@
 
     if (product) {
       const mainImg = document.getElementById('MainImg');
+      const preloader = document.getElementById('image-preloader');
       
       mainImg.src = product.image; 
+      mainImg.onload = function() {
+          if(preloader) preloader.style.display = 'none';
+          mainImg.style.opacity = '1';
+      };
+
       document.querySelector('.pro-name').innerText = product.name;
       document.querySelector('.pro-desc').innerText = product.description || product.des || "No description available.";
 
@@ -304,6 +318,9 @@
           if (index === 0) circle.classList.add('active');
 
           circle.addEventListener('click', () => {
+              mainImg.style.opacity = '0';
+              if(preloader) preloader.style.display = 'flex';
+              
               mainImg.src = varObj.image;
               document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('active'));
               circle.classList.add('active');
