@@ -7,7 +7,12 @@ const products = [
     name: 'Rolex Silicon Strap Rotating Dial watch',
     price: 3499,
     description: 'A masterpiece of precision and style...',
-    dis: 10,  
+    dis: 10,
+    variations: [
+      { image: './Images/product/Rolex/rolex-black.jpg' },
+      { image: './Images/product/Rolex/rolex-back.jpg' },
+      { image: './Images/product/Rolex/rolex-chain.jpg' }
+    ]
   },
   {
     id: 'rolex-watch-02', 
@@ -18,8 +23,9 @@ const products = [
     description: 'A masterpiece of precision and style...',
     dis: 0,
     variations: [
+      { image: './Images/product/Rolex/rolex-white-golden.jpg' },
       { image: './Images/product/Rolex/rolex-back.jpg' },
-      { image: './Images/product/Rolex/rolex-chain.jpg' },
+      { image: './Images/product/Rolex/rolex-chain.jpg' }
     ]
   },
   {
@@ -34,7 +40,7 @@ const products = [
       { color: 'lightgreen', image: './Images/product/Rolex/rolex-golden-green.jpg' },
       { color: 'red', image: './Images/product/Rolex/rolex-golden-red.jpg' },
       { image: './Images/product/Rolex/rolex-back.jpg' },
-      { image: './Images/product/Rolex/rolex-chain.jpg' },
+      { image: './Images/product/Rolex/rolex-chain.jpg' }
     ]
   },
   // 2. P-P section
@@ -46,6 +52,11 @@ const products = [
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
+    variations: [
+      { image: './Images/product/P P/pp-black-B.jpg' },
+      { image: './Images/product/P P/pp-back.jpg' },
+      { image: './Images/product/P P/pp-chain.jpg' }
+    ]
   },
   {
     id: 'pata-watch-02', 
@@ -57,7 +68,11 @@ const products = [
     dis: 0,
     variations: [
       { color: 'black', image: './Images/product/P P/pp-silver-B.jpg'},
-      { color: 'white', image: './Images/product/P P/pp-silver-W.jpg'}
+      { color: 'white', image: './Images/product/P P/pp-silver-W.jpg'},
+      { image: './Images/product/P P/pp-back.jpg' },
+      { image: './Images/product/P P/pp-chain.jpg' },
+      { image: './Images/product/P P/auto-back.jpg' },
+      { image: './Images/product/P P/auto-back-2.jpg' }
     ]
   },
   // 3. Aura section
@@ -72,7 +87,8 @@ const products = [
     variations: [
       { color: 'white', image: './Images/product/Aura/aura-white.jpg'},
       { color: 'black', image: './Images/product/Aura/aura-black.jpg'},
-      { color: 'gray', image: './Images/product/Aura/aura-gray.jpg'}
+      { color: 'gray', image: './Images/product/Aura/aura-gray.jpg'},
+      { image: './Images/product/Aura/aura-back.jpg'}
     ]
   },
   // 4. Cartiner section
@@ -100,7 +116,8 @@ const products = [
     dis: 0,
     variations: [
       { color: 'white' , image: './Images/product/Casio/casio-white.jpg' },
-      { color: 'black' , image: './Images/product/Casio/casio-black.jpg' }
+      { color: 'black' , image: './Images/product/Casio/casio-black.jpg' },
+      { image: './Images/product/Casio/casio-back.jpg' }
     ]
   },
   // 6. Forchs section
@@ -108,7 +125,7 @@ const products = [
     id: 'forchs-watch-01', 
     categories: ['men-watch' , 'forchs-watch'],
     image: './Images/product/Forchs/forchs-white.jpg', 
-    name: 'Forchies semi auto watch',
+    name: 'Forichs semi auto watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -127,9 +144,10 @@ const products = [
     description: 'A masterpiece of precision and style...',
     dis: 0,
     variations: [
-      { color: 'gray' , image: './Images/product/Hublot/hublot-gray-G6.jpg' },
-      { color: 'red' , image: './Images/product/Hublot/hublot-gray-R6.jpg' },
-      { color: 'white' , image: './Images/product/Hublot/hublot-white-B6.jpg' }
+      { color: '#A88905' , image: './Images/product/Hublot/hublot-gray-G6.jpg' },
+      { color: 'brown' , image: './Images/product/Hublot/hublot-gray-R6.jpg' },
+      { color: 'black' , image: './Images/product/Hublot/hublot-white-B6.jpg' },
+      { image: './Images/product/Hublot/hublot-back.jpg' }
     ]
   },
   {
@@ -142,7 +160,8 @@ const products = [
     dis: 0,
     variations: [
       { color: 'lightgray' , image: './Images/product/Hublot/hublot-silver-Br.jpg' },
-      { color: 'black' , image: './Images/product/Hublot/hublot-silver-Br-2.jpg' }
+      { color: 'black' , image: './Images/product/Hublot/hublot-silver-Br-2.jpg' },
+      { image: './Images/product/Hublot/hublot-back.jpg' }
     ]
   },
   // 8. Lambo section
@@ -155,8 +174,10 @@ const products = [
     description: 'A masterpiece of precision and style...',
     dis: 0,
     variations: [
-      { color: 'blue' , image: './Images/product/Lambo/lam-blue.jpg' },
-      { color: 'lightgray' , image: './Images/product/Lambo/lam-silver.jpg' }
+      { color: 'black' , image: './Images/product/Lambo/lam-blue.jpg' },
+      { color: 'lightgray' , image: './Images/product/Lambo/lam-silver.jpg' },
+      { image: './Images/product/Lambo/lam-top.jpg' },
+      { image: './Images/product/Lambo/lam-bottom.jpg' }
     ]
   },
   // 9. un section
@@ -187,5 +208,93 @@ const products = [
       { color: 'green' , image: './Images/product/un/un-green-com.jpg'},
       { color: 'yellow' , image: './Images/product/un/transfomer.jpg'}
     ]
+  },
+  // 10. tomi section
+  {
+    id: 'tomi-watch-01', 
+    categories: ['men-watch' , 'tomi-watch'],
+    image: './Images/product/Tomi/tomi-1-s.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
+    variations: [
+      './Images/product/Tomi/tomi-back.jpg'
+    ]
+  },
+  {
+    id: 'tomi-watch-02', 
+    categories: ['men-watch' , 'tomi-watch'],
+    image: './Images/product/Tomi/tomi-round.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
+    variations: [
+      './Images/product/Tomi/tomi-back.jpg'
+    ]
+  },
+  {
+    id: 'tomi-watch-03', 
+    categories: ['men-watch' , 'tomi-watch'],
+    image: './Images/product/Tomi/tomi-box-black-brown.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
+    variations: [
+      './Images/product/Tomi/tomi-box-dial.jpg',
+      './Images/product/Tomi/tomi-back.jpg'
+    ]
+  },
+  {
+    id: 'tomi-watch-03', 
+    categories: ['men-watch' , 'tomi-watch'],
+    image: './Images/product/Tomi/tomi-box-black-gray.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
+    variations: [
+      './Images/product/Tomi/tomi-box-dial.jpg',
+      './Images/product/Tomi/tomi-back.jpg'
+    ]
+  },
+  // 11. women section
+  {
+    id: 'women-watch-01', 
+    categories: ['women-watch'],
+    image: './Images/product/Women/women-1-black.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
+    variations: [
+      { color: 'black' , image: './Images/product/Women/women-1-black.jpg' },
+      { color: '#FFD700' , image: './Images/product/Women/women-1-golden.jpg' },
+      { color: '#C0C0C0' , image: './Images/product/Women/women-1-silver.jpg' },
+    ]
+  },
+  {
+    id: 'women-watch-02', 
+    categories: ['women-watch'],
+    image: './Images/product/Women/women-2-black.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
+    variations: [
+      { color: 'black' , image: './Images/product/Women/women-2-black.jpg' },
+      { color: 'brown' , image: './Images/product/Women/women-2-brown.jpg' },
+    ]
+  },
+  {
+    id: 'women-watch-03', 
+    categories: ['women-watch'],
+    image: './Images/product/Women/women-3.jpg', 
+    name: 'Farrari Modren Dial watch',
+    price: 19000,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 0,
   },
 ];
