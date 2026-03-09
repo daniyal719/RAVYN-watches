@@ -4,7 +4,7 @@ const products = [
     id: 'rolex-watch-01',
     categories: ['men-watch', 'rolex-watch'],
     image: './Images/product/Rolex/rolex-black.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Rolex Silicon Strap Rotating Dial watch',
     price: 3499,
     description: 'A masterpiece of precision and style...',
     dis: 10,
@@ -36,7 +36,7 @@ const products = [
     id: 'pata-watch-01', 
     categories: ['men-watch' , 'pata-watch'],
     image: './Images/product/P P/pp-black-B.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Patek Philippe Geneve leather strap watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -45,7 +45,7 @@ const products = [
     id: 'pata-watch-02', 
     categories: ['men-watch' , 'pata-watch'],
     image: './Images/product/P P/pp-silver-B.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Patek Philippe Semi Auto watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -59,36 +59,28 @@ const products = [
     id: 'aura-watch-01', 
     categories: ['men-watch' , 'aura-watch'],
     image: './Images/product/Aura/aura-white.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Arabic Aura watches',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
     variations: [
       { color: 'white', image: './Images/product/Aura/aura-white.jpg'},
-      { color: 'black', image: './Images/product/Aura/aura-black.jpg'}
+      { color: 'black', image: './Images/product/Aura/aura-black.jpg'},
+      { color: 'gray', image: './Images/product/Aura/aura-gray.jpg'}
     ]
-  },
-  {
-    id: 'aura-watch-02', 
-    categories: ['men-watch' , 'aura-watch'],
-    image: './Images/product/Aura/aura-gray.jpg', 
-    name: 'Bugatti Luxury Watch',
-    price: 19000,
-    description: 'A masterpiece of precision and style...',
-    dis: 0,
   },
   // 4. Cartiner section
   {
     id: 'cartiner-watch-01', 
     categories: ['men-watch' , 'cartiner-watch'],
     image: './Images/product/Cartiner/cartiner-white.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Cartier Old Money watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
     variations: [
-      { color: 'white' , image: './Images/product/cartiner/cartiner-white.jpg' },
-      { color: 'black' , image: './Images/product/cartiner/cartiner-black.jpg' }
+      { color: 'white' , image: './Images/product/Cartiner/cartiner-white.jpg' },
+      { color: 'black' , image: './Images/product/Cartiner/cartiner-black.jpg' }
     ]
   },
   // 5. Casio section
@@ -96,9 +88,9 @@ const products = [
     id: 'casio-watch-01', 
     categories: ['men-watch' , 'casio-watch'],
     image: './Images/product/Casio/casio-white.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Casio Quartz watch',
     price: 19000,
-    description: 'A masterpiece of precision and style...',
+    description: 'A masterpiece of precision and style... (water resistant)',
     dis: 0,
     variations: [
       { color: 'white' , image: './Images/product/Casio/casio-white.jpg' },
@@ -110,7 +102,7 @@ const products = [
     id: 'forchs-watch-01', 
     categories: ['men-watch' , 'forchs-watch'],
     image: './Images/product/Forchs/forchs-white.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Forchies semi auto watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -124,7 +116,7 @@ const products = [
     id: 'hublot-watch-01', 
     categories: ['men-watch' , 'hublot-watch'],
     image: './Images/product/Hublot/hublot-gray-G6.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Hublot Diamond Cut watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -138,7 +130,7 @@ const products = [
     id: 'hublot-watch-02', 
     categories: ['men-watch' , 'hublot-watch'],
     image: './Images/product/Hublot/hublot-silver-Br.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Hublot Round watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -152,7 +144,7 @@ const products = [
     id: 'lambo-watch-01', 
     categories: ['men-watch' , 'lambo-watch'],
     image: './Images/product/Lambo/lam-blue.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Lamborghini Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
@@ -161,52 +153,33 @@ const products = [
       { color: 'lightgray' , image: './Images/product/Lambo/lam-silver.jpg' }
     ]
   },
-  //9. Moonston section
-  {
-    id: 'moonston-watch-01', 
-    categories: ['men-watch' , 'moonston-watch'],
-    image: './Images/product/Moonston/moonston-1.jpg', 
-    name: 'Bugatti Luxury Watch',
-    price: 19000,
-    description: 'A masterpiece of precision and style...',
-    dis: 0,
-  },
-  // 10. Transfomer section
-  {
-    id: 'transfomer-watch-01', 
-    categories: ['men-watch' , 'transfomer-watch'],
-    image: './Images/product/transfomer/transfomer.jpg', 
-    name: 'Bugatti Luxury Watch',
-    price: 19000,
-    description: 'A masterpiece of precision and style...',
-    dis: 0,
-  },
-  // 11. un section
+  // 9. un section
   {
     id: 'un-watch-01', 
     categories: ['men-watch' , 'un-watch'],
     image: './Images/product/un/un-blue.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Farrari Wheel watch',
     price: 19000,
-    description: 'A masterpiece of precision and style...',
+    description: 'A masterpiece of precision and style... (rotating dial)',
     dis: 0,
     variations:[
       { color: 'blue' , image: './Images/product/un/un-blue.jpg'},
       { color: 'green' , image: './Images/product/un/un-green.jpg'},
-      { color: 'red' , image: './Images/product/un/un-red.jpg'},
+      { color: 'red' , image: './Images/product/un/un-red.jpg'}
     ]
   },
   {
     id: 'un-watch-02', 
     categories: ['men-watch' , 'un-watch'],
     image: './Images/product/un/un-blue-com.jpg', 
-    name: 'Bugatti Luxury Watch',
+    name: 'Farrari Modren Dial watch',
     price: 19000,
-    description: 'A masterpiece of precision and style...',
+    description: 'A masterpiece of precision and style... ( rotating dial )',
     dis: 0,
     variations:[
       { color: 'blue' , image: './Images/product/un/un-blue-com.jpg'},
-      { color: 'green' , image: './Images/product/un/un-green-com.jpg'}
+      { color: 'green' , image: './Images/product/un/un-green-com.jpg'},
+      { color: 'yellow' , image: './Images/product/un/transfomer.jpg'}
     ]
   },
 ];

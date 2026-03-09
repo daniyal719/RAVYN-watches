@@ -253,6 +253,7 @@ i{
   width: 100%;
   height: auto;
   border-radius: 5px;
+  font-weight: bold;
 }
 .products:hover{
   box-shadow: 5px 5px 15px gray;
@@ -344,7 +345,7 @@ i{
 /* The Old Price (Crossed Out) */
 .discount-price {
   margin: 0;
-  color: red; /* Gray looks better for old prices than red usually */
+  color: black; /* Gray looks better for old prices than red usually */
   text-decoration: line-through;
   font-size: 13px;
 }
@@ -354,7 +355,7 @@ i{
   font-size: 18px;
   font-weight: 700;
   margin: 0;
-  color: black; /* Keep the main price red or black as preferred */
+  color: red; /* Keep the main price red or black as preferred */
 }
 
 .button-container{

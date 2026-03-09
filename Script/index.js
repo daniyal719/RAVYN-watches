@@ -49,7 +49,7 @@ function setupSearch(inputId, btnId, suggestionsId) {
                 div.classList.add('suggestion-item');
                 div.innerHTML = `
                     <img src="${product.image}" alt="${product.name}" class="suggestion-img">
-                    <div class="suggestion-info"><h4>${product.name}</h4><p>Rs ${product.price}</p></div>`;
+                    <div class="suggestion-info"><h4>${product.name}</h4><h2>Rs ${product.price}</h2></div>`;
                 div.addEventListener('click', () => window.location.href = `Product-detail.html?id=${product.id}`);
                 suggestionsBox.appendChild(div);
             });
@@ -118,7 +118,7 @@ function renderProducts(category, limit, containerSelector, customList = null) {
                 </div>
                 <div class="product-bottom">
                     <div class="product-name-container">
-                        <p class="product-name">${product.name}</p>
+                        <h2 class="product-name">${product.name}</h2>
                     </div>
                     ${variationsHtml}
                     <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
