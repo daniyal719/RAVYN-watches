@@ -329,13 +329,11 @@ i{
   position: relative;
 }
 .price-button-container{
-  margin-top: 10px;
   width: 100%;
-  border-radius: 50px;
-  padding: 2px 20px;
-  height: 50px;
+  height: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Forces alignment to the left */
+  align-items: center; /* Vertically centers the text */
   box-sizing: border-box;
 }
 .product-bottom i{

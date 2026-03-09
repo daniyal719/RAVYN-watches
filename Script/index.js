@@ -123,7 +123,7 @@ function renderProducts(category, limit, containerSelector, customList = null) {
                     <div class="product-name-container">
                         <h2 class="product-name">${product.name}</h2>
                     </div>
-                    <div class="price-button-container" style="justify-content: center;">${priceDisplay}</div>
+                    <div class="price-button-container">${priceDisplay}</div>
                     ${variationsHtml}
                 </div>
             </div>`;
