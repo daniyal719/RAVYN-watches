@@ -14,8 +14,8 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // Your Public Key
-      emailjs.init("7CQqloJhHsMknv7OV");
+      // Your New Public Key
+      emailjs.init("zssA_YQshSPVv3RqY");
     })();
   </script>
 
@@ -447,12 +447,10 @@
         return;
     }
 
-    // 4. IMMEDIATE BUTTON UPDATE
-    // This happens the moment validation passes
     const btn = document.querySelector('.place-order-btn');
     const originalBtnText = "Place Order"; 
     btn.innerText = "Processing..."; 
-    btn.disabled = true; // Prevents duplicate orders while waiting for network
+    btn.disabled = true;
 
     // 5. Save Details Logic
     if (saveDetails) {
@@ -478,9 +476,9 @@
         }))
     };
 
-    // 7. Send via EmailJS
+    // 7. Send via EmailJS (UPDATED CREDENTIALS)
     try {
-        const result = await emailjs.send('rwmzeem', 'template_4vwd8no', templateParams);
+        const result = await emailjs.send('6kjmfm2', 'zgum6ga', templateParams);
 
         if (result.status === 200) {
             localStorage.removeItem('ravyn_cart');
@@ -494,7 +492,6 @@
         console.error("Order Error:", error);
         alert("Connection problem. Please check your internet and try again.");
         
-        // REVERT BUTTON: If it fails, let the user try again
         btn.innerText = originalBtnText;
         btn.disabled = false;
     }
