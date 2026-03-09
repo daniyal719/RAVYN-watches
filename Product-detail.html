@@ -11,6 +11,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="./Styles/product-detail.css">
   <link rel="stylesheet" href="./Styles/responsive.css">
+
+  <style>
+    /* --- Guarantees the Preloader is perfectly centered --- */
+    .single-pro-image {
+      position: relative !important;
+      min-height: 450px; /* Gives the container height while the image is loading */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-preloader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
@@ -311,7 +333,6 @@
           const circle = document.createElement('div');
           circle.classList.add('color-circle');
           
-          // NEW: Use the merged 'color' property for both styling and tooltip
           circle.style.backgroundColor = varObj.color;
           circle.title = varObj.color; 
 
