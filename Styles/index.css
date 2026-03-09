@@ -298,6 +298,7 @@ i{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 }
 .product-bottom i{
   font-size: 28px;
