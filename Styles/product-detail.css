@@ -14,7 +14,7 @@ body {
 .prodetails {
   width: 100%;
   display: flex;
-  padding: 40px 60px;
+  padding: 5px 60px;
   background-color: #fff;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
