@@ -1,3 +1,6 @@
+* {
+  -webkit-tap-highlight-color: transparent; /* Removes the blue flash on click/tap */
+}
 html {
   scroll-behavior: smooth;
 }
