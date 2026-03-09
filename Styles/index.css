@@ -244,13 +244,14 @@ i{
     transform: scale(1.2);
     border-color: #000;
 }
-.products-top{
+.products-top {
   height: auto;
   display: flex;
   object-fit: contain;
   justify-content: center;
   align-items: center;
-  object-fit:contain;
+  position: relative; /* Necessary for absolute positioning of the cart btn */
+  overflow: hidden; /* Hides the button when it's outside the frame */
 }
 .product-image{
   width: 100%;
@@ -264,6 +265,42 @@ i{
     color: rgb(37, 37, 37);
     text-decoration: underline;
   }
+}
+.image-cart-btn {
+  position: absolute;
+  bottom: 10px;
+  right: -50px; /* Starts outside the container to the right */
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: right 0.3s ease, background-color 0.2s ease;
+  z-index: 25; /* Higher than the anti-copy transparent shield */
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+}
+
+.image-cart-btn i {
+  color: black;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.image-cart-btn:hover {
+  background-color: black;
+}
+
+.image-cart-btn:hover i {
+  color: white;
+}
+
+/* The Hover Animation Trigger for Desktop */
+.products:hover .image-cart-btn {
+  right: 10px; /* Slides the button into view at the bottom right */
 }
 .dis-container {
   display: flex;
@@ -293,14 +330,12 @@ i{
 }
 .price-button-container{
   margin-top: 10px;
-  border: 1px solid gray;
   width: 100%;
   border-radius: 50px;
   padding: 2px 20px;
   height: 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   box-sizing: border-box;
 }
 .product-bottom i{
@@ -340,18 +375,19 @@ i{
 /* Wrapper for the two price lines */
 .price-stack {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: row; /* Changed from column to row */
+  justify-content: flex-start;
+  align-items: center; /* Aligns them vertically in the center */
+  gap: 10px; /* Adds space between the old and new price */
   line-height: 1.2;
 }
 
 /* The Old Price (Crossed Out) */
 .discount-price {
   margin: 0;
-  color: black; /* Gray looks better for old prices than red usually */
+  color: gray; /* Changed to gray to make the new price pop */
   text-decoration: line-through;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* The New Calculated Price */
@@ -359,9 +395,8 @@ i{
   font-size: 18px;
   font-weight: 700;
   margin: 0;
-  color: red; /* Keep the main price red or black as preferred */
+  color: red;
 }
-
 .button-container{
   width: 100%;
   height: auto;

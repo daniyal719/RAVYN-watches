@@ -115,13 +115,16 @@ function renderProducts(category, limit, containerSelector, customList = null) {
                 ${discountBadge} 
                 <div class="products-top">
                     <img class="product-image" src="${product.image}" id="img-${product.id}">
+                    <button class="image-cart-btn" onclick="addToCart(event, '${product.id}')" title="Add to Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
                 </div>
                 <div class="product-bottom">
                     <div class="product-name-container">
                         <h2 class="product-name">${product.name}</h2>
                     </div>
+                    <div class="price-button-container" style="justify-content: center;">${priceDisplay}</div>
                     ${variationsHtml}
-                    <div class="price-button-container">${priceDisplay} <i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
             </div>`;
     });
@@ -287,6 +290,53 @@ function addRamadanDealToCart(redirect = false) {
         }, 2000);
     }
 }
-
 if (addCartBtn) addCartBtn.addEventListener('click', () => addRamadanDealToCart(false));
 if (buyNowBtn) buyNowBtn.addEventListener('click', () => addRamadanDealToCart(true));
+
+// --- 9. Add To Cart from Card Logic ---
+function addToCart(event, productId) {
+    // Prevent the click from bubbling up to the .products div (which redirects the page)
+    event.stopPropagation(); 
+
+    // Assuming 'products' array from data.js is globally available
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Calculate the final price in case there is a discount
+    const hasDiscount = product.dis > 0;
+    const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (product.dis / 100))) : product.price;
+
+    let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
+    const existingItemIndex = cart.findIndex(item => item.id === product.id);
+    
+    if (existingItemIndex > -1) {
+        cart[existingItemIndex].quantity += 1;
+    } else {
+        cart.push({ 
+            id: product.id,
+            name: product.name,
+            price: finalPrice,
+            image: product.image,
+            quantity: 1 
+        });
+    }
+    
+    localStorage.setItem('ravyn_cart', JSON.stringify(cart));
+    updateCartCount();
+
+    // Visual feedback: change cart icon to a checkmark briefly
+    const btn = event.currentTarget;
+    const icon = btn.querySelector('i');
+    if (icon) {
+        icon.classList.remove('fa-cart-shopping');
+        icon.classList.add('fa-check');
+        btn.style.backgroundColor = "black";
+        icon.style.color = "white";
+        setTimeout(() => {
+            icon.classList.remove('fa-check');
+            icon.classList.add('fa-cart-shopping');
+            btn.style.backgroundColor = ""; // reset
+            icon.style.color = ""; // reset
+        }, 1000);
+    }
+}

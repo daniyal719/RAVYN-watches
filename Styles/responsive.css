@@ -333,7 +333,16 @@
     .footer-left-section img {
         width: 180px;
     }
-
+    .image-cart-btn {
+        right: 10px; 
+        /* Optional: adjust size slightly for mobile if desired */
+        width: 35px;
+        height: 35px;
+    }
+    
+    .image-cart-btn i {
+        font-size: 14px;
+    }
     .footer-text {
         font-size: 12px;
     }
