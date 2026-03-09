@@ -7,7 +7,7 @@ const products = [
     name: 'Rolex Silicon Strap Rotating Dial watch',
     price: 3499,
     description: 'A masterpiece of precision and style...',
-    dis: 10,
+    dis: 10,  
   },
   {
     id: 'rolex-watch-02', 
@@ -17,6 +17,10 @@ const products = [
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 0,
+    variations: [
+      { image: './Images/product/Rolex/rolex-back.jpg' },
+      { image: './Images/product/Rolex/rolex-chain.jpg' },
+    ]
   },
   {
     id: 'rolex-watch-03',
@@ -29,6 +33,8 @@ const products = [
     variations: [
       { color: 'lightgreen', image: './Images/product/Rolex/rolex-golden-green.jpg' },
       { color: 'red', image: './Images/product/Rolex/rolex-golden-red.jpg' },
+      { image: './Images/product/Rolex/rolex-back.jpg' },
+      { image: './Images/product/Rolex/rolex-chain.jpg' },
     ]
   },
   // 2. P-P section

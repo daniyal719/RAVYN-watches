@@ -82,6 +82,8 @@
             </svg>
         </div>
         <img src="" width="100%" class="main-img" id="MainImg" alt="Product Image" style="opacity: 0; transition: opacity 0.5s ease;">
+        
+        <div class="small-img-group" id="small-img-group"></div>
     </div>
     
     <div class="single-pro-details">
@@ -322,32 +324,104 @@
           document.querySelector('.pro-price').innerText = "Rs " + product.price + "/-";
       }
 
-      // --- NEW: COLOR VARIATION LOGIC ---
+      // --- 2. GATHER ALL UNIQUE IMAGES FOR GALLERY ---
+      let allImages = [product.image];
+      if (product.variations && product.variations.length > 0) {
+          product.variations.forEach(v => {
+              if (v.image && !allImages.includes(v.image)) {
+                  allImages.push(v.image);
+              }
+          });
+      }
+
+      // --- 3. RENDER SMALL IMAGE GALLERY (THUMBNAILS) ---
+      const smallImgGroup = document.getElementById('small-img-group');
+      if (allImages.length > 1) {
+          allImages.forEach((imgSrc, index) => {
+              const imgCol = document.createElement('div');
+              imgCol.classList.add('small-img-col');
+              imgCol.setAttribute('data-img', imgSrc);
+              
+              if (index === 0) imgCol.classList.add('active'); // First image is active
+
+              const img = document.createElement('img');
+              img.src = imgSrc;
+              img.alt = "Thumbnail";
+
+              imgCol.appendChild(img);
+              smallImgGroup.appendChild(imgCol);
+
+              // Click Event: Update Main Image & Sync with Colors
+              imgCol.addEventListener('click', () => {
+                  mainImg.style.opacity = '0';
+                  if(preloader) preloader.style.display = 'flex';
+                  mainImg.src = imgSrc;
+                  
+                  // Update active class on thumbnails
+                  document.querySelectorAll('.small-img-col').forEach(col => col.classList.remove('active'));
+                  imgCol.classList.add('active');
+
+                  // Sync with Color Circles if applicable
+                  document.querySelectorAll('.color-circle').forEach(c => {
+                      if (c.getAttribute('data-linked-img') === imgSrc) {
+                          c.classList.add('active');
+                      } else {
+                          c.classList.remove('active');
+                      }
+                  });
+              });
+          });
+      }
+
+      // --- 4. COLOR VARIATION LOGIC ---
       const colorContainer = document.getElementById('product-colors');
       const colorCirclesContainer = document.getElementById('color-circles-container');
 
-      if (product.variations && product.variations.length > 0) {
+      // Check if we actually have variations with 'color' attribute
+      const hasColors = product.variations && product.variations.some(v => v.color);
+
+      if (hasColors) {
         colorContainer.style.display = 'block'; 
         
         product.variations.forEach((varObj, index) => {
-          const circle = document.createElement('div');
-          circle.classList.add('color-circle');
-          
-          circle.style.backgroundColor = varObj.color;
-          circle.title = varObj.color; 
-
-          if (index === 0) circle.classList.add('active');
-
-          circle.addEventListener('click', () => {
-              mainImg.style.opacity = '0';
-              if(preloader) preloader.style.display = 'flex';
+          // Only create circle if color exists (handles cases where you only provide an image path)
+          if(varObj.color) {
+              const circle = document.createElement('div');
+              circle.classList.add('color-circle');
               
-              mainImg.src = varObj.image;
-              document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('active'));
-              circle.classList.add('active');
-          });
+              circle.style.backgroundColor = varObj.color;
+              circle.title = varObj.color; 
+              circle.setAttribute('data-linked-img', varObj.image);
 
-          colorCirclesContainer.appendChild(circle);
+              // Set active for the first color that matches the main image OR just the first index
+              if (varObj.image === product.image || index === 0) {
+                  circle.classList.add('active');
+              }
+
+              circle.addEventListener('click', () => {
+                  mainImg.style.opacity = '0';
+                  if(preloader) preloader.style.display = 'flex';
+                  
+                  mainImg.src = varObj.image;
+                  
+                  // Update active Color Circle
+                  document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('active'));
+                  circle.classList.add('active');
+
+                  // Sync with Thumbnails gallery
+                  document.querySelectorAll('.small-img-col').forEach(col => {
+                      if (col.getAttribute('data-img') === varObj.image) {
+                          col.classList.add('active');
+                          // Scroll to the active thumbnail smoothly
+                          col.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                      } else {
+                          col.classList.remove('active');
+                      }
+                  });
+              });
+
+              colorCirclesContainer.appendChild(circle);
+          }
         });
       }
 

@@ -37,6 +37,45 @@ body {
   border: 1px solid #ddd;
 }
 
+/* --- NEW: Small Image Gallery Styles --- */
+.small-img-group {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  width: 100%;
+  margin-top: 10px;
+  scroll-behavior: smooth;
+  /* Hide scrollbar */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.small-img-group::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+.small-img-col {
+  flex: 0 0 85px;
+  height: 85px;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+.small-img-col:hover {
+  opacity: 1;
+}
+.small-img-col.active {
+  border-color: #000;
+  opacity: 1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.small-img-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* --- Right Side: Details --- */
 .single-pro-details {
   width: 50%;
@@ -353,4 +392,4 @@ body {
 
 .faq-item.active .faq-question i {
     transform: rotate(180deg);
-} 
+}

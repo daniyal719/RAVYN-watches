@@ -100,12 +100,15 @@ function renderProducts(category, limit, containerSelector, customList = null) {
         if (product.variations && product.variations.length > 0) {
             variationsHtml = `<div class="product-variations">`;
             product.variations.forEach(v => {
-                variationsHtml += `
-                    <span class="variation-dot" 
-                          style="background-color: ${v.color.toLowerCase()};" 
-                          title="${v.color}"
-                          onclick="event.stopPropagation(); changeProductImage(this, '${v.image}')">
-                    </span>`;
+                // BUG FIX: Only render the dot if 'color' actually exists
+                if (v.color) {
+                    variationsHtml += `
+                        <span class="variation-dot" 
+                              style="background-color: ${v.color.toLowerCase()};" 
+                              title="${v.color}"
+                              onclick="event.stopPropagation(); changeProductImage(this, '${v.image}')">
+                        </span>`;
+                }
             });
             variationsHtml += `</div>`;
         }
