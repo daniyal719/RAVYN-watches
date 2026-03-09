@@ -85,7 +85,10 @@ function renderProducts(category, limit, containerSelector, customList = null) {
 
     filteredList.forEach(product => {
         const hasDiscount = product.dis > 0;
-        const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (product.dis / 100))) : product.price;
+        
+        // Use actualDis for math if it exists, otherwise fallback to standard dis
+        const discountRate = product.actualDis !== undefined ? product.actualDis : product.dis;
+        const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (discountRate / 100))) : product.price;
         
         // Restore the Discount Badge HTML
         const discountBadge = hasDiscount 
@@ -235,68 +238,7 @@ if (exploreBtn) {
     });
 }
 
-// --- 8. Ramadan Exclusive Deal ---
-const qtyMinus = document.getElementById('qty-minus');
-const qtyPlus = document.getElementById('qty-plus');
-const qtyInput = document.getElementById('qty-input');
-const addCartBtn = document.querySelector('.add-cart-btn');
-const buyNowBtn = document.querySelector('.buy-now-btn');
-
-const ramadanProduct = {
-    id: 'ramadan-bugatti-001',
-    name: 'Bugatti Luxury Watch',
-    price: 19000,
-    image: './Images/product/product-6.jpeg'
-};
-
-if (qtyMinus && qtyPlus && qtyInput) {
-    qtyPlus.addEventListener('click', () => {
-        qtyInput.value = parseInt(qtyInput.value) + 1;
-    });
-    qtyMinus.addEventListener('click', () => {
-        let val = parseInt(qtyInput.value);
-        if (val > 1) qtyInput.value = val - 1;
-    });
-}
-
-function addRamadanDealToCart(redirect = false) {
-    if (!qtyInput) return;
-    const quantity = parseInt(qtyInput.value);
-    let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
-    const existingItemIndex = cart.findIndex(item => item.id === ramadanProduct.id);
-    
-    if (existingItemIndex > -1) {
-        cart[existingItemIndex].quantity += quantity;
-    } else {
-        cart.push({ 
-            id: ramadanProduct.id,
-            name: ramadanProduct.name,
-            price: ramadanProduct.price,
-            image: ramadanProduct.image,
-            quantity: quantity 
-        });
-    }
-    
-    localStorage.setItem('ravyn_cart', JSON.stringify(cart));
-    updateCartCount();
-
-    if (redirect) {
-        window.location.href = 'checkout.html';
-    } else if (addCartBtn) {
-        addCartBtn.style.backgroundColor = 'black';
-        addCartBtn.style.color = 'white';
-        addCartBtn.innerHTML = 'Added!';
-        setTimeout(() => {
-            addCartBtn.style.backgroundColor = ''; 
-            addCartBtn.style.color = '';
-            addCartBtn.innerHTML = 'Add To Cart';
-        }, 2000);
-    }
-}
-if (addCartBtn) addCartBtn.addEventListener('click', () => addRamadanDealToCart(false));
-if (buyNowBtn) buyNowBtn.addEventListener('click', () => addRamadanDealToCart(true));
-
-// --- 9. Add To Cart from Card Logic ---
+// --- 8. Add To Cart from Card Logic ---
 function addToCart(event, productId) {
     // Prevent the click from bubbling up to the .products div (which redirects the page)
     event.stopPropagation(); 
@@ -305,9 +247,10 @@ function addToCart(event, productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    // Calculate the final price in case there is a discount
+    // Calculate the final price in case there is a discount using actualDis
     const hasDiscount = product.dis > 0;
-    const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (product.dis / 100))) : product.price;
+    const discountRate = product.actualDis !== undefined ? product.actualDis : product.dis;
+    const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (discountRate / 100))) : product.price;
 
     let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
     const existingItemIndex = cart.findIndex(item => item.id === product.id);

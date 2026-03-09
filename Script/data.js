@@ -8,6 +8,7 @@ const products = [
     price: 3499,
     description: 'A masterpiece of precision and style...',
     dis: 10,
+    actualDis: 8.5,
     variations: [
       { image: './Images/product/Rolex/rolex-black.jpg' },
       { image: './Images/product/Rolex/rolex-back.jpg' },
@@ -21,7 +22,8 @@ const products = [
     name: 'Bugatti Luxury Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { image: './Images/product/Rolex/rolex-white-golden.jpg' },
       { image: './Images/product/Rolex/rolex-back.jpg' },
@@ -36,6 +38,7 @@ const products = [
     price: 19000,
     description: 'A masterpiece of precision and style...',
     dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'lightgreen', image: './Images/product/Rolex/rolex-golden-green.jpg' },
       { color: 'red', image: './Images/product/Rolex/rolex-golden-red.jpg' },
@@ -51,7 +54,8 @@ const products = [
     name: 'Patek Philippe Geneve leather strap watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { image: './Images/product/P P/pp-black-B.jpg' },
       { image: './Images/product/P P/pp-back.jpg' },
@@ -65,7 +69,8 @@ const products = [
     name: 'Patek Philippe Semi Auto watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'black', image: './Images/product/P P/pp-silver-B.jpg'},
       { color: 'white', image: './Images/product/P P/pp-silver-W.jpg'},
@@ -83,7 +88,8 @@ const products = [
     name: 'Arabic Aura watches',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'white', image: './Images/product/Aura/aura-white.jpg'},
       { color: 'black', image: './Images/product/Aura/aura-black.jpg'},
@@ -99,7 +105,8 @@ const products = [
     name: 'Cartier Old Money watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'white' , image: './Images/product/Cartiner/cartiner-white.jpg' },
       { color: 'black' , image: './Images/product/Cartiner/cartiner-black.jpg' }
@@ -113,7 +120,8 @@ const products = [
     name: 'Casio Quartz watch',
     price: 19000,
     description: 'A masterpiece of precision and style... (water resistant)',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'white' , image: './Images/product/Casio/casio-white.jpg' },
       { color: 'black' , image: './Images/product/Casio/casio-black.jpg' },
@@ -128,7 +136,8 @@ const products = [
     name: 'Forichs semi auto watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'white' , image: './Images/product/Forchs/forchs-white.jpg' },
       { color: 'black' , image: './Images/product/Forchs/forchs-black.jpg' }
@@ -142,7 +151,8 @@ const products = [
     name: 'Hublot Diamond Cut watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: '#A88905' , image: './Images/product/Hublot/hublot-gray-G6.jpg' },
       { color: 'brown' , image: './Images/product/Hublot/hublot-gray-R6.jpg' },
@@ -157,7 +167,8 @@ const products = [
     name: 'Hublot Round watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'lightgray' , image: './Images/product/Hublot/hublot-silver-Br.jpg' },
       { color: 'black' , image: './Images/product/Hublot/hublot-silver-Br-2.jpg' },
@@ -172,7 +183,8 @@ const products = [
     name: 'Lamborghini Watch',
     price: 19000,
     description: 'A masterpiece of precision and style...',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'black' , image: './Images/product/Lambo/lam-blue.jpg' },
       { color: 'lightgray' , image: './Images/product/Lambo/lam-silver.jpg' },
@@ -188,7 +200,8 @@ const products = [
     name: 'Farrari Wheel watch',
     price: 19000,
     description: 'A masterpiece of precision and style... (rotating dial)',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations:[
       { color: 'blue' , image: './Images/product/un/un-blue.jpg'},
       { color: 'green' , image: './Images/product/un/un-green.jpg'},
@@ -202,7 +215,8 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations:[
       { color: 'blue' , image: './Images/product/un/un-blue-com.jpg'},
       { color: 'green' , image: './Images/product/un/un-green-com.jpg'},
@@ -217,9 +231,10 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
-      './Images/product/Tomi/tomi-back.jpg'
+      { image: './Images/product/Tomi/tomi-back.jpg' }
     ]
   },
   {
@@ -229,9 +244,10 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
-      './Images/product/Tomi/tomi-back.jpg'
+      { image: './Images/product/Tomi/tomi-back.jpg' }
     ]
   },
   {
@@ -241,23 +257,25 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
-      './Images/product/Tomi/tomi-box-dial.jpg',
-      './Images/product/Tomi/tomi-back.jpg'
+      { image: './Images/product/Tomi/tomi-box-dial.jpg' },
+      { image: './Images/product/Tomi/tomi-back.jpg' }
     ]
   },
   {
-    id: 'tomi-watch-03', 
+    id: 'tomi-watch-04', 
     categories: ['men-watch' , 'tomi-watch'],
     image: './Images/product/Tomi/tomi-box-black-gray.jpg', 
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
-      './Images/product/Tomi/tomi-box-dial.jpg',
-      './Images/product/Tomi/tomi-back.jpg'
+      { image: './Images/product/Tomi/tomi-box-dial.jpg' },
+      { image: './Images/product/Tomi/tomi-back.jpg' }
     ]
   },
   // 11. women section
@@ -268,7 +286,8 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'black' , image: './Images/product/Women/women-1-black.jpg' },
       { color: '#FFD700' , image: './Images/product/Women/women-1-golden.jpg' },
@@ -282,7 +301,8 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
     variations: [
       { color: 'black' , image: './Images/product/Women/women-2-black.jpg' },
       { color: 'brown' , image: './Images/product/Women/women-2-brown.jpg' },
@@ -295,6 +315,7 @@ const products = [
     name: 'Farrari Modren Dial watch',
     price: 19000,
     description: 'A masterpiece of precision and style... ( rotating dial )',
-    dis: 0,
+    dis: 10,
+    actualDis: 8.5,
   },
 ];

@@ -16,7 +16,7 @@
     /* --- Guarantees the Preloader is perfectly centered --- */
     .single-pro-image {
       position: relative !important;
-      min-height: 450px; /* Gives the container height while the image is loading */
+      min-height: 450px; 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -314,7 +314,10 @@
       let finalPrice = product.price; // Default to normal price
       
       if (product.dis > 0) {
-          finalPrice = Math.floor(product.price - (product.price * (product.dis / 100)));
+          // NEW: Use actualDis if provided, else normal dis
+          const discountRate = product.actualDis !== undefined ? product.actualDis : product.dis;
+          
+          finalPrice = Math.floor(product.price - (product.price * (discountRate / 100)));
           document.querySelector('.pro-price').innerHTML = `
             <span class="old-price">Rs ${product.price}</span>
             <span class="new-price">Rs ${finalPrice}/-</span>
