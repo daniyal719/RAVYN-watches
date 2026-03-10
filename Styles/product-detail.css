@@ -36,6 +36,9 @@ body {
   background-color: black;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .main-img {
   width: 100%;
