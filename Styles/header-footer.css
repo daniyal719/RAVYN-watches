@@ -1,6 +1,9 @@
 /* =========================================
    ANNOUNCEMENT BAR
    ========================================= */
+* {
+  -webkit-tap-highlight-color: transparent; 
+}
 .announcement-bar {
     background-color: #111; 
     color: white;
@@ -47,7 +50,7 @@
 /* Close Button Styles */
 #closeAnnouncement {
     position: absolute;
-    right: 20px;
+    right: 5px;
     background: none;
     border: none;
     color: white;
