@@ -28,7 +28,15 @@ body {
   align-items: center;
   flex-direction: column;
 }
-
+.single-pro-image button{
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
 .main-img {
   width: 100%;
   border-radius: 10px;
@@ -286,6 +294,7 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  width: 100%;
 }
 .comparision-table-container{
   background-color: white;
@@ -309,23 +318,25 @@ body {
 
 }
 .comparison-table {
-  width: auto;
+  width: 100%; /* Change from auto to 100% to fill container */
   max-width: 700px;
   margin: 10px auto;
   border-collapse: collapse;
   border: 2px solid #000;
 }
-.main{
+
+.main {
   background-color: black;
   color: white;
-  padding: 10px 60px;
-  font-size: 18px;
+  padding: 10px 15px; /* Reduced from 60px to prevent overflow */
+  font-size: 16px;    /* Slightly smaller font for mobile */
 }
-.feature-name{
-  font-size: 24px;
+
+.feature-name {
+  font-size: 16px;    /* Reduced from 24px */
   font-family: sans-serif;
   border: 1px solid gray;
-  padding: 10px 30px;
+  padding: 10px 10px; /* Reduced from 30px */
   text-align: center;
 }
 .check,.cross{
