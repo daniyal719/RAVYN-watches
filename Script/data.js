@@ -74,8 +74,6 @@ const products = [
     variations: [
       { color: 'black', image: './Images/product/P P/pp-silver-B.jpg'},
       { color: 'white', image: './Images/product/P P/pp-silver-W.jpg'},
-      { image: './Images/product/P P/pp-back.jpg' },
-      { image: './Images/product/P P/pp-chain.jpg' },
       { image: './Images/product/P P/auto-back.jpg' },
       { image: './Images/product/P P/auto-back-2.jpg' }
     ]
@@ -149,7 +147,7 @@ const products = [
     categories: ['men-watch' , 'hublot-watch'],
     image: './Images/product/Hublot/hublot-gray-G6.jpg', 
     name: 'Hublot Diamond Cut watch',
-    price: 19000,
+    price: 3670,
     description: 'A masterpiece of precision and style...',
     dis: 10,
     actualDis: 8.5,
@@ -165,7 +163,7 @@ const products = [
     categories: ['men-watch' , 'hublot-watch'],
     image: './Images/product/Hublot/hublot-silver-Br.jpg', 
     name: 'Hublot Round watch',
-    price: 19000,
+    price: 4110,
     description: 'A masterpiece of precision and style...',
     dis: 10,
     actualDis: 8.5,
@@ -233,9 +231,6 @@ const products = [
     description: 'A masterpiece of precision and style... ( rotating dial )',
     dis: 10,
     actualDis: 8.5,
-    variations: [
-      { image: './Images/product/Tomi/tomi-back.jpg' }
-    ]
   },
   {
     id: 'tomi-watch-02', 
@@ -275,7 +270,7 @@ const products = [
     actualDis: 8.5,
     variations: [
       { image: './Images/product/Tomi/tomi-box-dial.jpg' },
-      { image: './Images/product/Tomi/tomi-back.jpg' }
+      { image: './Images/product/Tomi/tomi-box.jpg' },
     ]
   },
   // 11. women section

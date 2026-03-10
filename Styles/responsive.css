@@ -2,7 +2,6 @@
    1. BASE STYLES (Global)
    ========================================= */
 
-/* WhatsApp Floating Button */
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -29,7 +28,6 @@
     color: white;
 }
 
-/* Side Search Panel */
 .side-search-panel {
     position: fixed;
     top: 0;
@@ -54,7 +52,6 @@
     margin-bottom: 20px;
 }
 
-/* Mobile Nav Items */
 .mobile-nav-item {
     color: white;
 }
@@ -66,12 +63,10 @@
     background-color: black;
 }
 
-
 /* =========================================
-   2. MEDIA QUERIES (Largest -> Smallest)
+   2. MEDIA QUERIES
    ========================================= */
 
-/* Large Screens / Laptops */
 @media (max-width: 1200px) {
     .fe {
         flex: 0 0 5%;
@@ -91,22 +86,18 @@
     }
 }
 
-/* Tablets / Small Laptops */
 @media (max-width: 900px) {
     .hero-section {
         background-position: center center;
         background-size: cover;
     }
-
     .hero-left {
         width: 480px;
     }
-
     .social-icon i {
         font-size: 30px;
         margin: 0px;
     }
-
     .fe {
         flex: 0 0 5%;
         background-color: #ffff;
@@ -123,15 +114,12 @@
         padding-bottom: 40px;
         margin-bottom: 80px;
     }
-
     body {
         padding-bottom: 90px !important;
     }
-
     .whatsapp-float {
         bottom: 100px !important;
     }
-
     .cart-summary,
     .checkout-container {
         margin-bottom: 20px;
@@ -141,7 +129,6 @@
         flex-direction: column; 
         width: 100%; 
     }
-
     .single-pro-image {
         width: 100%;
         margin-right: 0px; 
@@ -150,13 +137,11 @@
         flex-direction: column;
         align-items: center; 
     }
-
     .main-img {
         width: 100%;
         max-width: 500px; 
         object-fit: contain; 
     }
-
     .single-pro-details {
         width: 100%;
     }
@@ -200,33 +185,64 @@
         font-size: 16px;
     }
 }
+/* =========================================
+   DESKTOP: CENTERED SEARCH BAR (800px and up)
+   ========================================= */
+@media (min-width: 800px) {
+    .header {
+        /* Anchors the search bar so it stays inside the header */
+        position: relative; 
+    }
 
+    /* 1. Break the search bar out and center it absolutely */
+    .header-right-section .search-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40vw; /* Responsive width based on screen size */
+        max-width: 450px; /* Prevents it from getting too huge on 4k monitors */
+    }
+
+    /* 2. Tell the input text area to stretch and fill the new, wider container */
+    .search-container input {
+        width: 100%;
+        flex: 1;
+        margin-right: 10px; /* Adds breathing room before the magnifying glass */
+    }
+
+    /* 3. Push the Nav Links (Home, Collection) to the right, sitting nicely next to the Cart */
+    .center-nav {
+        margin-left: auto;
+        margin-right: 30px; /* Space between your links and the Cart icon */
+    }
+}
 /* =========================================
    CRITICAL UPDATE: Mobile Header Logic (799px)
    ========================================= */
 @media (max-width: 799px) {
 
-    /* 1. HIDE Search Bar */
     .header-right-section .search-container {
         display: none !important;
     }
 
-    /* 2. HIDE Header Cart Icon (Moved to Hamburger) */
     .header-right-section .cart-button {
         display: none !important;
     }
     
-    /* 3. SHOW Hamburger Cart Link */
     .nav-cart-link {
         display: block !important;
     }
 
-    /* 4. FIX Right Section to be VISIBLE on the header bar */
+    /* SHOW CATEGORY LINKS IN HAMBURGER */
+    .mobile-only-link {
+        display: block !important; 
+    }
+
     .header-right-section {
         position: static;      
-        right: auto;           
+        right: auto;            
         height: auto;          
-        width: auto;           
+        width: auto;            
         background-color: transparent; 
         box-shadow: none;      
         padding: 0;
@@ -236,7 +252,6 @@
         justify-content: flex-end;
     }
 
-    /* 5. SHOW Hamburger Menu Button */
     .mobile {
         display: flex !important; 
         align-items: center;
@@ -246,7 +261,6 @@
         color: white; 
     }
 
-    /* 6. TURN .center-nav INTO the Side Menu */
     .center-nav {
         display: flex;
         flex-direction: column;
@@ -291,7 +305,6 @@
         cursor: pointer;
     }
     
-    /* --- General Responsive Fixes --- */
     .hero-section {
         margin: 10px 0;
         height: 70vh;
@@ -335,7 +348,6 @@
     }
     .image-cart-btn {
         right: 10px; 
-        /* Optional: adjust size slightly for mobile if desired */
         width: 35px;
         height: 35px;
     }
@@ -374,7 +386,6 @@
     }
 }
 
-/* Tablets / Large Phones */
 @media (max-width: 768px) {
   .hero-section{
     margin: 10px;
@@ -400,6 +411,7 @@
     .review-card {
         padding: 20px;
     }
+    /* Note: The old buggy rule hiding .mobile-only-link has been removed here! */
 }
 
 /* Mobile Devices */

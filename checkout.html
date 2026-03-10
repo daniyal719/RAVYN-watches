@@ -174,11 +174,13 @@
     </div>
     
     <div class="center-nav">
-        <a href="index.html"><p class="menu">Home</p></a>
-        <a href="collection.html"><p class="menu">Collection</p></a>
-        <a href="collection.html?category=men-watch"><p class="menu">Men Watches</p></a>
-        <a href="collection.html?category=women-watch"><p class="menu">Women Watches</p></a>
-        <a href="collection.html?category=rolex-watch"><p class="menu">Rolex</p></a>
+        <a href="index.html" class="mobile-only-link"><p class="menu">Home</p></a>
+        <a href="collection.html" class="mobile-only-link"><p class="menu">Collection</p></a>
+        
+        <a href="collection.html?category=men-watch" class="mobile-only-link"><p class="menu">Men Watches</p></a>
+        <a href="collection.html?category=women-watch" class="mobile-only-link"><p class="menu">Women Watches</p></a>
+        <a href="collection.html?category=rolex-watch" class="mobile-only-link"><p class="menu">Rolex</p></a>
+        
         <a href="cart.html" class="nav-cart-link"><p class="menu">Cart</p></a>
         <i class="fa fa-window-close" id="close" aria-hidden="true"></i>
     </div>
@@ -332,7 +334,7 @@
               <span>Total</span>
               <span id="totalPrice" style="color: red;">Rs 0</span>
             </div>
-            <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+            <button id="checkoutBtn" class="place-order-btn" onclick="placeOrder()">Place Order</button>
           </div>
         </div>
     </div>
@@ -371,7 +373,7 @@
 
     function loadOrderSummary() {
         const container = document.getElementById('orderItems');
-        const placeOrderBtn = document.querySelector('.place-order-btn');
+        const placeOrderBtn = document.getElementById('checkoutBtn');
         
         if(cart.length === 0) {
             container.innerHTML = `<p style="text-align:center; padding: 20px; color: gray;">Your cart is empty.</p>`;
@@ -447,7 +449,7 @@
         return;
     }
 
-    const btn = document.querySelector('.place-order-btn');
+    const btn = document.getElementById('checkoutBtn');
     const originalBtnText = "Place Order"; 
     btn.innerText = "Processing..."; 
     btn.disabled = true;
