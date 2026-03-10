@@ -276,6 +276,8 @@ function moveCarousel() {
 }
 
 function startAutoPlay() {
+    // Clear any existing interval to ensure no duplicate loops
+    clearInterval(autoPlayInterval);
     if (sliderContainer) autoPlayInterval = setInterval(moveCarousel, 4000);
 }
 
@@ -285,16 +287,12 @@ if (sliderContainer) {
     startAutoPlay();
     slidesList.forEach(slide => {
         slide.addEventListener('click', (e) => {
-            stopAutoPlay();
             const categoryId = slide.getAttribute('data-category');
             if (categoryId) {
                 window.location.href = `collection.html?category=${categoryId}`;
             }
-            setTimeout(startAutoPlay, 5000); 
         });
     });
-    sliderContainer.addEventListener('mousedown', stopAutoPlay);
-    sliderContainer.addEventListener('touchstart', stopAutoPlay);
 }
 
 // --- Utility: Scroll to Products ---

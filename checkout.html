@@ -339,7 +339,23 @@
         </div>
     </div>
   </section>
-
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="side-cart-panel" id="sideCartPanel">
+      <div class="cart-panel-header">
+          <h2>Your Cart</h2>
+          <i class="fa fa-window-close" id="closeCartPanel"></i>
+      </div>
+      <div class="cart-panel-body" id="cartPanelBody">
+          </div>
+      <div class="cart-panel-footer">
+          <div class="cart-subtotal">
+              <span>Subtotal:</span>
+              <span id="cartPanelTotal">Rs 0</span>
+          </div>
+          <p class="cart-tax-note">Taxes and shipping calculated at checkout</p>
+          <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+      </div>
+  </div>
   <script src="./Script/common.js"></script>
   <script>
     let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];

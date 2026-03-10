@@ -126,14 +126,16 @@
       <i class="fa-solid fa-shop"></i>
       <span class="label">Shop</span>
     </a>
-    <a href="wishlist.html" class="mobile-nav-item" style="color: gray;">
-      <i class="fa-solid fa-heart"></i>
+    <a href="wishlist.html" class="mobile-nav-item">
+      <i class="fa-regular fa-heart"></i>
       <span class="label">Saved</span>
     </a>
-    <a href="cart.html" class="mobile-nav-item">
+    
+    <a href="#" class="mobile-nav-item open-cart-btn">
       <i class="fa-solid fa-cart-shopping"></i>
       <span class="label">Cart</span>
     </a>
+    
     <div class="mobile-nav-item" id="mobileSearchTrigger">
       <i class="fa-solid fa-magnifying-glass"></i>
       <span class="label">Search</span>
@@ -154,7 +156,23 @@
         <div class="search-suggestions" id="sideSearchSuggestions"></div>
     </div>
   </div>
-
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="side-cart-panel" id="sideCartPanel">
+      <div class="cart-panel-header">
+          <h2>Your Cart</h2>
+          <i class="fa fa-window-close" id="closeCartPanel"></i>
+      </div>
+      <div class="cart-panel-body" id="cartPanelBody">
+          </div>
+      <div class="cart-panel-footer">
+          <div class="cart-subtotal">
+              <span>Subtotal:</span>
+              <span id="cartPanelTotal">Rs 0</span>
+          </div>
+          <p class="cart-tax-note">Taxes and shipping calculated at checkout</p>
+          <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+      </div>
+  </div>
   <a href="https://wa.me/923354562580" class="whatsapp-float" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
