@@ -25,7 +25,7 @@ if (closeAnnouncement) {
         
         const currentHeight = bar.offsetHeight;
         bar.style.height = currentHeight + 'px';
-        bar.offsetHeight; // force reflow
+        bar.offsetHeight; 
         
         bar.style.transition = 'all 0.4s ease-in-out';
         bar.style.height = '0px';
@@ -96,7 +96,7 @@ function updateWishlistCount() {
         countElement.innerText = getSavedWishlist().length;
     }
 }
-updateWishlistCount(); // Run on load
+updateWishlistCount(); 
 
 // --- 4. Product Rendering ---
 function renderProducts(category, limit, containerSelector, customList = null) {
@@ -149,20 +149,16 @@ function renderProducts(category, limit, containerSelector, customList = null) {
             variationsHtml += `</div>`;
         }
 
-        // Check if item is already wishlisted to render the active heart icon
         const isWishlisted = savedWishlist.includes(product.id) ? 'active' : '';
 
         html += `
             <div class="products" data-product-id="${product.id}" onclick="window.location.href='Product-detail.html?id=${product.id}'">
-                
                 ${discountBadge} 
                 <div class="products-top">
                     <img class="product-image" src="${product.image}" id="img-${product.id}">
-                    
                     <button class="wishlist-toggle-btn ${isWishlisted}" onclick="toggleWishlist(event, '${product.id}')" title="Add to Wishlist">
                         <i class="fa-regular fa-heart"></i>
                     </button>
-
                     <button class="image-cart-btn" onclick="addToCart(event, '${product.id}')" title="Add to Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -179,7 +175,6 @@ function renderProducts(category, limit, containerSelector, customList = null) {
     container.innerHTML = html;
 }
 
-// Helper function to change image on dot click
 function changeProductImage(dotElement, newImageUrl) {
     const productCard = dotElement.closest('.products');
     const mainImg = productCard.querySelector('.product-image');
@@ -188,19 +183,14 @@ function changeProductImage(dotElement, newImageUrl) {
     }
 }
 
-// --- Wishlist Interaction Logic ---
 function toggleWishlist(event, productId) {
-    event.stopPropagation(); // Stop page redirect when clicking heart
-
+    event.stopPropagation(); 
     const btn = event.currentTarget;
     let savedWishlist = getSavedWishlist();
 
-    // Play animation
     btn.classList.remove('pop');
-    void btn.offsetWidth; // trigger reflow
+    void btn.offsetWidth; 
     btn.classList.add('pop');
-
-    // Toggle active state locally
     btn.classList.toggle('active');
 
     if (btn.classList.contains('active')) {
@@ -212,7 +202,6 @@ function toggleWishlist(event, productId) {
     localStorage.setItem('ravenWishlist', JSON.stringify(savedWishlist));
     updateWishlistCount();
 
-    // Re-render if we are actively on the wishlist page and remove an item
     if (document.getElementById('wishlist-grid')) {
         renderWishlistPage();
     }
@@ -251,7 +240,6 @@ else if (wishlistContainer) {
     renderWishlistPage();
 }
 
-// --- Render Wishlist Page ---
 function renderWishlistPage() {
     const grid = document.getElementById('wishlist-grid');
     const emptyMsg = document.getElementById('empty-wishlist-message');
@@ -261,7 +249,7 @@ function renderWishlistPage() {
     
     if (savedWishlist.length === 0) {
         grid.innerHTML = '';
-        emptyMsg.style.display = 'block';
+        emptyMsg.style.display = 'flex'; // Uses flex for centering
     } else {
         emptyMsg.style.display = 'none';
         const wishlistedProducts = products.filter(p => savedWishlist.includes(p.id));
@@ -309,18 +297,7 @@ if (sliderContainer) {
     sliderContainer.addEventListener('touchstart', stopAutoPlay);
 }
 
-// --- 7. Utility Functions ---
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
-    const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-    const countElement = document.querySelector('.cart-button span');
-    if (countElement) {
-        countElement.innerText = totalCount;
-        countElement.style.display = totalCount > 0 ? 'block' : 'none';
-    }
-}
-updateCartCount();
-
+// --- Utility: Scroll to Products ---
 const exploreBtn = document.getElementById('exploreBtn');
 if (exploreBtn) {
     exploreBtn.addEventListener('click', () => {
@@ -328,10 +305,125 @@ if (exploreBtn) {
     });
 }
 
-// --- 8. Add To Cart from Card Logic ---
-function addToCart(event, productId) {
-    event.stopPropagation(); 
+// ==========================================
+// 8. SLIDING CART PANEL LOGIC
+// ==========================================
 
+const cartOverlay = document.getElementById('cartOverlay');
+const sideCartPanel = document.getElementById('sideCartPanel');
+const closeCartPanel = document.getElementById('closeCartPanel');
+const openCartBtns = document.querySelectorAll('.open-cart-btn'); // Matches header & mobile nav icons
+
+// Open Cart
+function openCart() {
+    if(sideCartPanel && cartOverlay) {
+        sideCartPanel.classList.add('active');
+        cartOverlay.classList.add('active');
+        renderCartDrawer(); // Refresh data every time it opens
+    }
+}
+
+// Close Cart
+function closeCart() {
+    if(sideCartPanel && cartOverlay) {
+        sideCartPanel.classList.remove('active');
+        cartOverlay.classList.remove('active');
+    }
+}
+
+// Event Listeners for Cart Triggers
+openCartBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCart();
+    });
+});
+
+if(closeCartPanel) closeCartPanel.addEventListener('click', closeCart);
+if(cartOverlay) cartOverlay.addEventListener('click', closeCart); // Clicking dark area closes it
+
+// Render Items inside the Cart Drawer
+function renderCartDrawer() {
+    const cartBody = document.getElementById('cartPanelBody');
+    const cartTotalEl = document.getElementById('cartPanelTotal');
+    const headerBadges = document.querySelectorAll('.cart-count-badge'); // Selects the badges in header
+    
+    if (!cartBody || !cartTotalEl) return;
+
+    let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
+    let totalItems = 0;
+    let totalPrice = 0;
+    
+    cartBody.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartBody.innerHTML = `
+            <div class="empty-cart-msg">
+                <i class="fa-solid fa-cart-shopping" style="font-size: 40px; color: #ddd; margin-bottom: 10px;"></i>
+                <p>Your cart is currently empty.</p>
+                <button onclick="closeCart()" style="padding: 10px 20px; background: black; color: white; border: none; border-radius: 4px; margin-top: 15px; cursor:pointer;">Continue Shopping</button>
+            </div>`;
+    } else {
+        cart.forEach(item => {
+            totalItems += item.quantity;
+            totalPrice += (item.price * item.quantity);
+
+            cartBody.innerHTML += `
+                <div class="cart-drawer-item">
+                    <img src="${item.image}" class="cart-drawer-img" alt="${item.name}">
+                    <div class="cart-drawer-details">
+                        <p class="cart-drawer-title">${item.name}</p>
+                        <p class="cart-drawer-price">Rs ${item.price}</p>
+                        <div class="cart-drawer-actions">
+                            <div class="drawer-qty-box">
+                                <button class="drawer-qty-btn" onclick="updateCartDrawerQty('${item.id}', -1)">-</button>
+                                <input type="text" class="drawer-qty-input" value="${item.quantity}" readonly>
+                                <button class="drawer-qty-btn" onclick="updateCartDrawerQty('${item.id}', 1)">+</button>
+                            </div>
+                            <button class="drawer-remove-btn" onclick="removeFromCartDrawer('${item.id}')">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Update Totals and Badges
+    cartTotalEl.innerText = `Rs ${totalPrice.toLocaleString()}`;
+    headerBadges.forEach(badge => {
+        badge.innerText = totalItems;
+        badge.style.display = totalItems > 0 ? 'flex' : 'none'; // Using flex for centering the text
+    });
+}
+
+// Update Quantity (+ / -)
+function updateCartDrawerQty(id, change) {
+    let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
+    const itemIndex = cart.findIndex(item => item.id === id);
+
+    if (itemIndex > -1) {
+        cart[itemIndex].quantity += change;
+        if (cart[itemIndex].quantity <= 0) {
+            cart.splice(itemIndex, 1); // Remove if qty hits 0
+        }
+        localStorage.setItem('ravyn_cart', JSON.stringify(cart));
+        renderCartDrawer();
+    }
+}
+
+// Remove completely
+function removeFromCartDrawer(id) {
+    let cart = JSON.parse(localStorage.getItem('ravyn_cart')) || [];
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('ravyn_cart', JSON.stringify(cart));
+    renderCartDrawer();
+}
+
+// Master Add To Cart Function (Updated to trigger Drawer)
+function addToCart(event, productId) {
+    if(event) event.stopPropagation(); 
+
+    // Uses the global 'products' array from your data.js
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -355,20 +447,10 @@ function addToCart(event, productId) {
     }
     
     localStorage.setItem('ravyn_cart', JSON.stringify(cart));
-    updateCartCount();
-
-    const btn = event.currentTarget;
-    const icon = btn.querySelector('i');
-    if (icon) {
-        icon.classList.remove('fa-cart-shopping');
-        icon.classList.add('fa-check');
-        btn.style.backgroundColor = "black";
-        icon.style.color = "white";
-        setTimeout(() => {
-            icon.classList.remove('fa-check');
-            icon.classList.add('fa-cart-shopping');
-            btn.style.backgroundColor = ""; 
-            icon.style.color = ""; 
-        }, 1000);
-    }
+    
+    // Automatically open the cart drawer when an item is added
+    openCart(); 
 }
+
+// Run render on initial page load to ensure badges are correct
+document.addEventListener('DOMContentLoaded', renderCartDrawer);

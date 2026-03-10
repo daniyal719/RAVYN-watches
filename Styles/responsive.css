@@ -417,7 +417,12 @@
         text-align: center;
     }
 }
-
+/* Mobile responsiveness for the Drawer */
+@media (max-width: 450px) {
+    .side-cart-panel {
+        width: 100%; /* Takes full width on very small phones */
+    }
+}
 @media (max-width: 430px) {
     .header {
         height: 50px;
