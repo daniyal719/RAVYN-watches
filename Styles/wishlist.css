@@ -1,0 +1,65 @@
+/* =========================================
+   WISHLIST PAGE SPECIFIC STYLES
+   ========================================= */
+
+.wishlist-page-container {
+    min-height: 75vh; 
+    padding-bottom: 50px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+}
+
+#wishlist-grid {
+    flex-grow: 1; 
+}
+
+.empty-state {
+    margin: auto; 
+    text-align: center; /* This will now center the heart icon perfectly */
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.empty-heart-icon {
+    font-size: 70px;
+    color: #ccc;
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    
+    /* THE MAGIC FIX: inline-flex makes it obey text-align: center */
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 20px;
+    border-radius: 50%;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
+}
+
+.empty-state h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.empty-state p {
+    font-family: Arial, sans-serif;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 600px) {
+    .empty-heart-icon {
+        width: 120px;
+        height: 120px;
+        font-size: 50px;
+    }
+    .empty-state h2 {
+        font-size: 24px;
+    }
+}

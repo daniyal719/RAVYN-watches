@@ -1,5 +1,5 @@
 * {
-  -webkit-tap-highlight-color: transparent; /* Removes the blue flash on click/tap */
+  -webkit-tap-highlight-color: transparent; 
 }
 html {
   scroll-behavior: smooth;
@@ -28,8 +28,8 @@ i{
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #000000; /* Deep black background */
-  z-index: 99999; /* Ensure it stays on top of everything */
+  background-color: #000000;
+  z-index: 99999; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,6 @@ i{
   align-items: center;
 }
 
-/* The outer dial */
 .watch-face {
   width: 60px;
   height: 60px;
@@ -54,7 +53,6 @@ i{
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
-/* The center pin */
 .watch-face::after {
   content: '';
   position: absolute;
@@ -68,7 +66,6 @@ i{
   z-index: 10;
 }
 
-/* Base style for both hands */
 .watch-hand {
   position: absolute;
   bottom: 50%;
@@ -78,7 +75,6 @@ i{
   border-radius: 10px;
 }
 
-/* The hour hand (shorter, slower) */
 .hour-hand {
   width: 2px;
   height: 15px;
@@ -86,7 +82,6 @@ i{
   animation: spin 12s linear infinite;
 }
 
-/* The minute hand (longer, faster) */
 .minute-hand {
   width: 2px;
   height: 25px;
@@ -94,7 +89,6 @@ i{
   animation: spin 1s linear infinite;
 }
 
-/* Pulsing text */
 .watch-loader p {
   color: #ffffff;
   font-family: 'Bodoni Moda', serif;
@@ -104,7 +98,6 @@ i{
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Animations */
 @keyframes spin {
   100% { transform: rotate(360deg); }
 }
@@ -114,12 +107,10 @@ i{
   50% { opacity: 1; }
 }
 
-/* Utility class applied by JS to hide the preloader */
 .preloader-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
 }
-
 
 .hero-section{
   display: flex;
@@ -129,7 +120,6 @@ i{
   margin: 20px 30px;
   border-radius: 10px;
   box-shadow: 20px 20px 60px black;
-  /*box-shadow: 5px 5px 15px rgba(0,0,0,0.3);*/
   background-image: url(../Images/hero-section.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -163,10 +153,9 @@ i{
 .hero-left button:active{
   background-color: rgb(240, 240, 240);
   color: black;
-
 }
 .fe-products {
-  scroll-margin-top: 80px; /* Adjust this value to match your header height */
+  scroll-margin-top: 80px; 
 }
 .product-deal{
   width: 100%;
@@ -199,7 +188,7 @@ i{
   display: grid;
   place-items: center;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-  justify-content: start; /* Aligns items to the left when there are few */
+  justify-content: start; 
   padding: 10px 60px;
   column-gap: 20px;
   row-gap: 30px;
@@ -223,6 +212,7 @@ i{
   height: auto;
   position: relative; 
 }
+
 /* Color Variation Styles */
 .product-variations {
     display: flex;
@@ -230,7 +220,6 @@ i{
     margin: 10px 0;
     justify-content: flex-start;
 }
-
 .variation-dot {
     width: 24px;
     height: 24px;
@@ -239,7 +228,6 @@ i{
     cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
-
 .variation-dot:hover {
     transform: scale(1.2);
     border-color: #000;
@@ -250,8 +238,8 @@ i{
   object-fit: contain;
   justify-content: center;
   align-items: center;
-  position: relative; /* Necessary for absolute positioning of the cart btn */
-  overflow: hidden; /* Hides the button when it's outside the frame */
+  position: relative; 
+  overflow: hidden; 
 }
 .product-image{
   width: 100%;
@@ -266,10 +254,89 @@ i{
     text-decoration: underline;
   }
 }
+
+/* =========================================
+   WISHLIST TOGGLE BUTTON (INSIDE IMAGE FRAME)
+   ========================================= */
+.wishlist-toggle-btn {
+    position: absolute;
+    bottom: 10px; /* Anchored to the bottom */
+    left: 10px;   /* Anchored to the left */
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 25; /* Matches Cart btn to stay above anti-copy shield */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #333;
+}
+.wishlist-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.wishlist-toggle-btn i {
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+.wishlist-toggle-btn.active i {
+    font-weight: 900; 
+    color: #e74c3c; 
+}
+.wishlist-toggle-btn.pop i {
+    animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+/* =========================================
+   HEADER WISHLIST ICON STYLES
+   ========================================= */
+.wishlist-button {
+    font-size: 30px;
+    color: white !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.header-wishlist {
+    color: white;
+    font-size: 25px;
+    transition: color 0.2s;
+}
+.header-wishlist:hover {
+    color: gray;
+}
+.wishlist-button span {
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
 .image-cart-btn {
   position: absolute;
   bottom: 10px;
-  right: -50px; /* Starts outside the container to the right */
+  right: -50px; 
   width: 40px;
   height: 40px;
   background-color: white;
@@ -280,27 +347,22 @@ i{
   align-items: center;
   cursor: pointer;
   transition: right 0.3s ease, background-color 0.2s ease;
-  z-index: 25; /* Higher than the anti-copy transparent shield */
+  z-index: 25; 
   box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
-
 .image-cart-btn i {
   color: black;
   font-size: 16px;
   transition: color 0.2s ease;
 }
-
 .image-cart-btn:hover {
   background-color: black;
 }
-
 .image-cart-btn:hover i {
   color: white;
 }
-
-/* The Hover Animation Trigger for Desktop */
 .products:hover .image-cart-btn {
-  right: 10px; /* Slides the button into view at the bottom right */
+  right: 10px; 
 }
 .dis-container {
   display: flex;
@@ -308,7 +370,7 @@ i{
   justify-content: center;
   color: white;
   background-color: red;
-  width: 60px; /* Adjusted size */
+  width: 60px; 
   height: 30px;
   position: absolute;
   top: 0;
@@ -317,9 +379,8 @@ i{
   border-bottom-right-radius: 10px;
   font-size: 12px;
   font-weight: bold;
-  z-index: 10; /* Ensures it stays above the image shield */
+  z-index: 10; 
 }
-
 .product-bottom{
   display: flex;
   flex-direction: column;
@@ -332,8 +393,8 @@ i{
   width: 100%;
   height: 30px;
   display: flex;
-  justify-content: flex-start; /* Forces alignment to the left */
-  align-items: center; /* Vertically centers the text */
+  justify-content: flex-start; 
+  align-items: center; 
   box-sizing: border-box;
 }
 .product-bottom i{
@@ -357,7 +418,6 @@ i{
 .product-name-container{
   height: auto;
   width: 100%;
-
 }
 .product-name{
   margin-top: 10px;
@@ -369,26 +429,20 @@ i{
 .product-name:active{
   color: gray;
 }
-
-/* Wrapper for the two price lines */
 .price-stack {
   display: flex;
-  flex-direction: row; /* Changed from column to row */
+  flex-direction: row; 
   justify-content: flex-start;
-  align-items: center; /* Aligns them vertically in the center */
-  gap: 10px; /* Adds space between the old and new price */
+  align-items: center; 
+  gap: 10px; 
   line-height: 1.2;
 }
-
-/* The Old Price (Crossed Out) */
 .discount-price {
   margin: 0;
-  color: gray; /* Changed to gray to make the new price pop */
+  color: gray; 
   text-decoration: line-through;
   font-size: 14px;
 }
-
-/* The New Calculated Price */
 .product-price {
   font-size: 18px;
   font-weight: 700;
@@ -423,24 +477,19 @@ i{
   margin-top: 70px;
   position: relative;
   width: 100%;
-  overflow: hidden; /* This acts as the window */
+  overflow: hidden; 
 }
-
 .slider-container {
     width: 100%;
-    overflow-x: auto; /* Re-enabled manual scrolling */
+    overflow-x: auto; 
     display: flex;
     padding-bottom: 25px;
-    scroll-behavior: smooth; /* Handles the smooth 'Move' animation */
-    -webkit-overflow-scrolling: touch; /* Momentum scroll for mobile */
-    will-change: scroll-position; /* Optimizes for scrolling performance */
-    
-    /* Luxury Scrollbar Styling */
+    scroll-behavior: smooth; 
+    -webkit-overflow-scrolling: touch; 
+    will-change: scroll-position; 
     scrollbar-width: thin;
     scrollbar-color: #000000 #e0e0e0;
 }
-
-/* Chrome/Safari/Edge Scrollbar Design */
 .slider-container::-webkit-scrollbar {
     height: 8px;
 }
@@ -454,14 +503,12 @@ i{
     border-radius: 10px;
     border: 2px solid #e0e0e0;
 }
-
 .slider-track {
     display: flex;
     width: 100%;
 }
-
 .slide {
-    flex: 0 0 33.333%; /* Shows 3 items at a time */
+    flex: 0 0 33.333%; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -469,7 +516,6 @@ i{
     padding: 20px 0;
     cursor: pointer;
 }
-
 .slide img {
     width: 85%;
     max-width: 260px;
@@ -480,43 +526,19 @@ i{
     object-fit: cover;
     background: white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.4s ease; /* Transition for hover effect */
+    transition: transform 0.4s ease; 
 }
-
 .slide:hover img {
-    transform: scale(1.05); /* Smooth hover zoom */
+    transform: scale(1.05); 
 }
-
-/* Custom Scrollbar (kept for visual consistency if needed) */
-.slider-container::-webkit-scrollbar { height: 8px; }
-.slider-container::-webkit-scrollbar-track { background: #e0e0e0; border-radius: 10px; margin: 0 50px; }
-.slider-container::-webkit-scrollbar-thumb { background: #000; border-radius: 10px; }
-/* Remove the active scaling class logic since we show 3 equal items */
 .slide.active {
   transform: scale(1);
   opacity: 1;
 }
-/* Buttons */
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: white;
-  border: 1px solid black;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 20;
-}
-.prev-btn { left: 20px; }
-.next-btn { right: 20px; }
 
 /* =========================
    REVIEWS SECTION STYLES
 ========================== */
-
-/* --- Scrollable Review Section --- */
 .reviews-section {
     padding: 40px 20px;
     background-color: #fff;
@@ -525,19 +547,16 @@ i{
     border-top: 2px solid gray;
     background-color: rgb(240, 240, 240);
 }
-
 .reviews-grid-container {
-    display: flex; /* Changed from grid to flex for horizontal scrolling */
+    display: flex; 
     gap: 20px;
-    overflow-x: auto; /* Enables manual scrolling */
+    overflow-x: auto; 
     padding: 20px 10px;
-    scroll-snap-type: x mandatory; /* Makes cards snap into place */
+    scroll-snap-type: x mandatory; 
     scroll-behavior: smooth;
-    scrollbar-width: thin; /* Firefox */
+    scrollbar-width: thin; 
     scrollbar-color: #000 #e0e0e0;
 }
-
-/* Custom Scrollbar for Chrome/Safari */
 .reviews-grid-container::-webkit-scrollbar {
     height: 6px;
 }
@@ -549,10 +568,9 @@ i{
     background: #000;
     border-radius: 10px;
 }
-
 .review-card {
-    flex: 0 0 300px; /* Fixed width so they don't shrink */
-    scroll-snap-align: start; /* Snap point */
+    flex: 0 0 300px; 
+    scroll-snap-align: start; 
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 15px;
@@ -560,22 +578,19 @@ i{
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     margin-bottom: 80px;
 }
+
 /* =========================================
    ANTI-COPY PROTECTION (OVERLAY & SELECTION)
    ========================================= */
-
-/* 1. Prevent text selection on all product cards, sliders, and details */
 .products, 
 .prodetails, 
 .slide,
 .carousel-wrapper {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
-
-/* 2. Prevent images from being dragged to the desktop */
 .product-image, 
 .main-img, 
 .small-img-col img, 
@@ -585,14 +600,10 @@ i{
     -moz-user-drag: none; 
     -o-user-drag: none; 
 }
-
-/* 3. Invisible Transparent Overlay over Grid & Slider Images */
 .products-top, 
 .slide {
     position: relative;
 }
-
-/* Creates a transparent shield over the image to block "Save Image As" */
 .products-top::after, 
 .slide::after {
     content: '';
@@ -601,8 +612,6 @@ i{
     z-index: 5;
     background: transparent; 
 }
-
-/* 4. IMPORTANT: Keep Buttons Clickable Above the Protection */
 .button-container, 
 .product-bottom button, 
 .nav-btn, 
@@ -611,5 +620,4 @@ i{
 .qty-btn {
     position: relative;
     z-index: 20; 
-    /* Ensures buttons and galleries can still be clicked! */
 }

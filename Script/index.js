@@ -16,6 +16,31 @@ window.addEventListener('load', () => {
     }
 });
 
+// --- Announcement Bar Close Logic ---
+const closeAnnouncement = document.getElementById('closeAnnouncement');
+if (closeAnnouncement) {
+    closeAnnouncement.addEventListener('click', function() {
+        const bar = document.getElementById('announcementBar');
+        if (!bar) return;
+        
+        const currentHeight = bar.offsetHeight;
+        bar.style.height = currentHeight + 'px';
+        bar.offsetHeight; // force reflow
+        
+        bar.style.transition = 'all 0.4s ease-in-out';
+        bar.style.height = '0px';
+        bar.style.paddingTop = '0px';
+        bar.style.paddingBottom = '0px';
+        bar.style.opacity = '0';
+        bar.style.overflow = 'hidden';
+        bar.style.border = 'none';
+        
+        setTimeout(() => {
+            bar.style.display = 'none';
+        }, 400); 
+    });
+}
+
 // --- 2. Mobile Side Search Logic ---
 const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
 const sideSearchPanel = document.getElementById('sideSearchPanel');
@@ -60,6 +85,19 @@ function setupSearch(inputId, btnId, suggestionsId) {
 setupSearch('searchInput', 'searchBtn', 'searchSuggestions');
 setupSearch('sideSearchInput', 'sideSearchBtn', 'sideSearchSuggestions');
 
+// --- Global Wishlist Functions ---
+function getSavedWishlist() {
+    return JSON.parse(localStorage.getItem('ravenWishlist')) || [];
+}
+
+function updateWishlistCount() {
+    const countElement = document.getElementById('wishlist-count');
+    if (countElement) {
+        countElement.innerText = getSavedWishlist().length;
+    }
+}
+updateWishlistCount(); // Run on load
+
 // --- 4. Product Rendering ---
 function renderProducts(category, limit, containerSelector, customList = null) {
     const container = document.querySelector(containerSelector);
@@ -79,22 +117,18 @@ function renderProducts(category, limit, containerSelector, customList = null) {
     
     let html = '';
     if (filteredList.length === 0) {
-        container.innerHTML = `<p style="text-align: center; padding: 50px;">No products found.</p>`;
+        container.innerHTML = `<p style="text-align: center; padding: 50px; font-family: arial;">No products found.</p>`;
         return;
     }
 
+    const savedWishlist = getSavedWishlist();
+
     filteredList.forEach(product => {
         const hasDiscount = product.dis > 0;
-        
-        // Use actualDis for math if it exists, otherwise fallback to standard dis
         const discountRate = product.actualDis !== undefined ? product.actualDis : product.dis;
         const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (discountRate / 100))) : product.price;
         
-        // Restore the Discount Badge HTML
-        const discountBadge = hasDiscount 
-            ? `<div class="dis-container">-${product.dis}% OFF</div>` 
-            : '';
-
+        const discountBadge = hasDiscount ? `<div class="dis-container">-${product.dis}% OFF</div>` : '';
         const priceDisplay = hasDiscount 
             ? `<div class="price-stack"><p class="discount-price">Rs ${product.price}</p><p class="product-price">Rs ${finalPrice}/-</p></div>`
             : `<p class="product-price">Rs ${product.price}/-</p>`;
@@ -103,7 +137,6 @@ function renderProducts(category, limit, containerSelector, customList = null) {
         if (product.variations && product.variations.length > 0) {
             variationsHtml = `<div class="product-variations">`;
             product.variations.forEach(v => {
-                // BUG FIX: Only render the dot if 'color' actually exists
                 if (v.color) {
                     variationsHtml += `
                         <span class="variation-dot" 
@@ -116,11 +149,20 @@ function renderProducts(category, limit, containerSelector, customList = null) {
             variationsHtml += `</div>`;
         }
 
+        // Check if item is already wishlisted to render the active heart icon
+        const isWishlisted = savedWishlist.includes(product.id) ? 'active' : '';
+
         html += `
-            <div class="products" onclick="window.location.href='Product-detail.html?id=${product.id}'">
+            <div class="products" data-product-id="${product.id}" onclick="window.location.href='Product-detail.html?id=${product.id}'">
+                
                 ${discountBadge} 
                 <div class="products-top">
                     <img class="product-image" src="${product.image}" id="img-${product.id}">
+                    
+                    <button class="wishlist-toggle-btn ${isWishlisted}" onclick="toggleWishlist(event, '${product.id}')" title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
                     <button class="image-cart-btn" onclick="addToCart(event, '${product.id}')" title="Add to Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -146,9 +188,40 @@ function changeProductImage(dotElement, newImageUrl) {
     }
 }
 
+// --- Wishlist Interaction Logic ---
+function toggleWishlist(event, productId) {
+    event.stopPropagation(); // Stop page redirect when clicking heart
+
+    const btn = event.currentTarget;
+    let savedWishlist = getSavedWishlist();
+
+    // Play animation
+    btn.classList.remove('pop');
+    void btn.offsetWidth; // trigger reflow
+    btn.classList.add('pop');
+
+    // Toggle active state locally
+    btn.classList.toggle('active');
+
+    if (btn.classList.contains('active')) {
+        if (!savedWishlist.includes(productId)) savedWishlist.push(productId);
+    } else {
+        savedWishlist = savedWishlist.filter(id => id !== productId);
+    }
+
+    localStorage.setItem('ravenWishlist', JSON.stringify(savedWishlist));
+    updateWishlistCount();
+
+    // Re-render if we are actively on the wishlist page and remove an item
+    if (document.getElementById('wishlist-grid')) {
+        renderWishlistPage();
+    }
+}
+
 // --- 5. EXECUTION LOGIC ---
 const collectionContainer = document.querySelector('.js-collection-grid');
 const homeContainer = document.querySelector('.js-product-grid');
+const wishlistContainer = document.getElementById('wishlist-grid');
 
 if (collectionContainer) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -172,8 +245,28 @@ if (collectionContainer) {
     }
 } 
 else if (homeContainer) {
-    // Renders the single "All Products" section on the home page.
     renderProducts('all', null, '.js-product-grid');
+}
+else if (wishlistContainer) {
+    renderWishlistPage();
+}
+
+// --- Render Wishlist Page ---
+function renderWishlistPage() {
+    const grid = document.getElementById('wishlist-grid');
+    const emptyMsg = document.getElementById('empty-wishlist-message');
+    if (!grid || !emptyMsg) return;
+
+    const savedWishlist = getSavedWishlist();
+    
+    if (savedWishlist.length === 0) {
+        grid.innerHTML = '';
+        emptyMsg.style.display = 'block';
+    } else {
+        emptyMsg.style.display = 'none';
+        const wishlistedProducts = products.filter(p => savedWishlist.includes(p.id));
+        renderProducts(null, null, '#wishlist-grid', wishlistedProducts);
+    }
 }
 
 // --- 6. Smooth Scroll-Back Carousel ---
@@ -205,13 +298,10 @@ if (sliderContainer) {
     slidesList.forEach(slide => {
         slide.addEventListener('click', (e) => {
             stopAutoPlay();
-            
-            // Redirects to collection page with the target category ID from HTML 'data-category'
             const categoryId = slide.getAttribute('data-category');
             if (categoryId) {
                 window.location.href = `collection.html?category=${categoryId}`;
             }
-            
             setTimeout(startAutoPlay, 5000); 
         });
     });
@@ -240,14 +330,11 @@ if (exploreBtn) {
 
 // --- 8. Add To Cart from Card Logic ---
 function addToCart(event, productId) {
-    // Prevent the click from bubbling up to the .products div (which redirects the page)
     event.stopPropagation(); 
 
-    // Assuming 'products' array from data.js is globally available
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    // Calculate the final price in case there is a discount using actualDis
     const hasDiscount = product.dis > 0;
     const discountRate = product.actualDis !== undefined ? product.actualDis : product.dis;
     const finalPrice = hasDiscount ? Math.floor(product.price - (product.price * (discountRate / 100))) : product.price;
@@ -270,7 +357,6 @@ function addToCart(event, productId) {
     localStorage.setItem('ravyn_cart', JSON.stringify(cart));
     updateCartCount();
 
-    // Visual feedback: change cart icon to a checkmark briefly
     const btn = event.currentTarget;
     const icon = btn.querySelector('i');
     if (icon) {
@@ -281,8 +367,8 @@ function addToCart(event, productId) {
         setTimeout(() => {
             icon.classList.remove('fa-check');
             icon.classList.add('fa-cart-shopping');
-            btn.style.backgroundColor = ""; // reset
-            icon.style.color = ""; // reset
+            btn.style.backgroundColor = ""; 
+            icon.style.color = ""; 
         }, 1000);
     }
 }

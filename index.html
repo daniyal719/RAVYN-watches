@@ -27,6 +27,17 @@
     </div>
   </div>
 
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-content">
+        <span><i class="fa-solid fa-truck"></i> Free Delivery</span>
+        <span class="dot-separator">•</span>
+        <span><i class="fa-solid fa-headset"></i> 24/7 Support</span>
+        <span class="dot-separator">•</span>
+        <span><i class="fa-solid fa-gem"></i> Best Quality</span>
+    </div>
+    <button id="closeAnnouncement"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  
   <header class="header">
     <div class="logo-container">
       <a href="index.html"><h1>RAVYN</h1></a>
@@ -40,6 +51,7 @@
         <a href="collection.html?category=women-watch" class="mobile-only-link"><p class="menu">Women Watches</p></a>
         <a href="collection.html?category=rolex-watch" class="mobile-only-link"><p class="menu">Rolex</p></a>
         
+        <a href="wishlist.html" class="nav-cart-link"><p class="menu">Wishlist</p></a>
         <a href="cart.html" class="nav-cart-link"><p class="menu">Cart</p></a>
         <i class="fa fa-window-close" id="close" aria-hidden="true"></i>
     </div>
@@ -50,6 +62,11 @@
             <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
             <div class="search-suggestions" id="searchSuggestions"></div>
         </div>
+        
+        <a href="wishlist.html" class="wishlist-button">
+          <i class="fa-regular fa-heart header-wishlist"></i>
+          <span id="wishlist-count">0</span>
+        </a>
 
         <a href="cart.html" class="cart-button">
             <i class="fa-solid fa-cart-shopping header-cart"></i>
@@ -73,14 +90,17 @@
   <div class="heading-container" style="margin-top: 50px;">
     <h1 class="product-heading">🌙 Exclusive Ramadan Deal 🌙</h1>
   </div>
+  
   <section class="prodetails">
-    <div class="single-pro-image">
+    <div class="single-pro-image" style="position: relative;">
+        <button class="wishlist-toggle-btn" onclick="toggleWishlist(event, 'bugatti-luxury-watch')">
+            <i class="fa-regular fa-heart"></i>
+        </button>
         <img src="./Images/product/product-6.jpeg" width="100%" class="main-img" id="MainImg" alt="Product Image">
     </div>
     
     <div class="single-pro-details">
       <h6>Home / Watches</h6>
-      
       <h4 class="pro-name">Bugatti Luxury Watch</h4>
       <h2 class="pro-price">Rs 19000/-</h2>
       <div class="properties">
@@ -104,7 +124,6 @@
     <h2 class="product-deal">Shop by Collection</h2>
     <div class="slider-container">
       <div class="slider-track">
-        
         <div class="slide active" data-category="men-watch">
           <img src="./Images/product/Cartiner/cartiner-cata.jpg" alt="Men Watches">
           <p>Men Watches</p>
@@ -176,7 +195,6 @@
                 <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
             </div>
         </div>
-
         <div class="review-card">
             <div class="review-stars">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
@@ -188,7 +206,6 @@
                 <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
             </div>
         </div>
-
         <div class="review-card">
             <div class="review-stars">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -232,20 +249,20 @@
       <i class="fa-solid fa-shop"></i>
       <span class="label">Shop</span>
     </a>
+    <a href="wishlist.html" class="mobile-nav-item">
+      <i class="fa-regular fa-heart"></i>
+      <span class="label">Saved</span>
+    </a>
     <a href="cart.html" class="mobile-nav-item">
       <i class="fa-solid fa-cart-shopping"></i>
       <span class="label">Cart</span>
     </a>
-    
-    <a href="checkout.html" class="mobile-nav-item">
-      <i class="fa-solid fa-credit-card"></i> <span class="label">Checkout</span>
-    </a>
-    
     <div class="mobile-nav-item" id="mobileSearchTrigger">
       <i class="fa-solid fa-magnifying-glass"></i>
       <span class="label">Search</span>
     </div>
   </div>
+
   <div id="sideSearchPanel" class="side-search-panel">
     <div class="side-search-header">
         <h3>Search RAVYN</h3>

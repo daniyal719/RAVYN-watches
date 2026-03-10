@@ -1,7 +1,6 @@
 /* =========================================
    1. BASE STYLES (Global)
    ========================================= */
-
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -21,13 +20,11 @@
     text-decoration: none;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
-
 .whatsapp-float:hover {
     background-color: #128c7e;
     transform: scale(1.1);
     color: white;
 }
-
 .side-search-panel {
     position: fixed;
     top: 0;
@@ -40,22 +37,18 @@
     padding: 20px;
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
 }
-
 .side-search-panel.active {
     right: 0;
 }
-
 .side-search-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-
 .mobile-nav-item {
     color: white;
 }
-
 .mobile-navbar {
     width: 100%;
     display: none;
@@ -66,7 +59,6 @@
 /* =========================================
    2. MEDIA QUERIES
    ========================================= */
-
 @media (max-width: 1200px) {
     .fe {
         flex: 0 0 5%;
@@ -78,14 +70,12 @@
         border: 1px solid gray;
     }
 }
-
 @media (max-width: 1024px) {
     .hero-section {
         background-position: 65% center;
         background-size: cover;
     }
 }
-
 @media (max-width: 900px) {
     .hero-section {
         background-position: center center;
@@ -98,17 +88,7 @@
         font-size: 30px;
         margin: 0px;
     }
-    .fe {
-        flex: 0 0 5%;
-        background-color: #ffff;
-        height: 180px;
-        padding: 10px;
-        font-family: arial;
-        border-radius: 10px;
-        border: 1px solid gray;
-    }
 }
-
 @media (max-width: 820px) {
     .comparision-table-container {
         padding-bottom: 40px;
@@ -156,88 +136,44 @@
     .buy-now-btn {
         width: 47%;
     }
-    .comparision-table-container{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .comparision-table-container h3{
-        font-size: 18px;
-        margin-bottom: 0px;
-    }
-    .comparision-table-container p{
-        font-size: 18px;
-        margin-top: 10px;
-    }
-    .comparison-table {
-        border: 1px solid #000;
-    }
-    .main{
-        padding: 10px 20px;
-        font-size: 15px;
-    }
-    .feature-name{
-        font-size: 16px;
-    }
-    .check,.cross{
-        font-size: 16px;
-    }
 }
-/* =========================================
-   DESKTOP: CENTERED SEARCH BAR (800px and up)
-   ========================================= */
+
 @media (min-width: 800px) {
     .header {
-        /* Anchors the search bar so it stays inside the header */
         position: relative; 
     }
-
-    /* 1. Break the search bar out and center it absolutely */
     .header-right-section .search-container {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: 40vw; /* Responsive width based on screen size */
-        max-width: 450px; /* Prevents it from getting too huge on 4k monitors */
+        width: 40vw; 
+        max-width: 450px; 
     }
-
-    /* 2. Tell the input text area to stretch and fill the new, wider container */
     .search-container input {
         width: 100%;
         flex: 1;
-        margin-right: 10px; /* Adds breathing room before the magnifying glass */
+        margin-right: 10px; 
     }
-
-    /* 3. Push the Nav Links (Home, Collection) to the right, sitting nicely next to the Cart */
     .center-nav {
         margin-left: auto;
-        margin-right: 30px; /* Space between your links and the Cart icon */
+        margin-right: 30px; 
     }
 }
-/* =========================================
-   CRITICAL UPDATE: Mobile Header Logic (799px)
-   ========================================= */
-@media (max-width: 799px) {
 
+@media (max-width: 799px) {
     .header-right-section .search-container {
         display: none !important;
     }
-
-    .header-right-section .cart-button {
+    .header-right-section .cart-button,
+    .header-right-section .wishlist-button {
         display: none !important;
     }
-    
     .nav-cart-link {
         display: block !important;
     }
-
-    /* SHOW CATEGORY LINKS IN HAMBURGER */
     .mobile-only-link {
         display: block !important; 
     }
-
     .header-right-section {
         position: static;      
         right: auto;            
@@ -251,7 +187,6 @@
         align-items: center;
         justify-content: flex-end;
     }
-
     .mobile {
         display: flex !important; 
         align-items: center;
@@ -260,7 +195,6 @@
         cursor: pointer;
         color: white; 
     }
-
     .center-nav {
         display: flex;
         flex-direction: column;
@@ -277,24 +211,20 @@
         transition: right .3s linear;
         z-index: 1000;
     }
-
     .center-nav.active {
         right: 0px; 
     }
-
     .center-nav a {
         width: 100%;
         margin-bottom: 5px;
         border-bottom: 1px solid #eee;
     }
-
     .center-nav .menu {
         color: black; 
         font-size: 18px;
         display: block;
         padding-bottom: 5px;
     }
-
     #close {
         display: initial;
         position: absolute;
@@ -304,7 +234,6 @@
         font-size: 25px;
         cursor: pointer;
     }
-    
     .hero-section {
         margin: 10px 0;
         height: 70vh;
@@ -313,28 +242,19 @@
         box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
         background-position: top 40% right 30%;
     }
-
     .hero-left {
         margin-left: 20px;
     }
-
     .hero-left h2 {
         width: 500px;
         font-size: 40px;
     }
-
-    .hero-left button {
-        margin: 30px 10px;
-        box-shadow: 3px 3px 7px gray;
-    }
-
     .products-grid {
         display: grid;
         padding: 20px 20px;
         column-gap: 25px;
         row-gap: 10px;
     }
-
     .footer-left-section {
         display: flex;
         flex-direction: column;
@@ -342,7 +262,6 @@
         width: 250px;
         margin-left: 20px;
     }
-
     .footer-left-section img {
         width: 180px;
     }
@@ -351,35 +270,12 @@
         width: 35px;
         height: 35px;
     }
-    
     .image-cart-btn i {
         font-size: 14px;
     }
     .footer-text {
         font-size: 12px;
     }
-
-    .footer-middle-section h2,
-    .footer-right-section h2 {
-        font-size: 34px;
-        margin-top: 50px;
-        margin-right: 0px;
-    }
-
-    .footer-middle-section .links p {
-        font-size: 20px;
-        line-height: 15px;
-    }
-
-    .footer-right-section {
-        width: 280px;
-    }
-
-    .footer-right-section p {
-        font-size: 18px;
-        margin-left: 5px;
-    }
-
     .social-icon i {
         font-size: 30px;
         margin: 0px;
@@ -399,23 +295,34 @@
         right: 20px;
         font-size: 25px;
     }
-
     .slide p {
         font-size: 16px;
     }
-
     .reviews-grid-container {
         padding: 20px 10px;
     }
-
     .review-card {
         padding: 20px;
     }
-    /* Note: The old buggy rule hiding .mobile-only-link has been removed here! */
 }
 
 /* Mobile Devices */
 @media (max-width: 600px) {
+    .announcement-content {
+        gap: 8px;
+        font-size: 9px;
+    }
+    .announcement-bar {
+        padding: 10px 30px 10px 10px;
+    }
+    .empty-heart-icon {
+        width: 120px;
+        height: 120px;
+        font-size: 50px;
+    }
+    .empty-state h2 {
+        font-size: 24px;
+    }
     .hero-section {
         margin-left: 0px;
         margin-right: 0px;
@@ -424,17 +331,14 @@
         background-position: top 30% right 35%;
         background-repeat: no-repeat;
     }
-
     .header {
         left: 0;
         margin-bottom: 0px;
     }
-
     .hero-left h4,
     .hero-left {
         width: 70%;
     }
-
     .products {
         display: flex;
         flex-direction: column;
@@ -447,17 +351,8 @@
         background-color: white;
         height: auto;
     }
-
     .product-image {
         width: 200px;
-    }
-
-    .products:hover {
-        box-shadow: 5px 5px 15px gray;
-        .product-name {
-            color: rgb(37, 37, 37);
-            text-decoration: underline;
-        }
     }
 }
 
@@ -471,59 +366,34 @@
         background-position-x: 76%;
         background-repeat: no-repeat;
     }
-
     .header {
         left: 0;
     }
-
     .products-grid {
         column-gap: 7px;
         padding: 30px 10px;
         grid-template-columns: 1fr 1fr;
     }
-
     .products {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         box-shadow: 10px 10px 30px gray;
         border-radius: 10px;
-        transition: box-shadow .15s linear;
-        cursor: pointer;
-        background-color: white;
-        height: auto;
         padding: 10px 10px;
     }
-
     .product-image {
         width: 100%;
     }
-
-    .products:hover {
-        box-shadow: 5px 5px 15px gray;
-        .product-name {
-            color: rgb(37, 37, 37);
-            text-decoration: underline;
-        }
-    }
-
     .hero-left {
         width: 68%;
     }
-
     .hero-section h2 {
         font-size: 30px;
         width: 80%;
     }
-
     .hero-section h4 {
         font-size: 15px;
-        font-style: normal;
         margin-top: 15px;
         width: 85%;
     }
-
     .hero-left button {
         font-size: 14px;
         margin: 10px 7px;
@@ -539,43 +409,12 @@
         padding: 10px 20px;
         width: 100%;
     }
-    
     .pro-name { font-size: 22px; }
     .pro-price { font-size: 20px; }
-
     .add-cart-btn, .buy-now-btn {
         width: 100%;
         display: block; 
         text-align: center;
-    }
-
-    .comparision-table-container{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .comparision-table-container h3{
-        font-size: 18px;
-        margin-bottom: 0px;
-    }
-    .comparision-table-container p{
-        font-size: 18px;
-        margin-top: 10px;
-    }
-    .comparison-table {
-        border: 1px solid #000;
-    }
-    .main{
-        padding: 10px 20px;
-        font-size: 15px;
-    }
-    .feature-name{
-        font-size: 16px;
-    }
-    .check,.cross{
-        font-size: 16px;
     }
 }
 
@@ -585,11 +424,9 @@
         width: 100%;
         margin-bottom: 0px;
     }
-
     .header h1 {
         font-size: 24px;
     }
-
     .hero-section {
         border-radius: 0px;
         width: 100%;
@@ -599,69 +436,53 @@
         background-position-x: 78%;
         background-size: cover;
     }
-
     .hero-left {
         width: 75%;
         line-height: 30px;
     }
-
     .hero-section h2 {
         font-size: 22px;
         width: 80%;
     }
-
     .hero-section h4 {
         line-height: 12px;
         font-size: 12px;
-        font-style: normal;
         margin-top: 15px;
     }
-
-    .hero-left button {
-        font-size: 14px;
-        margin: 10px 7px;
-        padding: 8px 14px;
-    }
-
     .product-heading {
         font-size: 20px;
     }
-
     .products-grid {
         grid-template-columns: 1fr 1fr;
         padding: 0px 0px;
     }
-
     .products {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         box-shadow: 10px 10px 30px gray;
         border-radius: 10px;
-        transition: box-shadow .15s linear;
-        cursor: pointer;
-        background-color: white;
         height: auto;
         width: auto;
     }
-
+    .wishlist-toggle-btn {
+        bottom: 10px;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+    }
+    .wishlist-toggle-btn i {
+        font-size: 14px;
+    }
     .product-image {
         width: 100%;
     }
-
     .product-name {
         font-size: 14px;
     }
-
     .product-price {
         font-size: 14px;
     }
-
     .footer {
         display: none !important;
     }
-
     .mobile-navbar {
         display: flex;
         justify-content: space-around;
@@ -676,7 +497,6 @@
         border-top: 1px solid #ddd;
         margin-top: 1px;
     }
-
     .mobile-nav-item {
         display: flex;
         flex-direction: column;
@@ -684,23 +504,15 @@
         text-decoration: none;
         flex: 1;
     }
-
     .mobile-nav-item i {
         font-size: 20px;
         margin-bottom: 4px;
     }
-
     .mobile-nav-item .label {
         font-size: 11px;
         font-family: Arial, sans-serif;
         font-weight: 500;
     }
-
-    .mobile-nav-item:active,
-    .mobile-nav-item:hover {
-        color: #666;
-    }
-
     body {
         padding-bottom: 70px;
     }
@@ -710,7 +522,6 @@
     .header-right-section .search-container {
         display: none !important;
     }
-
     .footer {
         display: none !important;
     }
@@ -727,7 +538,6 @@
         z-index: 2000;
         border-top: 1px solid #ddd;
     }
-
     .mobile-nav-item {
         display: flex;
         flex-direction: column;
@@ -737,17 +547,14 @@
         flex: 1;
         cursor: pointer;
     }
-
     .mobile-nav-item i {
         font-size: 20px;
         margin-bottom: 4px;
     }
-
     .mobile-nav-item .label {
         font-size: 11px;
         font-family: Arial, sans-serif;
     }
-
     .search-side-panel {
         position: fixed;
         top: 0;
@@ -761,11 +568,9 @@
         flex-direction: column;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
-
     .search-side-panel.active {
         right: 0;
     }
-
     .panel-header {
         display: flex;
         justify-content: space-between;
@@ -774,29 +579,24 @@
         border-bottom: 1px solid #eee;
         background: #f9f9f9;
     }
-
     .panel-header h2 {
         margin: 0;
         font-size: 20px;
         font-family: 'Times New Roman', serif;
     }
-
     .panel-header i {
         font-size: 24px;
         padding: 10px;
     }
-
     .panel-body {
         padding: 20px;
         overflow-y: auto;
     }
-
     .mobile-search-box {
         display: flex;
         border-bottom: 2px solid #333;
         margin-bottom: 20px;
     }
-
     .mobile-search-box input {
         flex: 1;
         border: none;
@@ -804,29 +604,24 @@
         padding: 10px;
         font-size: 18px;
     }
-
     .mobile-search-box button {
         background: none;
         border: none;
         font-size: 20px;
     }
-
     #sideSearchSuggestions {
         position: static;
         box-shadow: none;
         border: none;
         display: block;
     }
-
     .header {
         height: 50px;
         width: 100%;
     }
-
     .header h1 {
         font-size: 24px;
     }
-
     .hero-section {
         width: 100%;
         height: 300px;
@@ -834,45 +629,36 @@
         background-position-x: 80%;
         background-size: cover;
     }
-
     .hero-left {
         width: 60%;
     }
-
     .hero-section h2 {
         font-size: 16px;
         line-height: 24px;
         width: 80%;
     }
-
     .hero-section h4 {
         font-size: 8px;
-        font-style: normal;
         margin-top: 15px;
         line-height: 10px;
     }
-
     .hero-left button {
         font-size: 8px;
         margin: 10px 7px;
         padding: 8px 14px;
     }
-
     .product-deal {
         letter-spacing: 2px;
         font-size: 12px;
         padding: 10px 0px;
     }
-
     .carousel-wrapper {
         width: 100%;
     }
-
     .product-heading {
         font-size: 20px;
         width: 100%;
     }
-
     .heading-container {
         width: auto;
         height: auto;
@@ -880,64 +666,39 @@
         justify-content: center;
         align-items: center;
     }
-
     .products-grid {
         grid-template-columns: 1fr 1fr;
         padding: 0px 0px;
         column-gap: 5px;
     }
-
     .products {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         border-radius: 10px;
-        transition: box-shadow .15s linear;
-        cursor: pointer;
-        background-color: white;
         height: auto;
         width: 160px;
     }
-
     .products-top {
         width: 100%;
     }
-
     .product-bottom {
         width: 100%;
     }
-
     .product-image {
         width: 100%;
     }
-
     .product-name {
         font-size: 14px;
     }
-
     .product-price {
         margin-top: 5px;
         font-size: 16px;
     }
-
     .product-bottom button {
         position: absolute;
         bottom: 0px;
         right: 0%;
     }
-
     .product-bottom button i {
         font-size: 12px;
-    }
-
-    a {
-        color: black;
-        text-decoration: none;
-    }
-
-    i {
-        border: none;
     }
 }
 
