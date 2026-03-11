@@ -268,7 +268,7 @@ const products = [
     id: 'tomi-watch-04', 
     categories: ['men-watch' , 'tomi-watch'],
     image: './Images/product/Tomi/tomi-box-black-gray.jpg', 
-    name: 'Tomi T-103 Face Gear Dual Straps Watch',
+    name: 'Tomi T-105 Face Gear Dual Straps Watch',
     price: 4300,
     description: 'A masterpiece of precision and style... ( rotating dial )',
     dis: 10,
