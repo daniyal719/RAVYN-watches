@@ -252,6 +252,19 @@ const products = [
   {
     id: 'tomi-watch-03', 
     categories: ['men-watch' , 'tomi-watch'],
+    image: './Images/product/Tomi/tomi-2-circle.jpg', 
+    name: 'Tomi T-302 S Series Watch <p>(Gift Watch)</p>',
+    price: 4500,
+    description: 'A masterpiece of precision and style... ( rotating dial )',
+    dis: 10,
+    actualDis: 8.9,
+    variations: [
+      { image: './Images/product/Tomi/tomi-circle-gift.jpg' }
+    ]
+  },
+  {
+    id: 'tomi-watch-04', 
+    categories: ['men-watch' , 'tomi-watch'],
     image: './Images/product/Tomi/tomi-box-black-brown.jpg', 
     name: 'Tomi T-104 Face Gear Dual Straps Watch',
     price: 4300,
@@ -265,7 +278,7 @@ const products = [
     ]
   },
   {
-    id: 'tomi-watch-04', 
+    id: 'tomi-watch-05', 
     categories: ['men-watch' , 'tomi-watch'],
     image: './Images/product/Tomi/tomi-box-black-gray.jpg', 
     name: 'Tomi T-105 Face Gear Dual Straps Watch',
